@@ -28,6 +28,11 @@ const User = () => {
 			.then((data) => setGuidesAdded(data.data))
 			.catch((err) => console.log(err));
 	}
+	useEffect(() => {
+		if (!username) {
+			navigate("/login");
+		}
+	}, [username]);
 
 	// useEffect(() => {
 	// 	const token = localStorage.getItem("token");
