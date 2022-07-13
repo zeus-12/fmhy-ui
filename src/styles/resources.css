@@ -1,0 +1,32 @@
+.toc_child {
+	display: none;
+}
+
+a {
+	text-decoration: none;
+	color: rgb(84, 159, 230);
+}
+
+a:hover {
+	color: rgb(125, 182, 236);
+}
+
+div {
+	color: #e8e6e3;
+}
+
+/* .toc ul {
+  display: flex;
+  /* list-style-type: none; */
+/* flex-wrap: wrap; */
+/* }  */
+/* .toc li {
+  margin-right: 16px;
+} */
+h1 {
+	font-size: 1.55rem !important;
+}
+
+h2 {
+	font-size: 1.45rem;
+}
