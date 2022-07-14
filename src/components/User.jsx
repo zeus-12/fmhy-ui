@@ -53,9 +53,9 @@ const User = () => {
 
 	return (
 		<div className="p-4">
-			<div className="flex justify-between align-items-center">
+			<div className="flex justify-between items-center">
 				<h2 className="m-0" style={{ fontSize: "1.9rem" }}>
-					Hey, <span style={{ color: "#40DFEF" }}>{username || "User"}</span>
+					Hey, <span className="text-cyan-400">{username || "User"}</span>
 				</h2>
 				<div className="logout px-2 py-2" onClick={logout}>
 					<span className="logoout-btn">Logout</span>
