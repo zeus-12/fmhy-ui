@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
-import SERVER_URL from "../ServerUrl";
 import "../styles/AddGuide.css";
+
+const SERVER_URL = process.env.SERVER_URL;
 
 const GuideItemsGenerator = ({ data, updateData, noResultMessage }) => {
 	const { username, isAdmin } = useContext(UserContext);

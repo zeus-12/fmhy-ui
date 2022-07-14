@@ -4,7 +4,8 @@ import { UserContext } from "./UserContext";
 import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
 import { IoMdArrowDropdown } from "react-icons/io";
-import SERVER_URL from "../ServerUrl";
+
+const SERVER_URL = process.env.SERVER_URL;
 
 const Links = () => {
 	const { isAdmin } = useContext(UserContext);

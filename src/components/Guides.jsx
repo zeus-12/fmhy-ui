@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import GuideItemsGenerator from "./GuideItemsGenerator";
 import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
-import SERVER_URL from "../ServerUrl";
 import { ErrorNotification } from "./Notification";
 import { Input } from "@mantine/core";
+
+const SERVER_URL = process.env.SERVER_URL;
 
 const Guides = () => {
 	const [noResultMessage, setNoResultMessage] = useState("Loading...");

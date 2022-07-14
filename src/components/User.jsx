@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import GuideItemsGenerator from "./GuideItemsGenerator";
 import "../styles/User.css";
 import { UserContext } from "./UserContext";
-import SERVER_URL from "../ServerUrl";
+
+const SERVER_URL = process.env.SERVER_URL;
 
 const User = () => {
 	const { username, setUsername, setIsAdmin } = useContext(UserContext);

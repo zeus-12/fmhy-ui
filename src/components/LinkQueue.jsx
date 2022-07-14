@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from "react";
-import SERVER_URL from "../ServerUrl";
 import { UserContext } from "./UserContext";
 import { ErrorNotification, SuccessNotification } from "./Notification";
 import "../styles/AddGuide.css";
@@ -7,6 +6,7 @@ import LinkQueueModel from "./LinkQueueModal";
 import { Link } from "react-router-dom";
 import { Button } from "@mantine/core";
 
+const SERVER_URL = process.env.SERVER_URL;
 const LinkQueue = () => {
 	const { isAdmin } = useContext(UserContext);
 	// const isAdmin = true;

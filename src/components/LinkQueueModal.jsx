@@ -2,11 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import "../styles/AddGuide.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
-import SERVER_URL from "../ServerUrl";
 import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
 import { ErrorNotification, SuccessNotification } from "./Notification";
 const { Modal } = require("@mantine/core");
+
+const SERVER_URL = process.env.SERVER_URL;
 
 const LinkQueueModal = ({
 	idToEdit,

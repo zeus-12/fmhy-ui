@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import { ErrorNotification } from "./Notification";
 import { UserContext } from "./UserContext";
-import SERVER_URL from "../ServerUrl";
+
+const SERVER_URL = process.env.SERVER_URL;
 
 const Login = () => {
 	const navigate = useNavigate();

@@ -2,10 +2,10 @@ import { useState, useContext, useEffect } from "react";
 import "../styles/AddGuide.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
-import SERVER_URL from "../ServerUrl";
 import Tags from "./Tags";
 import { ErrorNotification, SuccessNotification } from "./Notification";
 
+const SERVER_URL = process.env.SERVER_URL;
 const AddGuide = () => {
 	const { username } = useContext(UserContext);
 	const navigate = useNavigate();
