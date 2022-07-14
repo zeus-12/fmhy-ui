@@ -41,8 +41,9 @@ const LinksPage = () => {
 							</h1>
 
 							<div className="flex flex-col flex-wrap  max-h-[15rem] ">
-								{item.channels.map((channel) => (
+								{item.channels.map((channel, index) => (
 									<p
+										key={index}
 										className="inline mb-0"
 										style={{
 											fontSize: "0.85rem",

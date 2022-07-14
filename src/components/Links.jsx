@@ -53,8 +53,8 @@ const Links = () => {
 					{channels.map((channelName, index) => {
 						return (
 							<div key={index}>
-								<div className="flex justify-between pe-4">
-									<h2 className="bg-danger">{formatName(channelName)}</h2>
+								<div className="flex justify-between pr-4">
+									<h2 className="bg-emerald-400">{formatName(channelName)}</h2>
 									<IoMdArrowDropdown
 										style={{ width: "2rem", height: "2rem" }}
 									/>
@@ -64,8 +64,7 @@ const Links = () => {
 										.filter((item) => item.channel === channelName)
 										.map((link) => (
 											<div
-												className="bg-success mb-3 p-2 d-inline-block me-2"
-												style={{ borderRadius: "5px" }}
+												className="bg-gray-600 mb-3 p-2 inline-block mr-2 rounded-md"
 												key={link._id}
 											>
 												{/* title */}
@@ -89,7 +88,7 @@ const Links = () => {
 												{/* delete and edit icon	 */}
 												{isAdmin && (
 													// add a tick svg inside to add it to the selected channel
-													<div className="flex me-2">
+													<div className="flex mr-2">
 														{/* edit */}
 														<svg
 															id={link._id}
