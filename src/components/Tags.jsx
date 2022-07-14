@@ -34,7 +34,7 @@ const Tags = ({ tags, setTags, setError }) => {
 	};
 
 	return (
-		<div className="flex flex-column-reverse">
+		<div className="flex flex-col-reverse">
 			<ul className="tags" style={{ listStyleType: "none" }}>
 				{tags.map((tag, index) => (
 					<li key={index} className="tag">

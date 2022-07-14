@@ -142,12 +142,3 @@ path :hover {
 select {
 	height: 2rem !important;
 }
-
-.link-page-item {
-	height: 19vw;
-}
-@media only screen and (max-width: 575.98px) {
-	.link-page-item {
-		height: 15rem !important;
-	}
-}

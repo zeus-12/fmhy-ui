@@ -8,17 +8,13 @@ const LinksPage = () => {
 	let sortedCateogryChannels = category_channels.sort(
 		(a, b) => a.channels.length < b.channels.length,
 	);
-	// let sortedCateogryChannels = sortedCateogry.map((ele) =>
-	// 	ele.channels.sort((a, b) => a > b),
-	// );
-	// console.log(sortedCateogryChannels);
 
 	return (
 		<div className="">
 			<div className="flex justify-between items-center">
 				<p
-					className="p-2 ps-4 mb-0"
-					style={{ fontSize: "1.6rem", color: "rgb(255, 180, 180)" }}
+					className="p-2 pt-0 pl-4 mb-0 text-2xl sm:text-3xl "
+					style={{ color: "rgb(255, 180, 180)" }}
 				>
 					Links
 				</p>
@@ -32,22 +28,22 @@ const LinksPage = () => {
 				{sortedCateogryChannels.map((item, index) => (
 					<Link
 						to={item.category.split(" ")[0]}
-						className="m-1 col-11 col-md-5 col-xl-3 guide-item"
+						className="m-1 rounded-md w-[95vw] md:w-[44vw] xl:w-[25vw] guide-item"
 						style={{
-							borderRadius: "10px",
 							backgroundColor: "rgb(17, 16, 16)",
 							border: "0.1px solid rgb(91, 91, 91)",
 						}}
 						key={index}
 					>
-						<div className="text-light p-2">
+						<div className="text-light p-4">
 							<h1 className="mb-0" style={{ color: "rgb(224, 250, 241)" }}>
 								{formatName(item.category)}
 							</h1>
-							<div className="flex flex-column flex-wrap link-page-item ">
+
+							<div className="flex flex-col flex-wrap  max-h-[15rem] ">
 								{item.channels.map((channel) => (
 									<p
-										className="d-inline mb-0"
+										className="inline mb-0"
 										style={{
 											fontSize: "0.85rem",
 											color: "rgba(226, 226, 226, 0.91)",

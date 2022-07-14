@@ -15,7 +15,7 @@ const ResourcesMenu = () => {
 				{resources.map((resource, index) => (
 					<Link to={resource.link} key={index}>
 						<div
-							className="resource-box flex-column p-2 m-2 flex justify-center align-items-center"
+							className="resource-box flex-col p-2 m-2 flex justify-center items-center"
 							style={{
 								borderRadius: "5px",
 								width: "18vw",

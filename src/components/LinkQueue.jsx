@@ -10,7 +10,7 @@ import { Button } from "@mantine/core";
 const LinkQueue = () => {
 	const { isAdmin } = useContext(UserContext);
 	// const isAdmin = true;
-	const [isOpen, setIsOpen] = useState(false);
+	const [opened, setOpened] = useState(false);
 	const [idToEdit, setIdToEdit] = useState();
 	const [submittedLinks, setSubmittedLinks] = useState([]);
 	const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ const LinkQueue = () => {
 
 	const modalHandler = async (e, id) => {
 		setIdToEdit(e.target.id);
-		setIsOpen(true);
+		setOpened(true);
 	};
 	const deleteLink = async (e, id) => {
 		if (id) {
@@ -169,10 +169,11 @@ const LinkQueue = () => {
 				})}
 			</div>
 			{/* modal */}
-			{isOpen && (
+			{opened && (
 				<LinkQueueModel
+					opened={opened}
+					setOpened={setOpened}
 					idToEdit={idToEdit}
-					setIsOpen={setIsOpen}
 					deleteLink={deleteLink}
 					submittedLinks={submittedLinks}
 					setSubmittedLinks={setSubmittedLinks}

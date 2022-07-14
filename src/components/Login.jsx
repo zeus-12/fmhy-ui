@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
-
+import { ErrorNotification } from "./Notification";
 import { UserContext } from "./UserContext";
 import SERVER_URL from "../ServerUrl";
 
@@ -12,7 +12,7 @@ const Login = () => {
 	const [user_name, setUser_name] = useState("");
 	const [password, setPassword] = useState("");
 
-	const [errorMessage, setErrorMessage] = useState("");
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		if (username) {
@@ -37,12 +37,16 @@ const Login = () => {
 			setIsAdmin(data.admin);
 			navigate("/user");
 		} else {
-			setErrorMessage("Incorrect combination");
+			setError("Incorrect combination");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
 		}
 	}
 
 	return (
-		<div className="p-2 flex flex-column align-items-center">
+		<div className="p-2 flex flex-col items-center">
+			{error && <ErrorNotification error={error} />}
 			<div>
 				<h1 className="pb-2 login-header" style={{ color: "#B9F8D3" }}>
 					Login
@@ -70,7 +74,6 @@ const Login = () => {
 						/>
 						<label>Password</label>
 					</div>
-					<p className="mt-0 mb-2 text-danger">{errorMessage}</p>
 					<input
 						className="block py-2 submit-btn"
 						value="Submit"
