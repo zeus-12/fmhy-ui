@@ -1,8 +1,8 @@
+import { Button } from "@mantine/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import jwt from "jsonwebtoken";
 import GuideItemsGenerator from "./GuideItemsGenerator";
-import "../styles/User.css";
 import { UserContext } from "./UserContext";
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -58,9 +58,13 @@ const User = () => {
 				<h2 className="m-0" style={{ fontSize: "1.9rem" }}>
 					Hey, <span className="text-cyan-400">{username || "User"}</span>
 				</h2>
-				<div className="logout px-2 py-2" onClick={logout}>
+
+				<Button
+					className="logout px-2 py-2 bg-gray-800 hover:bg-gray-700"
+					onClick={logout}
+				>
 					<span className="logoout-btn">Logout</span>
-				</div>
+				</Button>
 			</div>
 
 			<h6 className="m-0 mt-4" style={{ fontSize: "1.45rem" }}>

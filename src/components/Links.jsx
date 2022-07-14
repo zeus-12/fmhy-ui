@@ -46,7 +46,7 @@ const Links = () => {
 			<div className="flex justify-between ">
 				<h1>{formatName(CATEGORY)}</h1>
 			</div>
-			{links.length === 0 ? (
+			{links?.length === 0 ? (
 				"Loading"
 			) : (
 				<div>

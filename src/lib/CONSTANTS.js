@@ -168,4 +168,5 @@ export const resources = [
 	{ link: "/resource/android", emoji: "📱", title: "Android, iOS" },
 	{ link: "/resource/linux", emoji: "🐧", title: "Linux, MacOS" },
 	{ link: "/resource/storage", emoji: "📦", title: "Storage" },
+	{ link: "/resource/non-eng", emoji: "🌍", title: "Non English" },
 ];

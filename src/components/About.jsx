@@ -69,7 +69,30 @@ const About = () => {
 					/>
 				</div>
 			</div>
-			<Backup />
+			<div className="md:flex pt-4 justify-evenly">
+				<Backup />
+
+				{/* contribute section */}
+				<div className="pl-3">
+					<p className="text-2xl text-violet-400">Contribute</p>
+
+					<p>
+						<a className="text-cyan-400" href="https://rentry.co/FMHYedit">
+							Edit FMHY
+						</a>{" "}
+						Make changes to the FMHY Wiki
+					</p>
+					<p>
+						<a
+							className="text-cyan-400"
+							href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/find-new-sites"
+						>
+							Site Hunting Guide
+						</a>{" "}
+						Help us Discover New Sites
+					</p>
+				</div>
+			</div>
 		</div>
 	);
 };

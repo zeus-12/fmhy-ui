@@ -130,7 +130,7 @@ const Guides = () => {
 
 						{/* close button  */}
 						{inputToggle === "flex" && (
-							<div className="pl-2" onClick={toggleClose}>
+							<div className="pl-2 hover:cursor-pointer" onClick={toggleClose}>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									// class="h-18 w-18"
