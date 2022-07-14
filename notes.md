@@ -11,5 +11,7 @@ setTimeout(() => setError(), 3000);
 ---
 
 //todo
-add onClick ==> close drawer for menuComponent
-add token validation, check add guide route
+
+- add onClick ==> close drawer for menuComponent
+- add token validation, check add guide route, remove hardcoded username vars.
+- fix links/android_ios eg

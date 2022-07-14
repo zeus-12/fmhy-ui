@@ -6,7 +6,7 @@ import LinkQueueModel from "./LinkQueueModal";
 import { Link } from "react-router-dom";
 import { Button } from "@mantine/core";
 
-const SERVER_URL = process.env.SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const LinkQueue = () => {
 	const { isAdmin } = useContext(UserContext);
 	// const isAdmin = true;

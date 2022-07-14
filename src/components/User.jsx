@@ -5,7 +5,7 @@ import GuideItemsGenerator from "./GuideItemsGenerator";
 import "../styles/User.css";
 import { UserContext } from "./UserContext";
 
-const SERVER_URL = process.env.SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const User = () => {
 	const { username, setUsername, setIsAdmin } = useContext(UserContext);
