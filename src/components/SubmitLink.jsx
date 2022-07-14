@@ -47,19 +47,19 @@ const SubmitLink = () => {
 				channel,
 			}),
 		});
-		console.log(data);
+		const { message } = await data.json();
 
 		if (data.status === 200) {
-			setSuccess("Link Added Successfully!");
+			setSuccess(message);
 			setTimeout(() => {
 				setSuccess("");
 				navigate("/link-queue");
-			}, 3000);
+			}, 1500);
 		} else {
-			setError("Link already exist!");
+			setError(message);
 			setTimeout(() => {
 				setError("");
-			}, 1500);
+			}, 3000);
 		}
 	}
 	return (
@@ -114,8 +114,10 @@ const SubmitLink = () => {
 					>
 						<option value={null}>Select Category</option>
 
-						{category_channels.map((item) => (
-							<option value={item.category}>{formatName(item.category)}</option>
+						{category_channels.map((item, index) => (
+							<option key={index} value={item.category}>
+								{formatName(item.category)}
+							</option>
 						))}
 					</select>
 					{category && (
@@ -130,14 +132,16 @@ const SubmitLink = () => {
 								category_channels.find((item) => item.category === category) &&
 								category_channels
 									.find((item) => item.category === category)
-									.channels.map((channel) => (
-										<option value={channel}>{formatName(channel)}</option>
+									.channels.map((channel, index) => (
+										<option key={index} value={channel}>
+											{formatName(channel)}
+										</option>
 									))}
 						</select>
 					)}
 
 					<input
-						className="d-block py-2 submit-btn"
+						className="block py-2 submit-btn"
 						value="Submit"
 						type="submit"
 					/>

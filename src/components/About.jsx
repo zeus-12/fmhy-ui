@@ -2,12 +2,12 @@ import Backup from "./Backup";
 
 const About = () => {
 	return (
-		<div className="p-4 pt-0">
+		<div className="p-2 pt-0">
 			<div className="">
-				<h1 className="text-[#EDC988]">Vision</h1>
+				<p className="pl-3 text-2xl text-[#EDC988]">Vision</p>
 			</div>
 
-			<div className="py-4 lg:flex justify-evenly items-center gap-4">
+			<div className="py-4 lg:flex justify-evenly items-center gap-6">
 				<div className="mb-3 lg:mb-0 flex justify-center ">
 					<img
 						className="w-[300px] lg:max-w-xl"
@@ -35,8 +35,8 @@ const About = () => {
 				</p>
 			</div>
 
-			<h1 className="text-red-500">Promise</h1>
-			<div className="lg:flex justify-evenly items-center rounded-lg bg-[#121212] text-[#DEEEEA] text-[1.1rem]">
+			<p className="text-2xl pl-3 text-red-500">Promise</p>
+			<div className="lg:flex gap-6 justify-evenly items-center rounded-lg bg-[#121212] text-[#DEEEEA] text-[1.1rem]">
 				<p
 					className="p-3 pt-0"
 					style={{
@@ -55,7 +55,7 @@ const About = () => {
 					and until we live in a world that doesn't need to be shown that, we'll
 					be here."
 					<span
-						className="d-block font-semibold"
+						className="block font-semibold"
 						style={{ fontFamily: "helvetica" }}
 					>
 						- nbatman
@@ -63,7 +63,6 @@ const About = () => {
 				</p>
 				<div className="flex justify-center">
 					<img
-						gap-4
 						className="w-[300px] lg:max-w-xl"
 						alt="logo gif"
 						src="../../assets/logo-gif.gif"

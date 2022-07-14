@@ -93,8 +93,8 @@ const Guides = () => {
 				>
 					Guides
 				</p>
-				<div className="flex sm:ml-auto align-items-center pr-4">
-					<div className="search flex align-items-center pl-4">
+				<div className="flex sm:ml-auto items-center pr-4">
+					<div className="search flex items-center pl-4">
 						{/* todo: add hover change icon to pointer */}
 						<Input
 							className={inputToggle}

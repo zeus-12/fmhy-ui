@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-
+import { formatName } from "../lib/helper";
 import "../styles/resources.css";
 import Error404 from "./Error404";
 
 const Resources = (props) => {
-	const [resources, setResources] = useState("Loading...");
+	const [resources, setResources] = useState("");
 	const [error, setError] = useState(false);
 
 	let { resource } = useParams();
@@ -15,6 +15,7 @@ const Resources = (props) => {
 		resource = props.resourceName;
 	}
 	useEffect(() => {
+		setResources("Loading...");
 		const url = `https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/${resource}.json`;
 		fetch(url)
 			.then((res) => res.json())
@@ -24,8 +25,6 @@ const Resources = (props) => {
 			// 		.replaceAll("&gt;", ">")
 			// 		.replaceAll("&lt;", "<")
 			// 		.replaceAll("<hr />", "")
-			// 		.replaceAll("◄◄ Back to Wiki Index", "")
-			// 		.replaceAll("Table of Contents", "")
 			// 		.replaceAll("►", " ")
 			// 		.replaceAll("▷", "")
 			// 		.replaceAll("&#39;", "%")
@@ -37,13 +36,13 @@ const Resources = (props) => {
 			.catch((error) => {
 				setError(true);
 			});
-	}, []);
+	}, [resource]);
 
 	return (
-		<div className="resources p-4">
+		<div className="resources p-4 pt-0">
 			{error && <Error404 />}
 			<p className="text-capitalize mb-0" style={{ fontSize: "2rem" }}>
-				{error || resource}
+				{error || formatName(resource)}
 			</p>
 			<ReactMarkdown>{resources}</ReactMarkdown>
 		</div>

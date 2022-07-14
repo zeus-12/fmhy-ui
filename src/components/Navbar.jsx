@@ -16,7 +16,7 @@ export const MenuComponents = () => (
 		menuButtonLabel="Resources"
 		control={
 			<p className="px-1 py-1 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-				Resources
+				Wiki
 			</p>
 		}
 	>
@@ -74,10 +74,10 @@ const Navbar = () => {
 		<div>
 			<Drawer
 				className="pt-4 px-2 bg-black"
-				onClick={() => setOpened(false)}
 				opened={opened}
 				position="top"
 				size="100vh"
+				onClick={() => setOpened(false)}
 				onClose={() => setOpened(false)}
 				overlayOpacity={0.55}
 				overlayBlur={3}
@@ -85,11 +85,18 @@ const Navbar = () => {
 				zIndex={20}
 			>
 				<div className="text-2xl pt-16 space-y-4">
-					<Link to="/">
+					<div
+						className="flex justify-center"
+						onClick={(e) => e.stopPropagation()}
+					>
+						<MenuComponents />
+					</div>
+					{/* <Link to="/resources" onClick={(e) => e.stopPropagation()}>
 						<p className="px-1 py-1 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-							Resources
+							Wiki
 						</p>
-					</Link>
+					</Link> */}
+					{/* <div className=""> */}
 					<LinkElements />
 					{username && (
 						<Link to="/user">
@@ -105,6 +112,7 @@ const Navbar = () => {
 							</p>
 						</Link>
 					)}
+					{/* </div> */}
 				</div>
 			</Drawer>
 		</div>
@@ -115,9 +123,11 @@ const Navbar = () => {
 			<div>
 				<div className="px-6 border-b-[1px] border-gray-800 w-screen h-16 bg-black fixed top-0 flex justify-between items-center z-50 ">
 					{Logo}
-					<p className="font-medium font-sans text-2xl md:text-lg  md:hidden">
-						FMHY
-					</p>
+					<Link to="/">
+						<p className="text-white font-medium font-sans text-2xl md:text-lg  md:hidden">
+							FMHY
+						</p>
+					</Link>
 					<div className="md:hidden">{burgerComponent}</div>
 					{opened && <div className="hidden md:flex">{burgerComponent}</div>}
 					{!opened && (

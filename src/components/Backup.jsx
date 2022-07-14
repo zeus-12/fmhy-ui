@@ -50,7 +50,7 @@ const Backup = () => {
 	const links_to_component = (links) => {
 		const component = links.map((item) => (
 			<li>
-				<a className="d-block" style={{ color: "" }} href={item.link}>
+				<a className="block" style={{ color: "" }} href={item.link}>
 					{item.name}
 				</a>
 			</li>
@@ -63,10 +63,10 @@ const Backup = () => {
 
 	return (
 		<div className="pt-4">
-			<p style={{ fontSize: "1.5rem", color: "#47C072" }} className="mb-2">
+			<p style={{ fontSize: "1.5rem", color: "#47C072" }} className="mb-2 pl-3">
 				Backups
 			</p>
-			<div className="mb-4 md:mb-0 me-4 p-3 pt-0 sm:d-flex justify-between md:d-block">
+			<div className="mb-4 md:mb-0 me-4 p-3 pt-0 sm:d-flex justify-between md:block">
 				<div>
 					<p className="mb-0" style={{ fontSize: "1.3rem" }}>
 						Resources

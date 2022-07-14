@@ -202,12 +202,12 @@ const LinkQueueModel = ({
 						setResponseClass={setResponseClass}
 					/> */}
 						<input
-							className="d-block py-2 submit-btn"
+							className="block py-2 submit-btn"
 							value="Update"
 							type="submit"
 						/>
 						<button
-							className="d-block py-2 submit-btn text-danger mt-1"
+							className="block py-2 submit-btn text-danger mt-1"
 							onClick={deleteInsideModal}
 						>
 							Delete

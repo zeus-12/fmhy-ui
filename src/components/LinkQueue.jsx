@@ -1,9 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import SERVER_URL from "../ServerUrl";
 import { UserContext } from "./UserContext";
-
+import { ErrorNotification, SuccessNotification } from "./Notification";
 import "../styles/AddGuide.css";
 import LinkQueueModel from "./LinkQueueModal";
+import { Link } from "react-router-dom";
+import { Button } from "@mantine/core";
 
 const LinkQueue = () => {
 	const { isAdmin } = useContext(UserContext);
@@ -11,9 +13,8 @@ const LinkQueue = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [idToEdit, setIdToEdit] = useState();
 	const [submittedLinks, setSubmittedLinks] = useState([]);
-
-	const [response, setResponse] = useState("");
-	const [responseClass, setResponseClass] = useState("");
+	const [error, setError] = useState(null);
+	const [success, setSuccess] = useState(null);
 
 	const modalHandler = async (e, id) => {
 		setIdToEdit(e.target.id);
@@ -23,7 +24,7 @@ const LinkQueue = () => {
 		if (id) {
 			var idToDelete = id;
 		} else {
-			var idToDelete = e.target.id;
+			idToDelete = e.target.id;
 		}
 
 		const req = await fetch(
@@ -38,6 +39,15 @@ const LinkQueue = () => {
 			setSubmittedLinks((prevData) =>
 				prevData.filter((link) => link._id !== data.deletedSubmittedLink._id),
 			);
+			setSuccess("Successfully deleted!");
+			setTimeout(() => {
+				setSuccess("");
+			}, 1500);
+		} else {
+			setError("Couldn't delete the link!");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
 		}
 	};
 	useEffect(() => {
@@ -50,19 +60,33 @@ const LinkQueue = () => {
 		fetchLinks();
 	}, []);
 	return (
-		<div className="p-2">
-			<h4 className="mb-0">Link Queue</h4>
-			<div>
+		<div className="p-2 pt-0">
+			{error && <ErrorNotification error={error} />}
+			{success && <SuccessNotification success={success} />}
+			<div className="flex justify-between items-center">
+				<p
+					className="p-2 ps-4 mb-0 text-fuchsia-400"
+					style={{ fontSize: "1.6rem" }}
+				>
+					Links
+				</p>
+				<Link to="/submit-link">
+					<Button className="bg-yellow-700 hover:bg-yellow-600">
+						Submit Link
+					</Button>
+				</Link>
+			</div>
+			<div className="flex flex-wrap">
 				{submittedLinks?.map((link) => {
 					return (
 						<div
-							className="mb-3 p-2 d-inline-block me-2 guide-item"
+							className="mb-3 p-2 block mr-2 guide-item"
 							style={{ borderRadius: "5px", verticalAlign: "top" }}
 							key={link._id}
 						>
 							{/* title */}
 
-							<p className="m-0" style={{ color: "#5BA9E7" }}>
+							<p className="" style={{ color: "#5BA9E7" }}>
 								{link.title}
 							</p>
 
@@ -73,7 +97,7 @@ const LinkQueue = () => {
 							<a href={link.link}>{link.link}</a>
 
 							{/* username */}
-							<p className="m-0">
+							<p className="">
 								🙏
 								<span
 									className="px-2 py-1"
@@ -98,7 +122,7 @@ const LinkQueue = () => {
 							{/* delete and edit icon	 */}
 							{isAdmin && (
 								// add a tick svg inside to add it to the selected channel
-								<div className="flex me-2">
+								<div className="flex mr-2">
 									{/* edit */}
 									{/* uncomment for edit */}
 									<svg
@@ -154,28 +178,6 @@ const LinkQueue = () => {
 					setSubmittedLinks={setSubmittedLinks}
 				/>
 			)}
-
-			{/* resp message */}
-			<div className="flex justify-center">
-				{response && (
-					<div
-						style={{
-							position: "fixed",
-							bottom: "2vh",
-							display: "flex",
-							flex: 1,
-							minWidth: "10rem",
-							width: "20vw",
-							padding: "0.25rem 0.5rem ",
-							borderRadius: "5px",
-							justifyContent: "center",
-						}}
-						className={responseClass}
-					>
-						{response}
-					</div>
-				)}
-			</div>
 		</div>
 	);
 };

@@ -72,7 +72,7 @@ const Login = () => {
 					</div>
 					<p className="mt-0 mb-2 text-danger">{errorMessage}</p>
 					<input
-						className="d-block py-2 submit-btn"
+						className="block py-2 submit-btn"
 						value="Submit"
 						type="submit"
 					/>

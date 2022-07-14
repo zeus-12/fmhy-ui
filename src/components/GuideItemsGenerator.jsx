@@ -34,11 +34,11 @@ const GuideItemsGenerator = ({ data, updateData, noResultMessage }) => {
 					<div>
 						<div
 							key={item._id}
-							className="flex justify-between align-items-center pt-2"
+							className="flex justify-between items-center pt-2"
 						>
 							<li>
 								<a
-									className="d-inline"
+									className="inline"
 									style={{ fontSize: "1.1rem" }}
 									target="_blank"
 									href={item.link}
@@ -51,7 +51,7 @@ const GuideItemsGenerator = ({ data, updateData, noResultMessage }) => {
 								</a>
 							</li>
 							{username && (item.owner === username || isAdmin) && (
-								<div className="flex me-2">
+								<div className="flex mr-2">
 									{/* edit */}
 									<svg
 										id={item._id}
@@ -93,7 +93,7 @@ const GuideItemsGenerator = ({ data, updateData, noResultMessage }) => {
 								</div>
 							)}
 						</div>
-						<div className="flex align-items-center">
+						<div className="flex items-center">
 							{/* tags */}
 							{item.tags && (
 								<div>
