@@ -169,4 +169,5 @@ export const resources = [
 	{ link: "/resource/linux", emoji: "🐧", title: "Linux, MacOS" },
 	{ link: "/resource/storage", emoji: "📦", title: "Storage" },
 	{ link: "/resource/non-eng", emoji: "🌍", title: "Non English" },
+	{ link: "/resource/base64", emoji: "🔗", title: "Base 64" },
 ];
