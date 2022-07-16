@@ -17,7 +17,6 @@ import EditGuide from "./components/EditGuide";
 import React from "react";
 // import jwt from "jsonwebtoken";
 import SubmitLink from "./components/SubmitLink";
-// import ResourcesMenu from "./components/ResourcesMenu";
 import Links from "./components/Links";
 import LinksPage from "./components/LinksPage";
 import LinkQueue from "./components/LinkQueue";
@@ -65,7 +64,6 @@ function App() {
 						<Routes>
 							<Route path="/" element={<Home />} />
 							<Route path="/resource/:resource" element={<Resources />} />
-							{/* <Route path="/resources" element={<ResourcesMenu />} /> */}
 							<Route path="/backup" element={<Backup />} />
 							<Route path="/about" element={<About />} />
 							<Route

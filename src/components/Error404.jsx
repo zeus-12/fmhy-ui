@@ -2,10 +2,7 @@ import React from "react";
 
 const Error404 = () => {
 	return (
-		<div
-			// styles={{ height: "100px", width: "auto" }}
-			className="flex justify-center items-center"
-		>
+		<div className="flex justify-center items-center">
 			<img className="h-[90vh]" src="../assets/404.svg" alt="error 404" />
 		</div>
 	);

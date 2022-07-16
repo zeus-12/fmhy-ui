@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Login.css";
 import { ErrorNotification } from "./Notification";
 import { UserContext } from "./UserContext";
 
@@ -49,10 +48,8 @@ const Login = () => {
 		<div className="p-2 flex flex-col items-center">
 			{error && <ErrorNotification error={error} />}
 			<div>
-				<h1 className="pb-2 login-header" style={{ color: "#B9F8D3" }}>
-					Login
-				</h1>
-				<form className="login-form " onSubmit={userHandler}>
+				<p className="pb-2 text-3xl text-green-200">Login</p>
+				<form className="flex flex-col" onSubmit={userHandler}>
 					<div className="user-box ">
 						<input
 							className="input-text"
@@ -75,8 +72,9 @@ const Login = () => {
 						/>
 						<label>Password</label>
 					</div>
+
 					<input
-						className="block py-2 submit-btn"
+						className="block py-2 bg-cyan-600 rounded-md text-gray-200"
 						value="Submit"
 						type="submit"
 					/>
