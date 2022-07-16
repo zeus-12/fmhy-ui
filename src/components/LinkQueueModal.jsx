@@ -7,7 +7,7 @@ import { category_channels } from "../lib/CONSTANTS";
 import { ErrorNotification, SuccessNotification } from "./Notification";
 const { Modal } = require("@mantine/core");
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
 const LinkQueueModal = ({
 	idToEdit,

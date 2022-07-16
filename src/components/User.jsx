@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import GuideItemsGenerator from "./GuideItemsGenerator";
 import { UserContext } from "./UserContext";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
 const User = () => {
 	const { username, setUsername, setIsAdmin } = useContext(UserContext);

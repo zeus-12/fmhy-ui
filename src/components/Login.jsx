@@ -4,7 +4,7 @@ import "../styles/Login.css";
 import { ErrorNotification } from "./Notification";
 import { UserContext } from "./UserContext";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
 const Login = () => {
 	const navigate = useNavigate();

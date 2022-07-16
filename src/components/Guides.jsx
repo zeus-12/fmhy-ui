@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ErrorNotification } from "./Notification";
 import { Input } from "@mantine/core";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
 
 const Guides = () => {
 	const [noResultMessage, setNoResultMessage] = useState("Loading...");
