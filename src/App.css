@@ -16,14 +16,3 @@ a:focus {
 	text-decoration: none;
 	transition: all 0.3s;
 }
-.dropdown-menu {
-	background-color: #0c0d0e !important;
-	color: white !important;
-	border-radius: 6px;
-}
-.dropdown-item {
-	color: white !important;
-}
-.dropdown-item:hover {
-	color: black !important;
-}

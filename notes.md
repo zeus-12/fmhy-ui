@@ -16,3 +16,4 @@ setTimeout(() => setError(), 3000);
 - replace token validation with cookies,
 - maybe increase the width of menucomponent?
 - standard font size/ padding/margin x,top
+- move the link fetching and cleaning part to a new route in the backend, and use that api. (CORS)
