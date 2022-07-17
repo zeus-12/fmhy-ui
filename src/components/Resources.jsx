@@ -5,7 +5,9 @@ import { formatName } from "../lib/helper";
 import "../styles/resources.css";
 import Error404 from "./Error404";
 
-const Resources = (props) => {
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
+
+const Wiki = (props) => {
 	const [resources, setResources] = useState("");
 	const [error, setError] = useState(false);
 
@@ -16,10 +18,9 @@ const Resources = (props) => {
 	}
 	useEffect(() => {
 		setResources("Loading...");
-		const url = `https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/${resource}.json`;
+		const url = `${SERVER_URL}/api/wiki/${resource}`;
 		fetch(url)
 			.then((res) => res.json())
-			.then((data) => data.data.content_md)
 			// .then((data) =>
 			// 	data
 			// 		.replaceAll("&gt;", ">")
@@ -49,4 +50,4 @@ const Resources = (props) => {
 	);
 };
 
-export default Resources;
+export default Wiki;
