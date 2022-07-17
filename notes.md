@@ -17,3 +17,4 @@ setTimeout(() => setError(), 3000);
 - maybe increase the width of menucomponent?
 - standard font size/ padding/margin x,top
 - move the link fetching and cleaning part to a new route in the backend, and use that api. (CORS)
+- maybe use a custom hook for fetching and posting data
