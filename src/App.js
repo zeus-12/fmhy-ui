@@ -31,7 +31,7 @@ function App() {
 	// 		var initialIsAdmin = user.admin;
 	// 	}
 	// }
-	var initialUsername = "Unknown";
+	var initialUsername = "";
 	var initialIsAdmin = false;
 
 	const [username, setUsername] = useState(initialUsername);

@@ -50,8 +50,8 @@ const Backup = () => {
 	const links_to_component = (links) => {
 		const component = links.map((item) => (
 			<li>
-				<a className="block text-cyan-400" href={item.link}>
-					{item.name}
+				<a className="block text-cyan-300" href={item.link}>
+					<p>{item.name}</p>
 				</a>
 			</li>
 		));
@@ -68,14 +68,14 @@ const Backup = () => {
 			</p>
 			<div className="mb-4 md:mb-0 me-4 p-3 pt-0 sm:flex justify-between md:justify-start">
 				<div>
-					<p className="mb-0" style={{ fontSize: "1.3rem" }}>
+					<p className="text-gray-400" style={{ fontSize: "1.3rem" }}>
 						Resources
 					</p>
 					<ul>{resources_backup}</ul>
 				</div>
 
 				<div>
-					<p className="mb-0" style={{ fontSize: "1.3rem" }}>
+					<p className="text-gray-400" style={{ fontSize: "1.3rem" }}>
 						Server Backup
 					</p>
 					<ul>{server_backup}</ul>
