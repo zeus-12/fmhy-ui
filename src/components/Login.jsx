@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ErrorNotification } from "./Notification";
 import { UserContext } from "./UserContext";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 
 const Login = () => {
 	const navigate = useNavigate();

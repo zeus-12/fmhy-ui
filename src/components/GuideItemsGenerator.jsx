@@ -3,7 +3,7 @@ import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
 import "../styles/AddGuide.css";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 
 const GuideItemsGenerator = ({ data, updateData, noResultMessage }) => {
 	const { username, isAdmin } = useContext(UserContext);

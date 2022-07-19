@@ -1,4 +1,4 @@
-function formatName(name) {
+export function formatName(name) {
 	let nameArray = name.replaceAll("-", " ").replaceAll("_", " ").split(" ");
 
 	let formattedName = "";
@@ -8,4 +8,3 @@ function formatName(name) {
 	}
 	return formattedName.replaceAll("Ios", "iOS").replaceAll("os", "OS");
 }
-module.exports = { formatName };

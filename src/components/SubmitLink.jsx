@@ -6,7 +6,7 @@ import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
 import { ErrorNotification, SuccessNotification } from "./Notification";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 
 const SubmitLink = () => {
 	const { username } = useContext(UserContext);

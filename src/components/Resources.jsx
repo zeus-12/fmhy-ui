@@ -5,7 +5,7 @@ import { formatName } from "../lib/helper";
 import "../styles/resources.css";
 import Error404 from "./Error404";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 
 const Wiki = (props) => {
 	const [resources, setResources] = useState("");

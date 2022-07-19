@@ -5,7 +5,7 @@ import { UserContext } from "./UserContext";
 import Tags from "./Tags";
 import { ErrorNotification, SuccessNotification } from "./Notification";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 const AddGuide = () => {
 	const { username } = useContext(UserContext);
 	const navigate = useNavigate();
