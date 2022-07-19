@@ -18,7 +18,7 @@ const Wiki = (props) => {
 	}
 	useEffect(() => {
 		setResources("Loading...");
-		const url = `${SERVER_URL}/api/wiki/${resource}`;
+		const url = SERVER_URL + "/api/wiki/" + resource;
 		fetch(url)
 			.then((res) => res.json())
 			// .then((data) =>
