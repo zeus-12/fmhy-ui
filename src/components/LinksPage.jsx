@@ -10,14 +10,9 @@ const LinksPage = () => {
 	);
 
 	return (
-		<div className="">
+		<div>
 			<div className="flex justify-between items-center">
-				<p
-					className="p-2 pt-0 pl-4 mb-0 text-2xl sm:text-3xl "
-					style={{ color: "rgb(255, 180, 180)" }}
-				>
-					Links
-				</p>
+				<p className="p-2 pt-0 pl-4 mb-0 text-3xl text-green-800 ">Links</p>
 				<Link to="/submit-link">
 					<Button className="bg-yellow-700 hover:bg-yellow-600">
 						Submit Link

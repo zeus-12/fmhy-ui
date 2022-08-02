@@ -65,12 +65,7 @@ const LinkQueue = () => {
 			{error && <ErrorNotification error={error} />}
 			{success && <SuccessNotification success={success} />}
 			<div className="flex justify-between items-center">
-				<p
-					className="p-2 ps-4 mb-0 tex-gray-300"
-					style={{ fontSize: "1.6rem" }}
-				>
-					Link Queue
-				</p>
+				<p className="p-2 ps-4 mb-0 tex-gray-300 text-3xl">Link Queue</p>
 				<Link to="/submit-link">
 					<Button className="bg-yellow-700 hover:bg-yellow-600">
 						Submit Link

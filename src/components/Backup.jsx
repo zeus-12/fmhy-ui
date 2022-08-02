@@ -63,9 +63,7 @@ const Backup = () => {
 
 	return (
 		<div className=" text-red-400">
-			<p style={{ fontSize: "1.5rem" }} className="mb-0 pl-3">
-				Backups
-			</p>
+			<p className="text-3xl mb-0 pl-3">Backups</p>
 			<div className="mb-4 md:mb-0 me-4 p-3 pt-0 sm:flex justify-between md:justify-start">
 				<div>
 					<p className="text-gray-400" style={{ fontSize: "1.3rem" }}>

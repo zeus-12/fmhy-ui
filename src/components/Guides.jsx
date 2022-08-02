@@ -87,11 +87,7 @@ const Guides = () => {
 		<div className="p-4 pt-0">
 			{error && <ErrorNotification error={error} />}
 			<div className={classes}>
-				<p
-					onClick={() => setInputText("")}
-					className="mb-0 inline"
-					style={{ fontSize: "1.9rem" }}
-				>
+				<p onClick={() => setInputText("")} className="mb-0 inline text-3xl">
 					Guides
 				</p>
 				<div className="flex sm:ml-auto items-center pr-4">

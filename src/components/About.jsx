@@ -4,7 +4,7 @@ const About = () => {
 	return (
 		<div className="p-2 pt-0">
 			<div className="">
-				<p className="pl-3 text-2xl text-[#EDC988]">Vision</p>
+				<p className="pl-3 text-3xl text-[#EDC988]">Vision</p>
 			</div>
 
 			<div className="py-4 lg:flex justify-evenly items-center gap-6">
@@ -35,7 +35,7 @@ const About = () => {
 				</p>
 			</div>
 
-			<p className="text-2xl pl-3 text-red-500">Promise</p>
+			<p className="text-3xl pl-3 text-red-500">Promise</p>
 			<div className="lg:flex gap-6 justify-evenly items-center rounded-lg bg-[#121212] text-[#DEEEEA] text-[1.1rem]">
 				<p
 					className="p-3 pt-0"
@@ -74,7 +74,7 @@ const About = () => {
 
 				{/* contribute section */}
 				<div className="pl-3">
-					<p className="text-2xl text-violet-400">Contribute</p>
+					<p className="text-3xl text-violet-400">Contribute</p>
 
 					<p>
 						<a className="text-cyan-400" href="https://rentry.co/FMHYedit">

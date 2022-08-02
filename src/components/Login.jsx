@@ -48,7 +48,7 @@ const Login = () => {
 		<div className="p-2 flex flex-col items-center">
 			{error && <ErrorNotification error={error} />}
 			<div>
-				<p className="pb-2 text-3xl text-green-200">Login</p>
+				<p className="pb-2 text-3xl text-blue-100">Login</p>
 				<form className="flex flex-col" onSubmit={userHandler}>
 					<div className="user-box ">
 						<input
