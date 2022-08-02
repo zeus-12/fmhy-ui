@@ -75,7 +75,6 @@ const EditGuide = (props) => {
 				}, 3000);
 			}
 		});
-		// const data = await response.json();
 	}
 
 	return (
