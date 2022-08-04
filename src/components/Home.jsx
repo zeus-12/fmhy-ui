@@ -40,7 +40,7 @@ const Home = () => {
 						<div className="flex justify-center mb-3">
 							<a
 								className="px-2 py-2 rounded-md text-white bg-cyan-700"
-								href=" https://revolt.fmhy.cf"
+								href="https://fmhy.divolt.xyz/"
 							>
 								Join the Revolt Server!{" "}
 								<a
