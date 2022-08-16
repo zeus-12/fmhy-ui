@@ -72,8 +72,8 @@ function App() {
 							/>
 							<Route path="/guides/edit/:ID" element={<EditGuide />} />
 							<Route path="/guides" element={<Guides />} />
-							<Route path="/login" element={<Login />} />
-							<Route path="/user" element={<User />} />
+							{/* <Route path="/login" element={<Login />} /> */}
+							{/* <Route path="/user" element={<User />} /> */}
 							<Route path="/links" element={<LinksPage />} />
 							<Route path="/links/:CATEGORY" element={<Links />} />
 

@@ -74,7 +74,7 @@ export const NavbarDrawer = ({ opened, setOpened, username }) => (
 				</div>
 
 				<LinkElements />
-				{username && (
+				{/* {username && (
 					<Link to="/user">
 						<p className="px-0.5 py-1 lg:px-2 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
 							User
@@ -87,7 +87,7 @@ export const NavbarDrawer = ({ opened, setOpened, username }) => (
 							Login
 						</p>
 					</Link>
-				)}
+				)} */}
 				{/* </div> */}
 			</div>
 		</Drawer>
@@ -138,7 +138,7 @@ const Navbar = () => {
 						<div className="text-gray-300 text-lg font-medium hidden xl:gap-8 md:flex gap-8">
 							<MenuComponents />
 							<LinkElements />
-							{username && (
+							{/* {username && (
 								<Link to="/user">
 									<p className="px-0.5 py-1 lg:px-2 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
 										User
@@ -151,7 +151,7 @@ const Navbar = () => {
 										Login
 									</p>
 								</Link>
-							)}
+							)} */}
 						</div>
 					)}
 				</div>
