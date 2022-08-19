@@ -74,7 +74,7 @@ const About = () => {
 
 				{/* contribute section */}
 				<div className="pl-3">
-					<p className="text-3xl text-violet-400">Contribute</p>
+					<p className="text-3xl text-lime-400">Contribute</p>
 
 					<p>
 						<a className="text-cyan-400" href="https://rentry.co/FMHYedit">
