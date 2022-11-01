@@ -91,7 +91,7 @@ const LinksContainer = ({ channelName, links }) => {
           .filter((item) => item.channel === channelName)
           .map((link) => (
             <div
-              className="bg-gray-900 mb-3 p-2 inline-block mr-2 rounded-md"
+              className="bg-gray-900 hover:scale-105 transition transform duration-100 ease-out  mb-3 p-2 inline-block mr-2 rounded-md"
               key={link._id}
             >
               {/* title */}
