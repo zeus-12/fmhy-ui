@@ -34,7 +34,7 @@ export const MenuComponents = ({ setOpened }) => {
 export const LinkElements = ({ username }) => {
   const navItems = [
     { link: "/links", name: "Links" },
-    // { link: "/search", name: "Search" },
+    { link: "/search", name: "Search" },
     { link: "/about", name: "About" },
     { link: "/guides", name: "Guides" },
     // { link: username?"/user":"/login", name: username?"User":"Login" },
