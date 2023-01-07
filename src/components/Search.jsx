@@ -1,27 +1,36 @@
 import { Button, Input, Loader, Pagination } from "@mantine/core";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+// opening a url => the page number on pagination component is incorrect
+// fix number of pages on the pagination component => return results count from the server
+// have a reset function to reset the search query and page number => upon clickcing "fmhy-search"
 
 const Search = () => {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 
-  const [query, setQuery] = useState("");
-  const [activePage, setActivePage] = useState(1);
-  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const page = new URLSearchParams(location.search).get("page") || 1;
+  const query = new URLSearchParams(location.search).get("q") || "";
+
+  const [searchQuery, setSearchQuery] = useState(query);
+  const [activePage, setActivePage] = useState(page);
+  const [searchResults, setSearchResults] = useState(null);
   const searchRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     searchRef.current.focus();
   }, []);
 
-  const fetchSearchResults = async (query, activePage) => {
-    console.log(activePage);
+  const fetchSearchResults = async () => {
+    if (!searchQuery || !searchQuery.trim()) return;
+
     const res = await fetch(
-      SERVER_URL + "/api/search?q=" + query + "&page=" + activePage
+      SERVER_URL + "/api/search?q=" + searchQuery + "&page=" + activePage
     );
     const data = await res.json();
     if (!data.status === "ok") {
@@ -34,18 +43,22 @@ const Search = () => {
     setError(false);
   };
 
-  const searchHandler = async (currentPage) => {
-    navigate("/search?q=" + query);
-    if (!query) return;
+  const searchHandler = async () => {
+    if (!searchQuery || !searchQuery.trim()) return;
+
+    navigate("/search?q=" + searchQuery);
     setLoading(true);
     searchRef.current.blur();
-    await fetchSearchResults(query, currentPage || activePage);
+    await fetchSearchResults();
   };
 
+  useEffect(() => {
+    fetchSearchResults();
+  }, [activePage]);
+
   const paginationHandler = async (cur) => {
+    navigate("/search?q=" + searchQuery + "&page=" + cur);
     setActivePage(cur);
-    await searchHandler(cur);
-    // scroll browser to the top
     window.scrollTo(0, 0);
   };
 
@@ -54,7 +67,10 @@ const Search = () => {
       <p className="text-3xl font-semibold tracking-tight mb-2">
         <span className="text-cyan-400">FMHY</span> Search
       </p>
+
       <Input
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             searchHandler();
@@ -78,8 +94,8 @@ const Search = () => {
             />
           </svg>
         }
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        // value={query}
+        // onChange={(e) => setQuery(e.target.value)}
         className="w-96"
       />
 
@@ -111,11 +127,11 @@ const Search = () => {
 
       {searchResults?.length > 0 && (
         <div className="flex-1 flex flex-col space-y-4 mt-4">
-          {searchResults.map((result) => (
+          {searchResults.map((result, i) => (
             <div
               className="flex flex-col bg-gray-900 space-y-2 p-4 rounded-xl hover:scale-[101%] transition transform duration-100 ease-out"
               // style={{ backdropFilter: "saturate(180%) blur(20px)" }}
-              key={result.title}
+              key={i}
             >
               <p className="text-xl font-semibold">{result.title}</p>
               {result.link?.map((link) => (
@@ -126,19 +142,28 @@ const Search = () => {
                   href={link}
                   key={link}
                 >
-                  {result.starred ? "🌟 " : ""} {link}
+                  {result.starred ? "🌟 " : ""}{" "}
+                  <span className="hover:underline underline-offset-2">
+                    {link}
+                  </span>
                 </a>
               ))}
             </div>
           ))}
 
           <div className="flex justify-center mt-4">
+            {console.log("page=", page)}
             <Pagination
-              page={activePage}
+              page={page}
               onChange={(cur) => paginationHandler(cur)}
               total={10}
             />
           </div>
+        </div>
+      )}
+      {searchResults?.length === 0 && (
+        <div className="flex-1 flex justify-center items-center">
+          <p>No results found! Try changing the query</p>
         </div>
       )}
     </div>
