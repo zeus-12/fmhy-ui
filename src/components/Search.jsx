@@ -1,13 +1,13 @@
 import { Button, Input, Loader, Pagination } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // opening a url => the page number on pagination component is incorrect
-// fix number of pages on the pagination component => return results count from the server
 // have a reset function to reset the search query and page number => upon clickcing "fmhy-search"
 
 const Search = () => {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+  const ITEMS_PER_PAGE = 30
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,6 +21,7 @@ const Search = () => {
   const searchRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [count, setCount] = useState(1)
 
   useEffect(() => {
     searchRef.current.focus();
@@ -39,6 +40,10 @@ const Search = () => {
       return;
     }
     setSearchResults(data.data);
+    
+
+    setCount(data.count);
+
     setLoading(false);
     setError(false);
   };
@@ -94,8 +99,6 @@ const Search = () => {
             />
           </svg>
         }
-        // value={query}
-        // onChange={(e) => setQuery(e.target.value)}
         className="w-[90vw] sm:w-96"
       />
 
@@ -126,7 +129,8 @@ const Search = () => {
       )}
 
       {!loading && searchResults?.length > 0 && (
-        <div className="flex-1 flex flex-col space-y-4 mt-4">
+        <div className="flex-1 flex flex-col space-y-4 mt-2">
+          <p className="text-gray-600">{`${count} results found`}</p>
           {searchResults.map((result, i) => (
             <div
               className="flex flex-col bg-gray-900 space-y-2 p-4 rounded-xl hover:scale-[101%] transition transform duration-100 ease-out"
@@ -153,9 +157,9 @@ const Search = () => {
 
           <div className="flex justify-center mt-4">
             <Pagination
-              page={page}
+              page={activePage}
               onChange={(cur) => paginationHandler(cur)}
-              total={10}
+              total={Math.ceil(count / ITEMS_PER_PAGE)}
             />
           </div>
         </div>
