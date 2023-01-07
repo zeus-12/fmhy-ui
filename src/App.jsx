@@ -20,6 +20,7 @@ import SubmitLink from "./components/SubmitLink";
 import Links from "./components/Links";
 import LinksPage from "./components/LinksPage";
 import LinkQueue from "./components/LinkQueue";
+import Search from "./components/Search";
 import { MantineProvider } from "@mantine/core";
 
 function App() {
@@ -31,10 +32,10 @@ function App() {
   // 		var initialIsAdmin = user.admin;
   // 	}
   // }
-  var initialUsername = "";
+  // var initialUsername = "";
   var initialIsAdmin = false;
 
-  const [username, setUsername] = useState(initialUsername);
+  const [username, setUsername] = useState("");
   const [isAdmin, setIsAdmin] = useState(initialIsAdmin);
 
   return (
@@ -65,6 +66,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/resource/:resource" element={<Resources />} />
               <Route path="/backup" element={<Backup />} />
+              <Route path="/search" element={<Search />} />
               <Route path="/about" element={<About />} />
               <Route
                 path="/guides/add"
@@ -82,7 +84,6 @@ function App() {
 
               <Route path="/link-queue" element={<LinkQueue />} />
               <Route path="*" element={<Error404 />} />
-              {/* add /chat ,/revolt , /divolt reroute to revolt invite link */}
             </Routes>
           </div>
         </UserContext.Provider>

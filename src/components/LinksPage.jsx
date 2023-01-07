@@ -12,12 +12,19 @@ const LinksPage = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <p className="p-2 pt-0 pl-4 mb-0 text-3xl text-green-800 ">Links</p>
-        <Link to="/submit-link">
-          <Button className="bg-yellow-700 hover:bg-yellow-600">
-            Submit Link
-          </Button>
-        </Link>
+        <p className="p-2 pt-0 pl-4 mb-0 text-3xl text-cyan-800 ">Links</p>
+        <div className="space-x-2">
+          <Link to="/link-queue">
+            <Button className="bg-blue-300 hover:bg-blue-300">
+              Link Queue
+            </Button>
+          </Link>
+          <Link to="/submit-link">
+            <Button className="bg-green-100 hover:bg-green-200">
+              Submit Link
+            </Button>
+          </Link>
+        </div>
       </div>
       <div className="flex flex-wrap justify-center">
         {sortedCateogryChannels.map((item, index) => (

@@ -3,42 +3,62 @@ import { UserContext } from "./UserContext";
 import { Burger, Button, Drawer, Menu } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { resources as menuItems } from "../lib/CONSTANTS";
+import { useLocation } from "react-router-dom";
 
-const navItems = [
-  { link: "/links", name: "Links" },
-  { link: "/about", name: "About" },
-  { link: "/guides", name: "Guides" },
-  { link: "/link-queue", name: "Link Queue" },
-];
+export const MenuComponents = ({ setOpened }) => {
+  const location = useLocation();
+  const curLink = location.pathname;
 
-export const MenuComponents = ({ setOpened }) => (
-  <Menu
-    menuButtonLabel="Resources"
-    control={
-      <p className="px-1 py-1 text-2xl md:text-lg text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-        Wiki
-      </p>
-    }
-  >
-    {menuItems.map((item, index) => (
-      <Link key={index} to={item.link} onClick={() => setOpened(false)}>
-        <Menu.Item icon={item.emoji}>{item.title}</Menu.Item>
-      </Link>
-    ))}
-  </Menu>
-);
-
-export const LinkElements = () => (
-  <>
-    {navItems.map((item, index) => (
-      <Link key={index} to={item.link}>
-        <p className="px-0.5 py-1 lg:px-2 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-          {item.name}
+  return (
+    <Menu
+      menuButtonLabel="Resources"
+      control={
+        <p
+          className={`px-0.5 py-1 lg:px-2 text-2xl md:text-lg rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900 ${
+            curLink.startsWith("/resource") ? "text-white" : "text-gray-500"
+          }`}
+        >
+          Wiki
         </p>
-      </Link>
-    ))}
-  </>
-);
+      }
+    >
+      {menuItems.map((item, index) => (
+        <Link key={index} to={item.link} onClick={() => setOpened(false)}>
+          <Menu.Item icon={item.emoji}>{item.title}</Menu.Item>
+        </Link>
+      ))}
+    </Menu>
+  );
+};
+
+export const LinkElements = ({ username }) => {
+  const navItems = [
+    { link: "/links", name: "Links" },
+    // { link: "/search", name: "Search" },
+    { link: "/about", name: "About" },
+    { link: "/guides", name: "Guides" },
+    // { link: username?"/user":"/login", name: username?"User":"Login" },
+  ];
+
+  const location = useLocation();
+  const curLink = location.pathname;
+
+  return (
+    <>
+      {navItems.map((item, index) => (
+        <Link key={index} to={item.link}>
+          <p
+            className={`px-0.5 py-1 lg:px-2 text-2xl md:text-lg rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900 ${
+              curLink.startsWith(item.link) ? "text-white" : "text-gray-500"
+            }`}
+          >
+            {item.name}
+          </p>
+        </Link>
+      ))}
+    </>
+  );
+};
 
 export const Logo = () => (
   <Link to="/">
@@ -74,21 +94,6 @@ export const NavbarDrawer = ({ opened, setOpened, username }) => (
         </div>
 
         <LinkElements />
-        {/* {username && (
-					<Link to="/user">
-						<p className="px-0.5 py-1 lg:px-2 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-							User
-						</p>
-					</Link>
-				)}
-				{!username && (
-					<Link to="/login">
-						<p className="px-0.5 py-1 lg:px-2 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-							Login
-						</p>
-					</Link>
-				)} */}
-        {/* </div> */}
       </div>
     </Drawer>
   </div>
@@ -137,21 +142,7 @@ const Navbar = () => {
           {!opened && (
             <div className="text-gray-300 text-lg font-medium hidden xl:gap-8 md:flex gap-8">
               <MenuComponents />
-              <LinkElements />
-              {/* {username && (
-								<Link to="/user">
-									<p className="px-0.5 py-1 lg:px-2 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-										User
-									</p>
-								</Link>
-							)}
-							{!username && (
-								<Link to="/login">
-									<p className="px-0.5 py-1 lg:px-2 text-2xl md:text-lg  text-gray-300 rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900">
-										Login
-									</p>
-								</Link>
-							)} */}
+              <LinkElements username={username} />
             </div>
           )}
         </div>

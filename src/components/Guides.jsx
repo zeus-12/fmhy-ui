@@ -91,10 +91,10 @@ const Guides = () => {
           Guides
         </p>
         <div className="flex sm:ml-auto items-center pr-4">
-          <div className="search flex items-center pl-4">
+          <div className="search flex items-center">
             {/* todo: add hover change icon to pointer */}
             <Input
-              className={inputToggle}
+              className={inputToggle + " w-72"}
               type="text"
               value={inputText}
               ref={inputElement}
@@ -149,8 +149,8 @@ const Guides = () => {
           {/* plus icon  */}
           <div onClick={addGuideHandler} className="ml-2">
             <svg
-              width="25"
-              height="25"
+              width="30"
+              height="30"
               fill="none"
               stroke="white"
               viewBox="0 0 24 24"

@@ -47,37 +47,28 @@ const Backup = () => {
     },
   ];
 
-  const links_to_component = (links) => {
-    const component = links.map((item) => (
-      <li>
-        <a className="block text-blue-200" href={item.link}>
-          <p>{item.name}</p>
-        </a>
-      </li>
-    ));
-    return component;
-  };
-
-  const resources_backup = links_to_component(resources_backup_links);
-  const server_backup = links_to_component(server_backup_links);
-
   return (
-    <div className=" text-red-400">
-      <p className="text-3xl mb-0 pl-3">Backups</p>
-      <div className="mb-4 md:mb-0 me-4 p-3 pt-0 sm:flex justify-between md:justify-start">
-        <div>
-          <p className="text-orange-200" style={{ fontSize: "1.3rem" }}>
-            Resources
-          </p>
-          <ul>{resources_backup}</ul>
-        </div>
-
-        <div>
-          <p className="text-orange-200" style={{ fontSize: "1.3rem" }}>
-            Server Backup
-          </p>
-          <ul>{server_backup}</ul>
-        </div>
+    <div>
+      <p className="text-red-400 text-3xl mb-2">Backups</p>
+      <div className="flex flex-wrap gap-3">
+        {server_backup_links.concat(resources_backup_links).map((link) => {
+          return (
+            <div
+              className="flex flex-col justify-center items-center bg-gray-900 p-6 rounded-lg"
+              key={link.link}
+            >
+              <a
+                href={link.link}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xl text-cyan-200 hover:text-white"
+              >
+                {link.name}
+              </a>
+              <p className="text-gray-300 text-sm">{link.frequency}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
