@@ -12,7 +12,7 @@ const LinksPage = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <p className="p-2 pt-0 pl-4 mb-0 text-3xl text-cyan-300 ">Links</p>
+        <p className="pr-2 pt-0 pl-4 mb-0 text-3xl text-cyan-300 ">Links</p>
         <div className="space-x-2">
           <Link to="/link-queue">
             <Button className="bg-cyan-600 hover:bg-cyan-500">
@@ -26,6 +26,8 @@ const LinksPage = () => {
           </Link>
         </div>
       </div>
+      <p className="text-gray-500 p-2 pt-0">Restored from old discord backup</p>
+
       <div className="flex flex-wrap justify-center">
         {sortedCateogryChannels.map((item, index) => (
           <Link

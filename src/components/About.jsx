@@ -2,9 +2,9 @@ import Backup from "./Backup";
 
 const About = () => {
   return (
-    <div className="pt-0 flex flex-col gap-6 lg:px-18 px-4 py-16 sm:px-16  md:px-32 xl:px-32">
+    <div className="pt-0 flex flex-col gap-6 lg:px-14 px-0 py-16 sm:px-4 md:px-12 xl:px-18">
       <div className="p-4 ">
-        <p className="text-3xl text-gray-900">Vision</p>
+        <p className="text-3xl text-gray-300">Vision</p>
 
         <div className="py-4 lg:flex justify-evenly items-center gap-6">
           <div className="mb-3 lg:mb-0 flex justify-center ">
@@ -35,7 +35,7 @@ const About = () => {
         </div>
       </div>
       <div className="p-4">
-        <p className="text-3xl text-gray-900">Promise</p>
+        <p className="text-3xl text-gray-300">Promise</p>
         <div className="lg:flex gap-6 justify-evenly items-center rounded-lg text-[#DEEEEA] text-[1.1rem]">
           <p
             className="p-4 bg-[#121212]"
