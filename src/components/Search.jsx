@@ -152,7 +152,6 @@ const Search = () => {
           ))}
 
           <div className="flex justify-center mt-4">
-            {console.log("page=", page)}
             <Pagination
               page={page}
               onChange={(cur) => paginationHandler(cur)}
