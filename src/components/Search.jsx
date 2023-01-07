@@ -96,7 +96,7 @@ const Search = () => {
         }
         // value={query}
         // onChange={(e) => setQuery(e.target.value)}
-        className="w-96"
+        className="w-[90vw] sm:w-96"
       />
 
       {error && (
@@ -138,11 +138,11 @@ const Search = () => {
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  className="text-cyan-400 hover:text-cyan-300"
+                  className="text-cyan-400 hover:text-cyan-300 break-words"
                   href={link}
                   key={link}
                 >
-                  {result.starred ? "🌟 " : ""}{" "}
+                  {result.starred ? "🌟" : "•"}
                   <span className="hover:underline underline-offset-2">
                     {link}
                   </span>
