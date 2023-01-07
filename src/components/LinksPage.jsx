@@ -12,15 +12,15 @@ const LinksPage = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <p className="p-2 pt-0 pl-4 mb-0 text-3xl text-cyan-800 ">Links</p>
+        <p className="p-2 pt-0 pl-4 mb-0 text-3xl text-cyan-300 ">Links</p>
         <div className="space-x-2">
           <Link to="/link-queue">
-            <Button className="bg-blue-300 hover:bg-blue-300">
+            <Button className="bg-cyan-600 hover:bg-cyan-500">
               Link Queue
             </Button>
           </Link>
           <Link to="/submit-link">
-            <Button className="bg-green-100 hover:bg-green-200">
+            <Button className="bg-green-600 hover:bg-green-500">
               Submit Link
             </Button>
           </Link>
