@@ -53,20 +53,21 @@ const Backup = () => {
       <div className="flex flex-wrap gap-3">
         {server_backup_links.concat(resources_backup_links).map((link) => {
           return (
-            <div
-              className="flex flex-col justify-center items-center bg-gray-900 p-6 rounded-lg"
+            <a
+              href={link.link}
+              target="_blank"
+              rel="noreferrer"
               key={link.link}
             >
-              <a
-                href={link.link}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xl text-cyan-200 hover:text-white"
-              >
-                {link.name}
-              </a>
-              <p className="text-gray-300 text-sm">{link.frequency}</p>
-            </div>
+              <div className="flex flex-col justify-center items-center bg-gray-900 p-6 rounded-lg">
+                <p className="text-xl text-cyan-200 hover:scale-105 transition transform duration-100 ease-out">
+                  {link.name}
+                </p>
+                <p className="hover:scale-105 transition transform duration-100 ease-out text-gray-300 text-sm">
+                  {link.frequency}
+                </p>
+              </div>
+            </a>
           );
         })}
       </div>
