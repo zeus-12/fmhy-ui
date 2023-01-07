@@ -8,7 +8,6 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const [activePage, setActivePage] = useState(1);
   const [searchResults, setSearchResults] = useState([]);
-  console.log(searchResults);
   const searchRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -36,6 +35,7 @@ const Search = () => {
   };
 
   const searchHandler = async (currentPage) => {
+    navigate("/search?q=" + query);
     if (!query) return;
     setLoading(true);
     searchRef.current.blur();
@@ -109,7 +109,7 @@ const Search = () => {
         </div>
       )}
 
-      {searchResults.length > 0 && (
+      {searchResults?.length > 0 && (
         <div className="flex-1 flex flex-col space-y-4 mt-4">
           {searchResults.map((result) => (
             <div
