@@ -125,7 +125,7 @@ const Search = () => {
         </div>
       )}
 
-      {searchResults?.length > 0 && (
+      {!loading && searchResults?.length > 0 && (
         <div className="flex-1 flex flex-col space-y-4 mt-4">
           {searchResults.map((result, i) => (
             <div
@@ -160,7 +160,7 @@ const Search = () => {
           </div>
         </div>
       )}
-      {searchResults?.length === 0 && (
+      {!loading && searchResults?.length === 0 && (
         <div className="flex-1 flex justify-center items-center">
           <p>No results found! Try changing the query</p>
         </div>
