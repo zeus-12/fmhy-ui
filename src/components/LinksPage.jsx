@@ -13,7 +13,7 @@ const LinksPage = () => {
     <div>
       <div className="flex justify-between items-center">
         <p className="pr-2 pt-0 pl-4 mb-0 text-3xl text-cyan-300 ">Links</p>
-        <div className="space-x-2">
+        <div className=" gap-2 flex flex-col sm:flex-row">
           <Link to="/link-queue">
             <Button className="bg-cyan-600 hover:bg-cyan-500">
               Link Queue
