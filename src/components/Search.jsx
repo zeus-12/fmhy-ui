@@ -77,6 +77,7 @@ const Search = () => {
       </p>
 
       <Input
+        placeholder="Try Adblocker"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={(e) => {
