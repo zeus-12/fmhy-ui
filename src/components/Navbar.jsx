@@ -64,7 +64,7 @@ export const Logo = () => (
   <Link to="/">
     <div className="flex gap-2 items-center">
       <img src="../../assets/logo.png" alt="logo" width="35px" />
-      <p className="font-medium text-gray-200 font-sans text-2xl md:text-lg  hidden md:inline">
+      <p className="font-semibold tracking-tight text-gray-200 font-sans text-2xl md:text-lg  hidden md:inline">
         FMHY
       </p>
     </div>

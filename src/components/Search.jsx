@@ -58,7 +58,10 @@ const Search = () => {
   };
 
   useEffect(() => {
-    fetchSearchResults();
+    if (searchQuery) {
+      setLoading(true)
+      fetchSearchResults();
+    }
   }, [activePage]);
 
   const paginationHandler = async (cur) => {
