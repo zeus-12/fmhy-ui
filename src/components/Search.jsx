@@ -1,4 +1,4 @@
-import { Button, Input, Loader, Pagination } from "@mantine/core";
+import { Button, Input, Loader, Pagination, Switch } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -7,31 +7,48 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Search = () => {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
-  const ITEMS_PER_PAGE = 30
+  const ITEMS_PER_PAGE = 30;
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const page = new URLSearchParams(location.search).get("page") || 1;
+  const pageParam = new URLSearchParams(location.search).get("page")
+  
+  const page = pageParam? parseInt(pageParam) : 1
   const query = new URLSearchParams(location.search).get("q") || "";
+  const nsfw = new URLSearchParams(location.search).get("nsfw")==="true"? true:false;
 
   const [searchQuery, setSearchQuery] = useState(query);
   const [activePage, setActivePage] = useState(page);
   const [searchResults, setSearchResults] = useState(null);
-  const searchRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(1);
+  const [includeNsfw, setIncludeNsfw] = useState(nsfw);
+
+  const searchRef = useRef(null);
 
   useEffect(() => {
     searchRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    if (searchQuery) {
+      setLoading(true);
+      fetchSearchResults();
+    }
+  }, [activePage,includeNsfw]);
+
+
+  const navigatePage = (page, nsfw = includeNsfw, query=searchQuery) => {
+    navigate("/search?q=" + query + "&page=" + page + "&nsfw=" + nsfw);
+  }
+
   const fetchSearchResults = async () => {
     if (!searchQuery || !searchQuery.trim()) return;
 
     const res = await fetch(
-      SERVER_URL + "/api/search?q=" + searchQuery + "&page=" + activePage
+      SERVER_URL + "/api/search?q=" + searchQuery + "&page=" + activePage + "&nsfw=" + includeNsfw,
     );
     const data = await res.json();
     if (!data.status === "ok") {
@@ -40,7 +57,6 @@ const Search = () => {
       return;
     }
     setSearchResults(data.data);
-    
 
     setCount(data.count);
 
@@ -50,31 +66,48 @@ const Search = () => {
 
   const searchHandler = async () => {
     if (!searchQuery || !searchQuery.trim()) return;
+    
+    setActivePage(1)
+    navigatePage(1)
 
-    navigate("/search?q=" + searchQuery);
     setLoading(true);
     searchRef.current.blur();
     await fetchSearchResults();
   };
 
-  useEffect(() => {
-    if (searchQuery) {
-      setLoading(true)
-      fetchSearchResults();
-    }
-  }, [activePage]);
 
   const paginationHandler = async (cur) => {
-    navigate("/search?q=" + searchQuery + "&page=" + cur);
     setActivePage(cur);
+    navigatePage(cur)
     window.scrollTo(0, 0);
-  };
+  }
+    
+  const toggleNsfw = (e) => {
+    setIncludeNsfw(e.target.checked)
+    
+    setActivePage(1)
+    navigatePage(1, e.target.checked)
+  }
+  
+  const resetSearch = () => {
+    navigate("/search")
+    setSearchQuery("")
+    setActivePage(1)
+    setSearchResults(null)
+  }
 
   return (
     <div className="min-h-[85vh] flex flex-col">
-      <p className="text-3xl font-semibold tracking-tight mb-2">
-        <span className="text-cyan-400">FMHY</span> Search
-      </p>
+      <div className="flex justify-between">
+        <p onClick={resetSearch} className="text-3xl font-semibold tracking-tight mb-2">
+          <span className="text-cyan-400">FMHY</span> Search
+        </p>
+        <Switch
+          label="Include NSFW"
+          checked={includeNsfw}
+          onChange={toggleNsfw}
+        />
+      </div>
 
       <Input
         placeholder="Try Adblocker"

@@ -42,7 +42,7 @@ const Home = () => {
                 className="px-2 py-2 rounded-md text-white bg-cyan-700"
                 href="https://fmhy.divolt.xyz/"
               >
-                Join the Revolt Server!{" "}
+                Join the Divolt Server!{" "}
                 <a
                   className="text-gray-300"
                   href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/comments/uto5vw/revolt_server/"
