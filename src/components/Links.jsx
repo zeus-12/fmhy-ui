@@ -77,7 +77,9 @@ const LinksContainer = ({ channelName, links }) => {
           {formatName(channelName)}
         </p>
         <IoMdArrowDropdown
-          className={`${hidden ? "transform -rotate-90" : "transform rotate-0"} transition duration-100 ease-out`}
+          className={`${
+            hidden ? "transform -rotate-90" : "transform rotate-0"
+          } transition duration-100 ease-out`}
           onClick={() => setHidden(!hidden)}
           style={{ width: "2rem", height: "2rem" }}
         />

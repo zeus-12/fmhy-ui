@@ -15,7 +15,6 @@ import Login from "./components/Login";
 import User from "./components/User";
 import EditGuide from "./components/EditGuide";
 import React from "react";
-// import jwt from "jsonwebtoken";
 import SubmitLink from "./components/SubmitLink";
 import Links from "./components/Links";
 import LinksPage from "./components/LinksPage";

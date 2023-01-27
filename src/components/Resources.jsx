@@ -36,6 +36,7 @@ const Wiki = (props) => {
       .then((finalData) => setResources(finalData))
       .catch((error) => {
         setError(true);
+        setResources();
       });
   }, [resource]);
 

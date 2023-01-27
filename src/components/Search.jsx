@@ -2,9 +2,6 @@ import { Button, Input, Loader, Pagination, Switch } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// opening a url => the page number on pagination component is incorrect
-// have a reset function to reset the search query and page number => upon clickcing "fmhy-search"
-
 const Search = () => {
   const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
   const ITEMS_PER_PAGE = 30;
@@ -12,11 +9,11 @@ const Search = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const pageParam = new URLSearchParams(location.search).get("page")
-  
-  const page = pageParam? parseInt(pageParam) : 1
+  const pageParam = new URLSearchParams(location.search).get("page");
+  const page = pageParam ? parseInt(pageParam) : 1;
   const query = new URLSearchParams(location.search).get("q") || "";
-  const nsfw = new URLSearchParams(location.search).get("nsfw")==="true"? true:false;
+  const nsfw =
+    new URLSearchParams(location.search).get("nsfw") === "true" ? true : false;
 
   const [searchQuery, setSearchQuery] = useState(query);
   const [activePage, setActivePage] = useState(page);
@@ -37,18 +34,23 @@ const Search = () => {
       setLoading(true);
       fetchSearchResults();
     }
-  }, [activePage,includeNsfw]);
+  }, [activePage, includeNsfw]);
 
-
-  const navigatePage = (page, nsfw = includeNsfw, query=searchQuery) => {
+  const navigatePage = (page, nsfw = includeNsfw, query = searchQuery) => {
     navigate("/search?q=" + query + "&page=" + page + "&nsfw=" + nsfw);
-  }
+  };
 
   const fetchSearchResults = async () => {
     if (!searchQuery || !searchQuery.trim()) return;
 
     const res = await fetch(
-      SERVER_URL + "/api/search?q=" + searchQuery + "&page=" + activePage + "&nsfw=" + includeNsfw,
+      SERVER_URL +
+        "/api/search?q=" +
+        searchQuery +
+        "&page=" +
+        activePage +
+        "&nsfw=" +
+        includeNsfw
     );
     const data = await res.json();
     if (!data.status === "ok") {
@@ -66,40 +68,42 @@ const Search = () => {
 
   const searchHandler = async () => {
     if (!searchQuery || !searchQuery.trim()) return;
-    
-    setActivePage(1)
-    navigatePage(1)
+
+    setActivePage(1);
+    navigatePage(1);
 
     setLoading(true);
     searchRef.current.blur();
     await fetchSearchResults();
   };
 
-
   const paginationHandler = async (cur) => {
     setActivePage(cur);
-    navigatePage(cur)
+    navigatePage(cur);
     window.scrollTo(0, 0);
-  }
-    
+  };
+
   const toggleNsfw = (e) => {
-    setIncludeNsfw(e.target.checked)
-    
-    setActivePage(1)
-    navigatePage(1, e.target.checked)
-  }
-  
+    setIncludeNsfw(e.target.checked);
+
+    setActivePage(1);
+    navigatePage(1, e.target.checked);
+  };
+
   const resetSearch = () => {
-    navigate("/search")
-    setSearchQuery("")
-    setActivePage(1)
-    setSearchResults(null)
-  }
+    navigate("/search");
+    setSearchQuery("");
+    setActivePage(1);
+    setSearchResults(null);
+  };
 
   return (
     <div className="min-h-[85vh] flex flex-col">
       <div className="flex justify-between">
-        <p onClick={resetSearch} className="text-3xl font-semibold tracking-tight mb-2">
+        <p
+          onClick={resetSearch}
+          className="text-3xl font-semibold tracking-tight mb-2 hover:cursor-pointer"
+        >
           <span className="text-cyan-400">FMHY</span> Search
         </p>
         <Switch
