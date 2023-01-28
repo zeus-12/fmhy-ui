@@ -32,7 +32,7 @@ const AddGuide = () => {
   async function guideHandler(event) {
     event.preventDefault();
 
-    const data = await fetch(SERVER_URL + "/api/guides/new", {
+    const data = await fetch(SERVER_URL + "/api/guides", {
       method: "POST",
       headers: {
         "x-access-token": localStorage.getItem("token"),

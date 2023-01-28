@@ -43,7 +43,7 @@ const LinkQueueModal = ({
       }, 1500);
     }
     const fetchSubmitLink = async () => {
-      const res = await fetch(SERVER_URL + "/api/submit-links/" + idToEdit, {
+      const res = await fetch(SERVER_URL + "/api/link-queue/" + idToEdit, {
         headers: { "x-access-token": localStorage.getItem("token") },
       });
       const data = await res.json();
@@ -67,18 +67,15 @@ const LinkQueueModal = ({
       channel,
     };
 
-    const data = await fetch(
-      SERVER_URL + `/api/link-queue/update/${idToEdit}`,
-      {
-        method: "PUT",
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
+    const data = await fetch(SERVER_URL + `/api/link-queue/${idToEdit}`, {
+      method: "PUT",
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
 
-        body: JSON.stringify(updateData),
-      }
-    );
+      body: JSON.stringify(updateData),
+    });
 
     if (data.status === 200) {
       setSuccess("Link updated!");

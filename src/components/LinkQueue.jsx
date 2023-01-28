@@ -28,13 +28,10 @@ const LinkQueue = () => {
       idToDelete = e.target.id;
     }
 
-    const req = await fetch(
-      SERVER_URL + "/api/link-queue/delete/" + idToDelete,
-      {
-        method: "DELETE",
-        headers: { "x-access-token": localStorage.getItem("token") },
-      }
-    );
+    const req = await fetch(SERVER_URL + "/api/link-queue/" + idToDelete, {
+      method: "DELETE",
+      headers: { "x-access-token": localStorage.getItem("token") },
+    });
     const data = await req.json();
     if (data.status === "ok") {
       setSubmittedLinks((prevData) =>
@@ -53,7 +50,7 @@ const LinkQueue = () => {
   };
   useEffect(() => {
     const fetchLinks = async () => {
-      const req = await fetch(SERVER_URL + "/api/submit-links/all");
+      const req = await fetch(SERVER_URL + "/api/link-queue");
       let data = await req.json();
       setSubmittedLinks(data.data);
     };

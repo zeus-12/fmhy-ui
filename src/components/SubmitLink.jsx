@@ -34,7 +34,7 @@ const SubmitLink = () => {
   async function linkHandler(event) {
     event.preventDefault();
 
-    const data = await fetch(SERVER_URL + "/api/submit-links", {
+    const data = await fetch(SERVER_URL + "/api/link-queue", {
       method: "POST",
       headers: {
         "x-access-token": localStorage.getItem("token"),

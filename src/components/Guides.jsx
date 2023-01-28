@@ -38,7 +38,7 @@ const Guides = () => {
   }, [inputToggle]);
 
   useEffect(() => {
-    fetch(SERVER_URL + "/api/guides/all")
+    fetch(SERVER_URL + "/api/guides")
       .then((res) => res.json())
       .then((data) => setGuideList(data))
       .catch((err) => {

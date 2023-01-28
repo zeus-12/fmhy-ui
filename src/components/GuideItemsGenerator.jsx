@@ -16,7 +16,7 @@ const GuideItemsGenerator = ({ data, updateData, noResultMessage }) => {
   const deleteLink = async (e) => {
     let idToDelete = e.target.id;
 
-    const req = await fetch(SERVER_URL + "/api/guides/delete/" + idToDelete, {
+    const req = await fetch(SERVER_URL + "/api/guides/" + idToDelete, {
       method: "DELETE",
       headers: { "x-access-token": localStorage.getItem("token") },
     });
