@@ -23,7 +23,7 @@ const Login = () => {
   async function userHandler(event) {
     event.preventDefault();
 
-    const response = await fetch(SERVER_URL + "/api/login", {
+    const response = await fetch(SERVER_URL + "/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
