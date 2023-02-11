@@ -40,7 +40,12 @@ const Guides = () => {
   useEffect(() => {
     fetch(SERVER_URL + "/api/guides")
       .then((res) => res.json())
-      .then((data) => setGuideList(data))
+      .then((data) => {
+        if (data.error)
+          return setNoResultMessage("Can't connect to the Server!");
+
+        setGuideList(data.data);
+      })
       .catch((err) => {
         console.log(err);
         setNoResultMessage("Can't connect to the Server!");
