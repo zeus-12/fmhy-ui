@@ -21,6 +21,7 @@ import LinksPage from "./components/LinksPage";
 import LinkQueue from "./components/LinkQueue";
 import Search from "./components/Search";
 import { MantineProvider } from "@mantine/core";
+import HashedLinks from "./components/HashedLinks";
 
 function App() {
   // const token = localStorage.getItem("token");
@@ -77,6 +78,8 @@ function App() {
               {/* <Route path="/user" element={<User />} /> */}
               <Route path="/links" element={<LinksPage />} />
               <Route path="/links/:CATEGORY" element={<Links />} />
+
+              <Route path="/hashed-links" element={<HashedLinks />} />
 
               <Route path="/submit-link" element={<SubmitLink />} />
               <Route path="/links/add" element={<SubmitLink />} />
