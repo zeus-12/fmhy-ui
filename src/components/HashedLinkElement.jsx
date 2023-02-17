@@ -8,10 +8,10 @@ const HashedLinkElement = ({ title, hash }) => {
     setShowHashed(!showHashed);
   };
 
-  const getLinkFromHash = () => {
+  const getLinksFromHash = () => {
     try {
       const decoded = atob(hash);
-      return decoded;
+      return decoded.split("\n");
     } catch (err) {
       throw new Error("Invalid base64 string");
     }
@@ -28,14 +28,17 @@ const HashedLinkElement = ({ title, hash }) => {
       {showHashed ? (
         <p className="break-words text-blue-300">{hash}</p>
       ) : (
-        <a
-          className="break-words text-blue-300"
-          target="_blank"
-          rel="noreferrer"
-          href={getLinkFromHash()}
-        >
-          {getLinkFromHash()}
-        </a>
+        getLinksFromHash().map((link, index) => (
+          <a
+            key={index}
+            className="break-words text-blue-300 flex"
+            target="_blank"
+            rel="noreferrer"
+            href={link}
+          >
+            ⭐️ {link}
+          </a>
+        ))
       )}
     </div>
   );
