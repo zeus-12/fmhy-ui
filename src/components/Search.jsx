@@ -187,10 +187,14 @@ const Search = () => {
                   href={link}
                   key={link}
                 >
-                  {result.starred ? "🌟" : "•"}
-                  <span className="hover:underline underline-offset-2">
-                    {link}
-                  </span>
+                  <p>
+                    <span className="pr-1 text-white">
+                      {result.starred ? "⭐️" : "•"}
+                    </span>
+                    <span className="hover:underline underline-offset-2">
+                      {link}
+                    </span>
+                  </p>
                 </a>
               ))}
             </div>
