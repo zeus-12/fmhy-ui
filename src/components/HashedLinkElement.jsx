@@ -34,7 +34,7 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
         getLinksFromHash().map((link, index) => (
           <a
             key={index}
-            className="break-words text-blue-300 block max-w-screen"
+            className="break-words text-blue-300"
             target="_blank"
             rel="noreferrer"
             href={link}
