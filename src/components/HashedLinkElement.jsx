@@ -19,11 +19,11 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
 
   return (
     <div className="mt-4">
-      <div className="flex justify-between">
+      <div className="flex gap-2">
         <p className="font-semibold text-lg">{title}</p>
         <button onClick={toggleShowHashedLink}>
           <SiConvertio
-            style={{ width: "1.3rem", height: "1.3rem" }}
+            style={{ width: "1.05rem", height: "1.05rem" }}
             className={`${
               showHashed ? "transform -rotate-90" : "transform rotate-0"
             } transition duration-100 ease-out`}

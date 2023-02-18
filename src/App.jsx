@@ -79,7 +79,7 @@ function App() {
               <Route path="/links" element={<LinksPage />} />
               <Route path="/links/:CATEGORY" element={<Links />} />
 
-              <Route path="/hashed-links" element={<HashedLinks />} />
+              <Route path="/base64" element={<HashedLinks />} />
 
               <Route path="/submit-link" element={<SubmitLink />} />
               <Route path="/links/add" element={<SubmitLink />} />
