@@ -39,7 +39,8 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
             rel="noreferrer"
             href={link}
           >
-            ⭐️ {link}
+            <span className="pr-1">⭐️</span>
+            {link}
           </a>
         ))
       ) : (
