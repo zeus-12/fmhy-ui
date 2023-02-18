@@ -37,7 +37,7 @@ const Home = () => {
                 Beginners Guide to Piracy
               </a>
             </p>
-            <div className="flex justify-center mb-3">
+            <div className="flex justify-center mb-3 hover:scale-[102%] mt-2 transition transform duration-100 ease-out">
               <a
                 className="px-2 py-2 rounded-md text-white bg-cyan-700"
                 href="https://fmhy.divolt.xyz/"

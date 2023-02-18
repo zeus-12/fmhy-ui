@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SiConvertio } from "react-icons/si";
 
-const HashedLinkElement = ({ title, hash }) => {
+const HashedLinkElement = ({ title, hash, showDecoded }) => {
   const [showHashed, setShowHashed] = useState(true);
 
   const toggleShowHashedLink = () => {
@@ -22,16 +22,19 @@ const HashedLinkElement = ({ title, hash }) => {
       <div className="flex justify-between">
         <p className="font-semibold text-lg">{title}</p>
         <button onClick={toggleShowHashedLink}>
-          <SiConvertio />
+          <SiConvertio
+            style={{ width: "1.3rem", height: "1.3rem" }}
+            className={`${
+              showHashed ? "transform -rotate-90" : "transform rotate-0"
+            } transition duration-100 ease-out`}
+          />
         </button>
       </div>
-      {showHashed ? (
-        <p className="break-words text-blue-300">{hash}</p>
-      ) : (
+      {showDecoded || !showHashed ? (
         getLinksFromHash().map((link, index) => (
           <a
             key={index}
-            className="break-words text-blue-300 flex"
+            className="break-words text-blue-300 block max-w-screen"
             target="_blank"
             rel="noreferrer"
             href={link}
@@ -39,6 +42,8 @@ const HashedLinkElement = ({ title, hash }) => {
             ⭐️ {link}
           </a>
         ))
+      ) : (
+        <p className="break-words text-blue-300">{hash}</p>
       )}
     </div>
   );
