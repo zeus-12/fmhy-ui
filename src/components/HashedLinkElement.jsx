@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiConvertio } from "react-icons/si";
 
 const HashedLinkElement = ({ title, hash, showDecoded }) => {
-  const [showHashed, setShowHashed] = useState(true);
+  const [showHashed, setShowHashed] = useState(!showDecoded);
+
+  useEffect(() => {
+    setShowHashed(!showDecoded);
+  }, [showDecoded]);
 
   const toggleShowHashedLink = () => {
     setShowHashed(!showHashed);
@@ -30,7 +34,8 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
           />
         </button>
       </div>
-      {showDecoded || !showHashed ? (
+
+      {!showHashed ? (
         getLinksFromHash().map((link, index) => (
           <a
             key={index}
