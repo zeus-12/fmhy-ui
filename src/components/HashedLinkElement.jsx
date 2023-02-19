@@ -22,7 +22,7 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
   };
 
   return (
-    <div className="mt-4">
+    <div className="py-2 px-2 guide-item">
       <div className="flex gap-2">
         <p className="font-semibold text-lg">{title}</p>
         <button onClick={toggleShowHashedLink}>
@@ -49,7 +49,7 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
           </a>
         ))
       ) : (
-        <p className="break-words text-blue-300">{hash}</p>
+        <p className="break-words text-blue-900">{hash}</p>
       )}
     </div>
   );

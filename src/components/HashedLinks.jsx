@@ -24,7 +24,7 @@ const HashedLinks = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-6">
       <div className="flex justify-between">
         <p className="text-2xl sm:text-3xl font-semibold tracking-tighter">
           <span className="text-cyan-400">Base 64</span> encoded links
