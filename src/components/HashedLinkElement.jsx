@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { SiConvertio } from "react-icons/si";
 
 const HashedLinkElement = ({ title, hash, showDecoded }) => {
   const [showHashed, setShowHashed] = useState(!showDecoded);
@@ -7,10 +6,6 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
   useEffect(() => {
     setShowHashed(!showDecoded);
   }, [showDecoded]);
-
-  const toggleShowHashedLink = () => {
-    setShowHashed(!showHashed);
-  };
 
   const getLinksFromHash = () => {
     try {
@@ -22,17 +17,13 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
   };
 
   return (
-    <div className="py-2 px-2 guide-item">
+    <div
+      className="py-2 px-2 guide-item"
+      onMouseEnter={() => (!showDecoded ? setShowHashed(false) : () => {})}
+      onMouseLeave={() => (!showDecoded ? setShowHashed(true) : () => {})}
+    >
       <div className="flex gap-2">
         <p className="font-semibold text-lg">{title}</p>
-        <button onClick={toggleShowHashedLink}>
-          <SiConvertio
-            style={{ width: "1.05rem", height: "1.05rem" }}
-            className={`${
-              showHashed ? "transform -rotate-90" : "transform rotate-0"
-            } transition duration-100 ease-out`}
-          />
-        </button>
       </div>
 
       {!showHashed ? (

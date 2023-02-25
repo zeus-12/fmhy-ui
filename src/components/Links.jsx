@@ -11,9 +11,11 @@ const Links = () => {
 
   const editLink = () => {};
   const deleteLink = () => {};
+
   const { CATEGORY } = useParams();
   const [links, setLinks] = useState([]);
   const [channels, setChannels] = useState([]);
+
   useEffect(() => {
     const category = [];
     category_channels.forEach((item) => {
@@ -71,7 +73,7 @@ const LinksContainer = ({ channelName, links }) => {
 
   const [hidden, setHidden] = useState(false);
   return (
-    <div>
+    <div id={channelName.replaceAll(" ", "_").toLowerCase()}>
       <div className="flex justify-between pr-4">
         <p className="text-2xl font-semibold tracking-tight">
           {formatName(channelName)}
