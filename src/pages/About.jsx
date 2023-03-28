@@ -1,3 +1,5 @@
+import Faq from "../components/FAQ";
+
 const About = () => {
   return (
     <div className="flex flex-col gap-6 sm:px-4 px-1 md:px-12 lg:px-24 xl:px-36">
@@ -77,27 +79,31 @@ const About = () => {
         </div>
       </div>
 
-      {/* <div>
-        <p className="text-3xl text-lime-400">Contribute</p>
-
-        <p>
-          <a className="text-cyan-400" href="https://rentry.co/FMHYedit">
-            Edit FMHY
-          </a>{" "}
-          Make changes to the FMHY Wiki
-        </p>
-        <p>
-          <a
-            className="text-cyan-400"
-            href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/find-new-sites"
-          >
-            Site Hunting Guide
-          </a>{" "}
-          Help us Discover New Sites
-        </p>
-      </div> */}
+      <Faq />
     </div>
   );
 };
 
 export default About;
+
+{
+  /* <div>
+  <p className="text-3xl text-lime-400">Contribute</p>
+
+  <p>
+    <a className="text-cyan-400" href="https://rentry.co/FMHYedit">
+      Edit FMHY
+    </a>{" "}
+    Make changes to the FMHY Wiki
+  </p>
+  <p>
+    <a
+      className="text-cyan-400"
+      href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/find-new-sites"
+    >
+      Site Hunting Guide
+    </a>{" "}
+    Help us Discover New Sites
+  </p>
+</div> */
+}

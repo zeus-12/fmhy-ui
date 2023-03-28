@@ -20,6 +20,8 @@ import LinkQueue from "./pages/LinkQueue";
 import Search from "./pages/Search";
 import { MantineProvider } from "@mantine/core";
 import Base64 from "./pages/Base64";
+import NewLinks from "./pages/NewLinks";
+import NewLinksItem from "./pages/NewLinksItem";
 
 function App() {
   // const token = localStorage.getItem("token");
@@ -63,6 +65,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/resource/:resource" element={<Wiki />} />
+              <Route path="/new-links" element={<NewLinks />} />
+              <Route path="/new-links/:CATEGORY" element={<NewLinksItem />} />
               <Route path="/search" element={<Search />} />
               <Route path="/about" element={<About />} />
               <Route

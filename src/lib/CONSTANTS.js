@@ -171,3 +171,78 @@ export const resources = [
   { link: "/resource/non-eng", emoji: "🌍", title: "Non English" },
   { link: "/resource/base64", emoji: "🔗", title: "Base 64" },
 ];
+
+export const MARKDOWN_RESOURCES = [
+  {
+    title: "Adblock,VPN",
+    urlEnding: "AdblockVPNGuide",
+  },
+
+  {
+    title: "Android Piracy",
+    urlEnding: "AndroidPiracyGuide",
+  },
+
+  {
+    title: "Audio Piracy",
+    urlEnding: "AudioPiracyGuide",
+  },
+  {
+    title: "Dev Tools",
+    urlEnding: "DEVTools",
+  },
+  {
+    title: "Download Piracy",
+    urlEnding: "DownloadPiracyGuide",
+  },
+  {
+    title: "Edu Piracy",
+    urlEnding: "EDUPiracyGuide",
+  },
+  {
+    title: "Game Tools",
+    urlEnding: "Game-Tools",
+  },
+  {
+    title: "Gaming Piracy",
+    urlEnding: "GamingPiracyGuide",
+  },
+  {
+    title: "Linux Guide",
+    urlEnding: "LinuxGuide",
+  },
+  {
+    title: "MISC Guide",
+    urlEnding: "MISCGuide",
+  },
+
+  {
+    title: "Non-English Piracy",
+    urlEnding: "Non-English",
+  },
+  {
+    title: "Reading Piracy",
+    urlEnding: "ReadingPiracyGuide",
+  },
+
+  {
+    title: "Tools Guide",
+    urlEnding: "TOOLSGuide",
+  },
+  {
+    title: "Torrent Piracy",
+    urlEnding: "TorrentPiracyGuide",
+  },
+  {
+    title: "Video Piracy",
+    urlEnding: "VideoPiracyGuide",
+  },
+  {
+    title: "Image Tools",
+    urlEnding: "img-tools",
+  },
+  {
+    title: "NSFW Piracy",
+    urlEnding: "NSFWPiracy",
+  },
+];
