@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../context/UserContext";
 import { Burger, Button, Drawer, Menu } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { resources as menuItems } from "../lib/CONSTANTS";

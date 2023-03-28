@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ErrorNotification } from "./Notification";
-import { UserContext } from "./UserContext";
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+import { ErrorNotification } from "../components/Notification";
+import { UserContext } from "../context/UserContext";
+import { SERVER_URL } from "../lib/config";
 
 const Login = () => {
   const navigate = useNavigate();

@@ -1,12 +1,12 @@
-import Backup from "./Backup";
-
 const About = () => {
   return (
-    <div className="pt-0 flex flex-col gap-6 lg:px-14 px-0 py-16 sm:px-4 md:px-12 xl:px-18">
-      <div className="p-4 ">
-        <p className="text-3xl text-gray-300">Vision</p>
+    <div className="flex flex-col gap-6 sm:px-4 px-1 md:px-12 lg:px-24 xl:px-36">
+      <div>
+        <p className="text-3xl text-gray-300 tracking-tighter font-semibold">
+          Vision
+        </p>
 
-        <div className="py-4 lg:flex justify-evenly items-center gap-6">
+        <div className="lg:flex justify-evenly items-center gap-6">
           <div className="mb-3 lg:mb-0 flex justify-center ">
             <img
               className="w-[300px] lg:max-w-xl"
@@ -15,7 +15,7 @@ const About = () => {
             />
           </div>
           <p
-            className="pt-0 p-4 rounded-lg bg-[#121212] text-[#DEEEEA] text-[1.1rem]"
+            className="p-4 rounded-lg bg-[#121212] text-[#DEEEEA] text-[1.1rem]"
             style={{
               fontFamily: "courier",
             }}
@@ -34,8 +34,10 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className="p-4">
-        <p className="text-3xl text-gray-300">Promise</p>
+      <div>
+        <p className="text-3xl text-gray-300 tracking-tighter font-semibold">
+          Promise
+        </p>
         <div className="lg:flex gap-6 justify-evenly items-center rounded-lg text-[#DEEEEA] text-[1.1rem]">
           <p
             className="p-4 bg-[#121212]"
@@ -54,7 +56,10 @@ const About = () => {
             <br />
             Sharing is, always has been, and always will be the right thing to
             do, and until we live in a world that doesn't need to be shown that,
-            we'll be here."
+            <span className="text-cyan-400 tracking-tighter font-semibold">
+              we'll be here.
+            </span>
+            "
             <span
               className="block font-semibold"
               style={{ fontFamily: "helvetica" }}
@@ -72,9 +77,7 @@ const About = () => {
         </div>
       </div>
 
-      <Backup />
-
-      <div className="">
+      {/* <div>
         <p className="text-3xl text-lime-400">Contribute</p>
 
         <p>
@@ -92,7 +95,7 @@ const About = () => {
           </a>{" "}
           Help us Discover New Sites
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

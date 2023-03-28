@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/AddGuide.css";
+import "../styles/guides.css";
 import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
 import { Button } from "@mantine/core";
@@ -12,24 +12,36 @@ const LinksPage = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <p className="pr-2 pt-0 pl-4 mb-0 text-3xl text-cyan-300 ">Links</p>
+        <p className="pr-2 pt-0 pl-4 mb-0 text-3xl text-cyan-300 tracking-tight font-semibold">
+          Links
+        </p>
         <div className="gap-2 flex flex-col sm:flex-row">
-          <Link to="/base64">
-            <Button className="bg-cyan-600 hover:bg-cyan-500">Base 64</Button>
-          </Link>
-          <Link to="/link-queue">
-            <Button className="bg-cyan-600 hover:bg-cyan-500">
-              Link Queue
-            </Button>
-          </Link>
-          <Link to="/submit-link">
-            <Button className="bg-green-600 hover:bg-green-500">
-              Submit Link
-            </Button>
-          </Link>
+          {[
+            {
+              link: "/base64",
+              name: "Base 64",
+              color: "blue",
+            },
+            {
+              link: "/link-queue",
+              name: "Link Queue",
+              color: "cyan",
+            },
+            {
+              link: "/submit-link",
+              name: "Submit Link",
+              color: "pink",
+            },
+          ].map((item) => (
+            <Link key={item.link} to={item.link}>
+              <Button variant="light" color={item.color}>
+                {item.name}
+              </Button>
+            </Link>
+          ))}
         </div>
       </div>
-      <p className="text-gray-500 p-2 pl-4 pt-0">
+      <p className="text-gray-400 p-2 pl-4 pt-0">
         Restored from old discord backup
       </p>
 

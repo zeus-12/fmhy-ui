@@ -1,4 +1,4 @@
-import "../styles/AddGuide.css";
+import "../styles/guides.css";
 
 const Tags = ({ tags, setTags, setError }) => {
   const addTags = async (event) => {

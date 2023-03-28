@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const HashedLinkElement = ({ title, hash, showDecoded }) => {
+const Base64LinkElement = ({ title, hash, showDecoded }) => {
   const [showHashed, setShowHashed] = useState(!showDecoded);
 
   useEffect(() => {
@@ -18,11 +18,11 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
 
   return (
     <div
-      className="py-2 px-2 guide-item"
+      className="py-2 px-2 group"
       onMouseEnter={() => (!showDecoded ? setShowHashed(false) : () => {})}
       onMouseLeave={() => (!showDecoded ? setShowHashed(true) : () => {})}
     >
-      <div className="flex gap-2">
+      <div className="flex gap-2 transition-all group-hover:animate-bounce">
         <p className="font-semibold text-lg">{title}</p>
       </div>
 
@@ -40,9 +40,9 @@ const HashedLinkElement = ({ title, hash, showDecoded }) => {
           </a>
         ))
       ) : (
-        <p className="break-words text-blue-900">{hash}</p>
+        <p className="break-words text-blue-300">{hash}</p>
       )}
     </div>
   );
 };
-export default HashedLinkElement;
+export default Base64LinkElement;

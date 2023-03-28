@@ -1,7 +1,7 @@
 import React from "react";
 
 const Backup = () => {
-  const resources_backup_links = [
+  const RESOURCE_BACKUPS = [
     {
       name: "Saidit",
       link: "https://saidit.net/s/freemediaheckyeah/wiki/index",
@@ -29,7 +29,7 @@ const Backup = () => {
       frequency: NaN,
     },
   ];
-  const server_backup_links = [
+  const SERVER_BACKUPS = [
     {
       name: "Discord",
       link: "https://mega.nz/folder/cRRCQSrb#cT9Pkauyena6IWBt7zYZJw",
@@ -51,7 +51,7 @@ const Backup = () => {
     <div>
       <p className="text-red-400 text-3xl mb-2">Backups</p>
       <div className="flex flex-wrap gap-3">
-        {server_backup_links.concat(resources_backup_links).map((link) => {
+        {SERVER_BACKUPS.concat(RESOURCE_BACKUPS).map((link) => {
           return (
             <a
               href={link.link}

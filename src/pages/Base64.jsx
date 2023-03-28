@@ -1,11 +1,11 @@
 import { Switch } from "@mantine/core";
 import { useEffect, useState } from "react";
-import HashedLinkElement from "./HashedLinkElement";
+import Base64LinkElement from "../components/Base64LinkElement";
+import { SERVER_URL } from "../lib/config";
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 // const ITEMS_PER_PAGE = 30;
 
-const HashedLinks = () => {
+const Base64 = () => {
   const [page, setPage] = useState(1);
   const [links, setLinks] = useState(null);
   const [decodeAllLinks, setDecodeAllLinks] = useState(false);
@@ -27,7 +27,7 @@ const HashedLinks = () => {
     <div className="px-6">
       <div className="flex justify-between">
         <p className="text-2xl sm:text-3xl font-semibold tracking-tighter">
-          <span className="text-cyan-400">Base 64</span> encoded links
+          <span className="text-cyan-400">Base 64</span> Encoded links
         </p>
         <Switch
           label="Change all"
@@ -37,7 +37,7 @@ const HashedLinks = () => {
       </div>
       {links ? (
         links?.map((link, index) => (
-          <HashedLinkElement
+          <Base64LinkElement
             key={index}
             title={link.title}
             hash={link.hash}
@@ -50,4 +50,4 @@ const HashedLinks = () => {
     </div>
   );
 };
-export default HashedLinks;
+export default Base64;

@@ -1,12 +1,14 @@
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/AddGuide.css";
+import "../styles/guides.css";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "./UserContext";
-import Tags from "./Tags";
-import { ErrorNotification, SuccessNotification } from "./Notification";
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+import { UserContext } from "../context/UserContext";
+import Tags from "../components/Tags";
+import {
+  ErrorNotification,
+  SuccessNotification,
+} from "../components/Notification";
+import { SERVER_URL } from "../lib/config";
 
 const EditGuide = (props) => {
   var { ID } = useParams();

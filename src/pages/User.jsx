@@ -2,10 +2,9 @@ import { Button } from "@mantine/core";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import jwt from "jsonwebtoken";
-import GuideItemsGenerator from "./GuideItemsGenerator";
-import { UserContext } from "./UserContext";
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+import GuideElement from "../components/GuideElement";
+import { UserContext } from "../context/UserContext";
+import { SERVER_URL } from "../lib/config";
 
 const User = () => {
   const { username, setUsername, setIsAdmin } = useContext(UserContext);
@@ -71,7 +70,7 @@ const User = () => {
         Guides Added
       </h6>
       <ul>
-        <GuideItemsGenerator
+        <GuideElement
           data={guidesAdded}
           updateData={setGuidesAdded}
           noResultMessage="None"

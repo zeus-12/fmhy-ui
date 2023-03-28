@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { formatName } from "../lib/helper";
 import "../styles/resources.css";
-import Error404 from "./Error404";
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+import Error404 from "./404";
+import { SERVER_URL } from "../lib/config";
 
 const Wiki = (props) => {
   const [resources, setResources] = useState("");
@@ -43,7 +42,10 @@ const Wiki = (props) => {
   return (
     <div className="resources p-4 pt-0">
       {error && <Error404 />}
-      <p className="text-capitalize mb-0" style={{ fontSize: "2rem" }}>
+      <p
+        className="text-capitalize mb-0 tracking-tight font-semibold"
+        style={{ fontSize: "2rem" }}
+      >
         {error || formatName(resource)}
       </p>
       <ReactMarkdown>{resources}</ReactMarkdown>

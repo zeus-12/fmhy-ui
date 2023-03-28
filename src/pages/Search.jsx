@@ -1,9 +1,9 @@
 import { Button, Input, Loader, Pagination, Switch } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { SERVER_URL } from "../lib/config";
 
 const Search = () => {
-  const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
   const ITEMS_PER_PAGE = 30;
 
   const navigate = useNavigate();

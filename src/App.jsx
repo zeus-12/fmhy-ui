@@ -1,27 +1,25 @@
 import { useState } from "react";
-import { UserContext } from "./components/UserContext";
-import "./App.css";
+import { UserContext } from "./context/UserContext";
 import "./index.css";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Resources from "./components/Resources";
-import Home from "./components/Home";
-import About from "./components/About";
-import Backup from "./components/Backup";
-import Error404 from "./components/Error404";
-import Guides from "./components/Guides";
-import AddGuide from "./components/AddGuide";
-import Login from "./components/Login";
-import User from "./components/User";
-import EditGuide from "./components/EditGuide";
+import Wiki from "./pages/Wiki";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Error404 from "./pages/404";
+import Guides from "./pages/Guides";
+import AddGuide from "./pages/AddGuide";
+import Login from "./pages/Login";
+import User from "./pages/User";
+import EditGuide from "./pages/EditGuide";
 import React from "react";
-import SubmitLink from "./components/SubmitLink";
-import Links from "./components/Links";
-import LinksPage from "./components/LinksPage";
-import LinkQueue from "./components/LinkQueue";
-import Search from "./components/Search";
+import SubmitLink from "./pages/SubmitLink";
+import LinksItem from "./pages/LinksItem";
+import Links from "./pages/Links";
+import LinkQueue from "./pages/LinkQueue";
+import Search from "./pages/Search";
 import { MantineProvider } from "@mantine/core";
-import HashedLinks from "./components/HashedLinks";
+import Base64 from "./pages/Base64";
 
 function App() {
   // const token = localStorage.getItem("token");
@@ -64,8 +62,7 @@ function App() {
           <div className="mt-16 p-6">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/resource/:resource" element={<Resources />} />
-              <Route path="/backup" element={<Backup />} />
+              <Route path="/resource/:resource" element={<Wiki />} />
               <Route path="/search" element={<Search />} />
               <Route path="/about" element={<About />} />
               <Route
@@ -76,10 +73,10 @@ function App() {
               <Route path="/guides" element={<Guides />} />
               {/* <Route path="/login" element={<Login />} /> */}
               {/* <Route path="/user" element={<User />} /> */}
-              <Route path="/links" element={<LinksPage />} />
-              <Route path="/links/:CATEGORY" element={<Links />} />
+              <Route path="/links" element={<Links />} />
+              <Route path="/links/:CATEGORY" element={<LinksItem />} />
 
-              <Route path="/base64" element={<HashedLinks />} />
+              <Route path="/base64" element={<Base64 />} />
 
               <Route path="/submit-link" element={<SubmitLink />} />
               <Route path="/links/add" element={<SubmitLink />} />

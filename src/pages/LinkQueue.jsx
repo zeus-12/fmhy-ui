@@ -1,12 +1,14 @@
 import { useEffect, useState, useContext } from "react";
-import { UserContext } from "./UserContext";
-import { ErrorNotification, SuccessNotification } from "./Notification";
-import "../styles/AddGuide.css";
-import LinkQueueModel from "./LinkQueueModal";
+import { UserContext } from "../context/UserContext";
+import {
+  ErrorNotification,
+  SuccessNotification,
+} from "../components/Notification";
+import "../styles/guides.css";
+import LinkQueueModel from "../components/LinkQueueModal";
 import { Link } from "react-router-dom";
 import { Button } from "@mantine/core";
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+import { SERVER_URL } from "../lib/config";
 
 const LinkQueue = () => {
   const { isAdmin } = useContext(UserContext);

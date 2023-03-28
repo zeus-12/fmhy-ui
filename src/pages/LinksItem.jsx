@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../context/UserContext";
 import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { SERVER_URL } from "../lib/config";
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
 const Links = () => {
   const navigate = useNavigate();
 
