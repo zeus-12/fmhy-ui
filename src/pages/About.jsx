@@ -1,4 +1,4 @@
-import Faq from "../components/FAQ";
+import FAQ from "../components/FAQ";
 
 const About = () => {
   return (
@@ -79,7 +79,7 @@ const About = () => {
         </div>
       </div>
 
-      <Faq />
+      <FAQ />
     </div>
   );
 };

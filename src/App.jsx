@@ -22,6 +22,7 @@ import { MantineProvider } from "@mantine/core";
 import Base64 from "./pages/Base64";
 import NewLinks from "./pages/NewLinks";
 import NewLinksItem from "./pages/NewLinksItem";
+import { Notifications } from "@mantine/notifications";
 
 function App() {
   // const token = localStorage.getItem("token");
@@ -60,6 +61,8 @@ function App() {
         <UserContext.Provider
           value={{ username, setUsername, isAdmin, setIsAdmin }}
         >
+          <Notifications />
+
           <Navbar />
           <div className="mt-16 p-6">
             <Routes>

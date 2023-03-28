@@ -7,6 +7,7 @@ import { category_channels } from "../lib/CONSTANTS";
 import { ErrorNotification, SuccessNotification } from "./Notification";
 import { Modal } from "@mantine/core";
 import { SERVER_URL } from "../lib/config";
+import { successNotification } from "./Notifications";
 
 const LinkQueueModal = ({
   idToEdit,
@@ -77,10 +78,7 @@ const LinkQueueModal = ({
     });
 
     if (data.status === 200) {
-      setSuccess("Link updated!");
-      setTimeout(() => {
-        setSuccess("");
-      }, 3000);
+      successNotification("Link updated!");
       opened(false);
 
       let entryToUpdate = submittedLinks.find((item) => item._id === idToEdit);

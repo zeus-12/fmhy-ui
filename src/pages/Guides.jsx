@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import GuideElement from "../components/GuideElement";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { ErrorNotification } from "../components/Notification";
 import { Input } from "@mantine/core";
 import { SERVER_URL } from "../lib/config";
 import { AiOutlineSearch, AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
+import { errorNotification } from "../components/Notifications";
 
 const Guides = () => {
   const { username } = useContext(UserContext);
@@ -40,13 +40,18 @@ const Guides = () => {
     fetch(SERVER_URL + "/api/guides")
       .then((res) => res.json())
       .then((data) => {
-        if (data.error) return setError(true);
+        if (data.error) {
+          setError(true);
+          errorNotification("Something went wrong!");
+          return;
+        }
 
         setGuides(data.data);
       })
       .catch((err) => {
         console.log(err);
         setError(true);
+        errorNotification("Something went wrong!");
       });
   }, []);
 
@@ -88,7 +93,6 @@ const Guides = () => {
 
   return (
     <div className="p-4 pt-0">
-      {error && <ErrorNotification error={error} />}
       <div className={classes}>
         <p
           onClick={() => setInputText("")}

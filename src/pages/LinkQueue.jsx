@@ -64,9 +64,11 @@ const LinkQueue = () => {
       {error && <ErrorNotification error={error} />}
       {success && <SuccessNotification success={success} />}
       <div className="flex justify-between items-center">
-        <p className="p-2 ps-4 mb-0 tex-gray-300 text-3xl">Link Queue</p>
+        <p className="p-2 ps-4 mb-0 tex-gray-300 text-3xl font-semibold tracking-tight">
+          Link Queue
+        </p>
         <Link to="/submit-link">
-          <Button className="bg-yellow-700 hover:bg-yellow-600">
+          <Button variant="light" color="grape">
             Submit Link
           </Button>
         </Link>
@@ -79,19 +81,14 @@ const LinkQueue = () => {
               style={{ borderRadius: "5px", verticalAlign: "top" }}
               key={link._id}
             >
-              {/* title */}
-
               <p className="" style={{ color: "#5BA9E7" }}>
                 {link.title}
               </p>
 
-              {/* descritpion */}
               {link.description && <p className="m-0">{link.description}</p>}
 
-              {/* link */}
               <a href={link.link}>{link.link}</a>
 
-              {/* username */}
               <p className="">
                 🙏
                 <span
@@ -163,7 +160,7 @@ const LinkQueue = () => {
           );
         })}
       </div>
-      {/* modal */}
+
       {opened && (
         <LinkQueueModel
           opened={opened}

@@ -10,9 +10,8 @@ export const MenuComponents = ({ setOpened }) => {
   const curLink = location.pathname;
 
   return (
-    <Menu
-      menuButtonLabel="Resources"
-      control={
+    <Menu menuButtonLabel="Resources">
+      <Menu.Target>
         <p
           className={`px-0.5 py-1 lg:px-2 text-2xl md:text-lg rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900 ${
             curLink.startsWith("/resource") ? "text-white" : "text-gray-500"
@@ -20,13 +19,14 @@ export const MenuComponents = ({ setOpened }) => {
         >
           Wiki
         </p>
-      }
-    >
-      {menuItems.map((item, index) => (
-        <Link key={index} to={item.link} onClick={() => setOpened(false)}>
-          <Menu.Item icon={item.emoji}>{item.title}</Menu.Item>
-        </Link>
-      ))}
+      </Menu.Target>
+      <Menu.Dropdown className="h-72 overflow-scroll">
+        {menuItems.map((item, index) => (
+          <Link key={index} to={item.link} onClick={() => setOpened(false)}>
+            <Menu.Item icon={item.emoji}>{item.title}</Menu.Item>
+          </Link>
+        ))}
+      </Menu.Dropdown>
     </Menu>
   );
 };
