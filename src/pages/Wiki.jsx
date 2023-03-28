@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { formatName } from "../lib/helper";
-import "../styles/resources.css";
+import "../styles/wiki.css";
 import Error404 from "./404";
 import { SERVER_URL } from "../lib/config";
 
