@@ -4,7 +4,7 @@ import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
 import { Button } from "@mantine/core";
 
-const NewLinksPage = () => {
+const LinksPage = () => {
   let sortedCateogryChannels = category_channels.sort(
     (a, b) => a.channels.length < b.channels.length
   );
@@ -15,7 +15,7 @@ const NewLinksPage = () => {
         <p className="pr-2 pt-0 pl-4 mb-0 text-3xl text-cyan-300 tracking-tight font-semibold">
           Links
         </p>
-        <div className="gap-2 flex flex-col sm:flex-row">
+        <div className="gap-2 flex">
           {[
             {
               link: "/base64",
@@ -25,22 +25,20 @@ const NewLinksPage = () => {
             {
               link: "/link-queue",
               name: "Link Queue",
-              color: "cyan",
-            },
-            {
-              link: "/submit-link",
-              name: "Submit Link",
               color: "pink",
             },
           ].map((item) => (
             <Link key={item.link} to={item.link}>
-              <Button variant="light" color={item.color}>
+              <Button compact variant="light" color={item.color}>
                 {item.name}
               </Button>
             </Link>
           ))}
         </div>
       </div>
+      <p className="text-gray-400 p-2 pl-4 pt-0">
+        Restored from old discord backup
+      </p>
 
       <div className="flex flex-wrap justify-center">
         {sortedCateogryChannels.map((item, index) => (
@@ -80,4 +78,4 @@ const NewLinksPage = () => {
   );
 };
 
-export default NewLinksPage;
+export default LinksPage;

@@ -28,8 +28,6 @@ const GuideElement = ({ data }) => {
   //   }
   // };
 
-  console.log(data);
-
   return (
     <div className="guide-item ">
       <div>

@@ -9,6 +9,8 @@ import {
 } from "../components/Notification";
 
 const AddGuide = () => {
+  const SERVER_URL = "";
+
   const { username } = useContext(UserContext);
   const navigate = useNavigate();
 

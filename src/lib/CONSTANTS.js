@@ -174,75 +174,103 @@ export const resources = [
 
 export const MARKDOWN_RESOURCES = [
   {
-    title: "Adblock,VPN",
+    title: "Beginners Guide",
+    urlEnding: "Beginners-Guide",
+    emoji: "🏴‍☠️",
+  },
+  {
+    title: "AI Tools",
+    urlEnding: "AI",
+    emoji: "🤖",
+  },
+  {
+    title: "Adblock, Privacy",
     urlEnding: "AdblockVPNGuide",
+    emoji: "📛",
   },
 
   {
-    title: "Android Piracy",
-    urlEnding: "AndroidPiracyGuide",
+    title: "Android, iOS",
+    urlEnding: "Android-iOSGuide",
+    emoji: "📱",
   },
 
   {
-    title: "Audio Piracy",
+    title: "Music, Podcasts, Radio",
     urlEnding: "AudioPiracyGuide",
+    emoji: "🎵",
   },
+
   {
-    title: "Dev Tools",
+    title: "Developer Tools",
     urlEnding: "DEVTools",
+    emoji: "👨‍💻",
   },
   {
-    title: "Download Piracy",
+    title: "Downloading",
     urlEnding: "DownloadPiracyGuide",
+    emoji: "💾",
   },
   {
-    title: "Edu Piracy",
+    title: "Educational",
     urlEnding: "EDUPiracyGuide",
+    emoji: "🧠",
   },
+
   {
-    title: "Game Tools",
-    urlEnding: "Game-Tools",
-  },
-  {
-    title: "Gaming Piracy",
+    title: "Gaming, Emulation",
     urlEnding: "GamingPiracyGuide",
+    emoji: "🎮",
   },
   {
-    title: "Linux Guide",
+    title: "Linux/ MacOS",
     urlEnding: "LinuxGuide",
+    emoji: "🐧",
   },
   {
-    title: "MISC Guide",
+    title: "Miscellaneous",
     urlEnding: "MISCGuide",
+    emoji: "📂",
   },
 
   {
-    title: "Non-English Piracy",
+    title: "Non-English",
     urlEnding: "Non-English",
+    emoji: "🌍",
   },
   {
-    title: "Reading Piracy",
+    title: "Books, Comics, Manga",
     urlEnding: "ReadingPiracyGuide",
+    emoji: "📗",
   },
-
   {
-    title: "Tools Guide",
+    title: "Storage",
+    urlEnding: "STORAGE",
+    emoji: "📦",
+  },
+  {
+    title: "Tools",
     urlEnding: "TOOLSGuide",
+    emoji: "🔧",
   },
   {
-    title: "Torrent Piracy",
+    title: "Torrenting",
     urlEnding: "TorrentPiracyGuide",
+    emoji: "🌀",
   },
   {
-    title: "Video Piracy",
+    title: "Movies, TV, Anime, Sports",
     urlEnding: "VideoPiracyGuide",
+    emoji: "📺",
   },
   {
     title: "Image Tools",
     urlEnding: "img-tools",
+    emoji: "🖼️",
   },
   {
-    title: "NSFW Piracy",
+    title: "NSFW",
     urlEnding: "NSFWPiracy",
+    emoji: "🔞",
   },
 ];

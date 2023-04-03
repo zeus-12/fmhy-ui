@@ -6,16 +6,3 @@ a {
 a:hover {
   color: rgb(125, 182, 236);
 }
-
-h1 {
-  font-size: 1.35rem !important;
-}
-
-h2 {
-  font-size: 1.15rem;
-}
-
-/* hr {
-  margin: 1rem 0 !important;
-  border-top: 2px dashed #8c8b8b !important;
-} */

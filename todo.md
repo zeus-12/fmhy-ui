@@ -10,3 +10,5 @@ Tasks todo with Priority order!
 
 - search using the links, (and not just the title),
 - maybe increase the width of menucomponent?
+
+- try : instead of passing {...props} to the component, instead pass only required props : may have performance improvements.

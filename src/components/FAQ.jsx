@@ -67,7 +67,6 @@ const FAQ = () => {
       <Accordion variant="separated" radius="md" className="max-w-3xl mx-auto">
         {faqs.map((item, index) => (
           <Accordion.Item key={index} value={item.value}>
-            {console.log(item.question, item.answer)}
             <Accordion.Control>• {item.question}</Accordion.Control>
             <Accordion.Panel>{item.answer}</Accordion.Panel>
           </Accordion.Item>

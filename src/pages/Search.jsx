@@ -102,7 +102,7 @@ const Search = () => {
       <div className="flex justify-between">
         <p
           onClick={resetSearch}
-          className="text-3xl font-semibold tracking-tight mb-2 hover:cursor-pointer"
+          className="text-3xl font-semibold tracking-tighter hover:cursor-pointer"
         >
           <span className="text-cyan-400">FMHY</span> Search
         </p>
@@ -112,6 +112,16 @@ const Search = () => {
           onChange={toggleNsfw}
         />
       </div>
+
+      <p className="text-gray-400 mb-2">
+        Doesn't include links in{" "}
+        <a
+          className="text-gray-400 underline"
+          href="https://github.com/nbats/FMHYedit/blob/main/STORAGE.md"
+        >
+          storage
+        </a>
+      </p>
 
       <Input
         placeholder="Try Adblocker"
