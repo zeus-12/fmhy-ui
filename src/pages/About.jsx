@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FAQ from "../components/FAQ";
 
 const About = () => {
@@ -78,7 +79,10 @@ const About = () => {
           </div>
         </div>
       </div>
-
+      <p className="text-xl text-center font-semibold tracking-tight">
+        Get started with <Link to="/links">Links</Link> (scraped from FMHY
+        Github Page)
+      </p>
       <FAQ />
     </div>
   );

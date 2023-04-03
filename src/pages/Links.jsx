@@ -172,20 +172,18 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
         Categories
       </p>
       {Object.entries(markdownHeadings)?.map((item) => (
-        <div key={item[0]} className="px-2 py-2">
+        <div key={item[0]} className="px-2 py-1">
           <a
             href={`#${convertTextToLowerCamelCase(item[0])}`}
-            // href={`/links/${CATEGORY}/#${convertTextToLowerCamelCase(item[0])}`}
-            className="text-gray-500 text-lg"
+            className="text-gray-500 text-base"
           >
             {removeSymbolsInHeading(item[0])}
           </a>
           {item[1]?.map((subHeading) => (
             <div key={subHeading} className="px-3 py-[3px]">
               <a
-                // href={`/links/${CATEGORY}/#${convertTextToLowerCamelCase(
                 href={`#${convertTextToLowerCamelCase(subHeading)}`}
-                className="text-gray-500 text-md"
+                className="text-gray-500 text-sm"
               >
                 {removeSymbolsInHeading(subHeading)}
               </a>
