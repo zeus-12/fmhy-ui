@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Base64LinkElement = ({ title, hash, showDecoded }) => {
+const Base64Element = ({ title, hash, showDecoded }) => {
   const [showHashed, setShowHashed] = useState(!showDecoded);
 
   useEffect(() => {
@@ -45,4 +45,4 @@ const Base64LinkElement = ({ title, hash, showDecoded }) => {
     </div>
   );
 };
-export default Base64LinkElement;
+export default Base64Element;

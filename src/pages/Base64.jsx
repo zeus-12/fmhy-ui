@@ -1,6 +1,6 @@
 import { Switch } from "@mantine/core";
 import { useEffect, useState } from "react";
-import Base64LinkElement from "../components/Base64LinkElement";
+import Base64Element from "../components/Base64Element";
 import { SERVER_URL } from "../lib/config";
 
 // const ITEMS_PER_PAGE = 30;
@@ -37,7 +37,7 @@ const Base64 = () => {
       </div>
       {links ? (
         links?.map((link, index) => (
-          <Base64LinkElement
+          <Base64Element
             key={index}
             title={link.title}
             hash={link.hash}
