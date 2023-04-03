@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import GuideElement from "../components/GuideElement";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { Input } from "@mantine/core";
+import { Input, Loader } from "@mantine/core";
 import { SERVER_URL } from "../lib/config";
 import { AiOutlineSearch, AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
 import { errorNotification } from "../components/Notifications";
@@ -37,6 +37,7 @@ const Guides = () => {
   }, [inputToggle]);
 
   useEffect(() => {
+    setLoading(true);
     fetch(SERVER_URL + "/api/guides")
       .then((res) => res.json())
       .then((data) => {
@@ -52,6 +53,9 @@ const Guides = () => {
         console.log(err);
         setError(true);
         errorNotification("Something went wrong!");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -134,7 +138,9 @@ const Guides = () => {
         {error ? (
           <p>Can't connect to the server</p>
         ) : loading ? (
-          <p>Loading...</p>
+          <div className="justify-center items-center flex h-[calc(100vh_-_6rem)]">
+            <Loader variant="dots" />
+          </div>
         ) : (
           filterData(guides)?.map((item) => (
             <GuideElement data={item} updateData={setGuides} />
