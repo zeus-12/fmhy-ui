@@ -63,7 +63,7 @@ function App() {
           <Notifications />
 
           <Navbar />
-          <div className="mt-20 px-6">
+          <div className="mt-20 px-2">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/resource/:resource" element={<Wiki />} />

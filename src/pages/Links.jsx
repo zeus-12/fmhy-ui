@@ -19,7 +19,9 @@ import { removeSymbolsInHeading } from "../lib/scraper/helpers";
 
 const LinksPage = () => {
   const [data, setData] = useState();
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
+
+  console.log(error);
 
   // map from h1 to array of h2 inside it
   // replace this with maps
@@ -39,13 +41,17 @@ const LinksPage = () => {
         "https://raw.githubusercontent.com/nbats/FMHYedit/main/" +
         markdownUrlEnding +
         ".md";
+      try {
+        const res = await fetch(markdownUrl);
+        const text = await res.text();
 
-      const res = await fetch(markdownUrl);
-      const text = await res.text();
+        const cleanedText = text.split("For mobile users")[1];
 
-      const cleanedText = text.split("For mobile users")[1];
-
-      setData(cleanedText || text);
+        setData(cleanedText || text);
+      } catch (err) {
+        console.log("error");
+        setError(true);
+      }
     };
 
     fetchMarkdown();
@@ -56,10 +62,10 @@ const LinksPage = () => {
   }
 
   return (
-    <div className="flex justify-center overflow-hidden h-[calc(100vh_-_6rem)]">
+    <div className="flex justify-center overflow-hidden h-[calc(100vh_-_6rem)] gap-2">
       <LinkCategoriesSidebar markdownCategory={markdownCategory} />
 
-      <div className="flex-1 px-2 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll ">
+      <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll ">
         <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
           {markdownCategory.title}
         </p>
