@@ -60,6 +60,19 @@ const LinksPage = () => {
     fetchMarkdown();
   }, [markdownCategory, markdownCategory?.urlEnding]);
 
+  useEffect(() => {
+    const currentUrl = window.location.href;
+
+    if (!data || !currentUrl.includes("#")) return;
+
+    const id = currentUrl.split("#").at(-1);
+
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [data, window.location.href]);
+
   if (!markdownCategory && CATEGORY !== "home") {
     return <Navigate to="/404" replace={true} />;
   }
@@ -240,7 +253,6 @@ const LinksHomePage = () => {
           "Update categories section on scroll",
           "better ui for mobile",
           "Add next/previous at the end",
-          "fix navigation using ids - probs require ssr",
         ].map((item) => (
           <li className="list-disc" key={item}>
             {item}

@@ -66,20 +66,26 @@ function App() {
           <div className="mt-20 px-2">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/resource/:resource" element={<Wiki />} />
+
+              {/* <Route path="/resource/:resource" element={<Wiki />} /> */}
+
               <Route path="/old-links" element={<OldLinks />} />
               <Route path="/old-links/:CATEGORY" element={<OldLinksItem />} />
+
               <Route path="/search" element={<Search />} />
+
               <Route path="/about" element={<About />} />
+
               <Route
                 path="/guides/add"
                 element={username ? <AddGuide /> : <Navigate to="/guides" />}
               />
               <Route path="/guides/edit/:ID" element={<EditGuide />} />
               <Route path="/guides" element={<Guides />} />
+
               {/* <Route path="/login" element={<Login />} /> */}
               {/* <Route path="/user" element={<User />} /> */}
-              {/* <Route path="/links"  element={<Links />} /> */}
+
               <Route path="/links" element={<Navigate to="/links/home" />} />
               <Route path="/links/:CATEGORY" element={<Links />} />
 
@@ -87,8 +93,8 @@ function App() {
 
               {/* <Route path="/submit-link" element={<SubmitLink />} /> */}
               {/* <Route path="/links/add" element={<SubmitLink />} /> */}
-
               {/* <Route path="/link-queue" element={<LinkQueue />} /> */}
+
               <Route path="*" element={<Error404 />} />
             </Routes>
           </div>
