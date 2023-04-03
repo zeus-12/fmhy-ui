@@ -251,7 +251,9 @@ const LinksHomePage = () => {
       </div>
 
       <div>
-        <p>Few other resources</p>
+        <p className="text-xl font-semibold tracking-tighter">
+          Few other resources
+        </p>
 
         <div className="gap-2 flex">
           {[

@@ -7,6 +7,7 @@ import {
   flatten,
   logHeading,
   redirectRedditLinksToWebsite,
+  removeSymbolsInHeading,
 } from "./helpers";
 
 export const H1Renderer = (props, CATEGORY, markdownHeadings) => {
@@ -21,7 +22,7 @@ export const H1Renderer = (props, CATEGORY, markdownHeadings) => {
       >
         #{" "}
       </a>
-      {text}
+      {removeSymbolsInHeading(text)}
     </h1>
   );
 };
@@ -40,7 +41,7 @@ export const H2Renderer = (props, CATEGORY, markdownHeadings) => {
       >
         #{" "}
       </a>
-      {text}
+      {removeSymbolsInHeading(text)}
     </h2>
   );
 };
