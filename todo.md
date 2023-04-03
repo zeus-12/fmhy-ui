@@ -1,5 +1,6 @@
 Tasks todo with Priority order!
 
+- add mantine spotlight for search
 - use react query for data fetching!
 - update fmhy.ml/links with the github scraped one
 - fix the notification, dont do manual timeouts.

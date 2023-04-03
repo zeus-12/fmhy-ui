@@ -90,8 +90,8 @@ const About = () => {
 
 export default About;
 
-{
-  /* <div>
+// {
+/* <div>
   <p className="text-3xl text-lime-400">Contribute</p>
 
   <p>
@@ -110,4 +110,4 @@ export default About;
     Help us Discover New Sites
   </p>
 </div> */
-}
+// }
