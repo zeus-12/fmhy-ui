@@ -106,11 +106,7 @@ const Search = () => {
         >
           <span className="text-cyan-400">FMHY</span> Search
         </p>
-        <Switch
-          label="Include NSFW"
-          checked={includeNsfw}
-          onChange={toggleNsfw}
-        />
+        <Switch label="NSFW?" checked={includeNsfw} onChange={toggleNsfw} />
       </div>
 
       <p className="text-gray-400 mb-2">
