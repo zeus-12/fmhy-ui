@@ -239,7 +239,7 @@ const LinksHomePage = () => {
       <div>
         <p>Todos</p>
         {[
-          "Update categoriy section on scroll",
+          "Update categories section on scroll",
           "better ui for mobile",
           "Add next/previous at the end",
           "fix navigation using ids - probs require ssr",
