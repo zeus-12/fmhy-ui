@@ -99,7 +99,7 @@ const Search = () => {
 
   return (
     <div className="min-h-[85vh] flex flex-col px-6">
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <p
           onClick={resetSearch}
           className="text-3xl font-semibold tracking-tighter hover:cursor-pointer"
