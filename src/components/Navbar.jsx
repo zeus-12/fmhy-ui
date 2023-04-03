@@ -72,9 +72,9 @@ export const Logo = () => (
 );
 
 export const NavbarDrawer = ({ opened, setOpened, username }) => (
-  <div>
+  <div className={opened ? "pt-4 px-2" : ""}>
     <Drawer
-      className="pt-4 px-2 bg-black"
+      className="bg-black"
       opened={opened}
       position="top"
       size="100vh"
