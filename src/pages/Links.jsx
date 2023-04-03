@@ -1,9 +1,9 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { MARKDOWN_RESOURCES } from "../lib/CONSTANTS";
-import { Alert, Loader } from "@mantine/core";
+import { Alert, Button, Loader, Switch } from "@mantine/core";
 import { AiFillAlert } from "react-icons/ai";
 import { RiAlarmWarningFill } from "react-icons/ri";
 import {
@@ -21,8 +21,8 @@ const LinksPage = () => {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
 
-  console.log(error);
-
+  const [includeNsfw, setIncludeNsfw] = useState(false);
+  const toggleNsfw = () => setIncludeNsfw((prev) => !prev);
   // map from h1 to array of h2 inside it
   // replace this with maps
   const markdownHeadings = {};
@@ -33,9 +33,13 @@ const LinksPage = () => {
   );
 
   useEffect(() => {
+    const markdownUrlEnding = markdownCategory?.urlEnding;
+
+    if (!markdownUrlEnding) {
+      return;
+    }
     const fetchMarkdown = async () => {
       if (!markdownCategory) return setError(true);
-      const markdownUrlEnding = markdownCategory?.urlEnding;
 
       const markdownUrl =
         "https://raw.githubusercontent.com/nbats/FMHYedit/main/" +
@@ -49,50 +53,57 @@ const LinksPage = () => {
 
         setData(cleanedText || text);
       } catch (err) {
-        console.log("error");
         setError(true);
       }
     };
 
     fetchMarkdown();
-  }, []);
+  }, [markdownCategory, markdownCategory?.urlEnding]);
 
-  if (!markdownCategory) {
+  if (!markdownCategory && CATEGORY !== "home") {
     return <Navigate to="/404" replace={true} />;
   }
 
   return (
-    <div className="flex justify-center overflow-hidden h-[calc(100vh_-_6rem)] gap-2">
-      <LinkCategoriesSidebar markdownCategory={markdownCategory} />
+    <div className="flex justify-between overflow-hidden h-[calc(100vh_-_6rem)] gap-2">
+      <LinkCategoriesSidebar
+        markdownCategory={markdownCategory}
+        toggleNsfw={toggleNsfw}
+        includeNsfw={includeNsfw}
+      />
 
-      <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll ">
-        <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
-          {markdownCategory.title}
-        </p>
+      {CATEGORY?.toLowerCase() === "home" ? (
+        <LinksHomePage />
+      ) : (
+        <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll ">
+          <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
+            {markdownCategory.title}
+          </p>
 
-        {error && <p>Something went wrong!</p>}
+          {error && <p>Something went wrong!</p>}
 
-        {!error && data?.length > 0 ? (
-          <ReactMarkdown
-            components={{
-              h1: (props) => H1Renderer(props, CATEGORY, markdownHeadings),
-              h2: (props) => H2Renderer(props, CATEGORY, markdownHeadings),
+          {!error && data?.length > 0 ? (
+            <ReactMarkdown
+              components={{
+                h1: (props) => H1Renderer(props, CATEGORY, markdownHeadings),
+                h2: (props) => H2Renderer(props, CATEGORY, markdownHeadings),
 
-              h3: H3Renderer, //for beginners guide only
-              a: LinkRenderer,
-              li: LiRenderer,
-              p: PRenderer, // for beginners guide only
-              hr: () => <></>,
-            }}
-          >
-            {data}
-          </ReactMarkdown>
-        ) : (
-          <div className="justify-center items-center flex h-[calc(100vh_-_6rem)]">
-            <Loader variant="dots" />
-          </div>
-        )}
-      </div>
+                h3: H3Renderer, //for beginners guide only
+                a: LinkRenderer,
+                li: LiRenderer,
+                p: PRenderer, // for beginners guide only
+                hr: () => <></>,
+              }}
+            >
+              {data}
+            </ReactMarkdown>
+          ) : (
+            <div className="justify-center items-center flex h-[calc(100vh_-_6rem)]">
+              <Loader variant="dots" />
+            </div>
+          )}
+        </div>
+      )}
 
       <LinkSectionsSidebar
         markdownHeadings={markdownHeadings}
@@ -102,11 +113,26 @@ const LinksPage = () => {
   );
 };
 
-const LinkCategoriesSidebar = ({ markdownCategory }) => {
+const LinkCategoriesSidebar = ({
+  markdownCategory,
+  toggleNsfw,
+  includeNsfw,
+}) => {
   return (
     <div className="bg-gray-900 border-gray-700 border-r-[1px] h-full overflow-scroll sticky hideScrollbar">
-      {/* <p className="text-xl tracking-tighter font-medium">Categories</p> */}
-      {MARKDOWN_RESOURCES.map((item) => (
+      <div className="items-center px-4 pt-2 justify-between hidden md:flex">
+        <p className="text-xl tracking-tighter font-medium ">Categories</p>
+        <Switch
+          label="NSFW?"
+          size="xs"
+          checked={includeNsfw}
+          onChange={toggleNsfw}
+        />
+      </div>
+
+      {MARKDOWN_RESOURCES.filter((item) =>
+        includeNsfw ? item : item.urlEnding !== "NSFWPiracy"
+      ).map((item) => (
         <div
           key={item.urlEnding}
           className={`${
@@ -137,10 +163,14 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
   return (
     <div
       className={`${
-        CATEGORY === "beginners-guide" ? "hidden" : "hidden md:inline-flex"
+        CATEGORY === "beginners-guide" || CATEGORY === "home"
+          ? "hidden"
+          : "hidden md:inline-flex"
       } bg-gray-900 border-l-[1px] border-gray-700 md:flex-col overflow-scroll hideScrollbar min-w-[12rem]`}
     >
-      <p className="text-gray-300 text-center">Contents</p>
+      <p className="text-xl tracking-tighter font-medium px-1 pt-2">
+        Categories
+      </p>
       {Object.entries(markdownHeadings)?.map((item) => (
         <div key={item[0]} className="px-2 py-2">
           <a
@@ -197,26 +227,55 @@ export const WarningAlert = ({ message }) => {
   );
 };
 
-export default LinksPage;
+const LinksHomePage = () => {
+  return (
+    <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll space-y-4">
+      <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
+        Welcome 🙏
+      </p>
 
-// add this somewhere
-//   <div className="gap-2 flex">
-// {[
-//   {
-//     link: "/base64",
-//     name: "Base 64",
-//     color: "blue",
-//   },
-//   {
-//     link: "/link-queue",
-//     name: "Link Queue",
-//     color: "pink",
-//   },
-// ].map((item) => (
-//   <Link key={item.link} to={item.link}>
-//     <Button compact variant="light" color={item.color}>
-//       {item.name}
-//     </Button>
-//   </Link>
-// ))}
-// </div>
+      <p> Welcome to The Largest Collection of Free Stuff On The Internet!</p>
+      <p>Kinda clone of retype. </p>
+      <div>
+        <p>Todos</p>
+        {[
+          "Update categoriy section on scroll",
+          "better ui for mobile",
+          "Add next/previous at the end",
+          "fix navigation using ids - probs require ssr",
+        ].map((item) => (
+          <li className="list-disc" key={item}>
+            {item}
+          </li>
+        ))}
+      </div>
+
+      <div>
+        <p>Few other resources</p>
+
+        <div className="gap-2 flex">
+          {[
+            {
+              link: "/base64",
+              name: "Base 64",
+              color: "blue",
+            },
+            {
+              link: "/link-queue",
+              name: "Link Queue",
+              color: "pink",
+            },
+          ].map((item) => (
+            <Link key={item.link} to={item.link}>
+              <Button variant="light" color={item.color}>
+                {item.name}
+              </Button>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LinksPage;

@@ -80,10 +80,7 @@ function App() {
               {/* <Route path="/login" element={<Login />} /> */}
               {/* <Route path="/user" element={<User />} /> */}
               {/* <Route path="/links"  element={<Links />} /> */}
-              <Route
-                path="/links"
-                element={<Navigate to="/links/beginners-guide" />}
-              />
+              <Route path="/links" element={<Navigate to="/links/home" />} />
               <Route path="/links/:CATEGORY" element={<Links />} />
 
               <Route path="/base64" element={<Base64 />} />
