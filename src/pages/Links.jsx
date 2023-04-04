@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { MARKDOWN_RESOURCES } from "../lib/CONSTANTS";
-import { Alert, Button, Loader, Switch } from "@mantine/core";
+import { Alert, Button, Loader, Menu, Switch } from "@mantine/core";
 import { AiFillAlert } from "react-icons/ai";
 import { RiAlarmWarningFill } from "react-icons/ri";
 import {
@@ -16,6 +16,7 @@ import {
 } from "../lib/scraper/renderers";
 import { convertTextToLowerCamelCase } from "../lib/scraper/helpers";
 import { removeSymbolsInHeading } from "../lib/scraper/helpers";
+import { resources as menuItems } from "../lib/CONSTANTS";
 
 const LinksPage = () => {
   const [data, setData] = useState();
@@ -177,7 +178,7 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
   return (
     <div
       className={`${
-        CATEGORY === "beginners-guide" || CATEGORY === "home"
+        ["beginners-guide", "home", "storage"].includes(CATEGORY)
           ? "hidden"
           : "hidden md:inline-flex"
       } bg-gray-900 border-l-[1px] border-gray-700 md:flex-col overflow-scroll hideScrollbar min-w-[12rem]`}
@@ -245,22 +246,9 @@ const LinksHomePage = () => {
         Welcome 🙏
       </p>
 
-      <p> Welcome to The Largest Collection of Free Stuff On The Internet!</p>
-      <p>Kinda clone of retype, STILL A WIP! </p>
-      <div>
-        <p>Todos</p>
-        {[
-          "Update categories section on scroll",
-          "same h2 name diff h1 => for h2 make it /links/catgegory/h1name/h2name ?? : link - http://localhost:5173/links/edupiracyguide/#courses",
-          "better ui for mobile",
-          "Add next/previous at the end",
-          "fix linkings, toc in storage, beginners guide",
-        ].map((item) => (
-          <li className="list-disc" key={item}>
-            {item}
-          </li>
-        ))}
-      </div>
+      <p className="text-xl font-semibold tracking-tighter text-cyan-400">
+        Welcome to The Largest Collection of Free Stuff On The Internet!
+      </p>
 
       <div>
         <p className="text-xl font-semibold tracking-tighter">
@@ -270,15 +258,20 @@ const LinksHomePage = () => {
         <div className="gap-2 flex">
           {[
             {
+              link: "",
+              name: <RedditScrapedWikiMenu />,
+              color: "orange",
+            },
+            {
               link: "/base64",
               name: "Base 64",
               color: "blue",
             },
-            {
-              link: "/link-queue",
-              name: "Link Queue",
-              color: "pink",
-            },
+            // {
+            //   link: "/link-queue",
+            //   name: "Link Queue",
+            //   color: "pink",
+            // },
           ].map((item) => (
             <Link key={item.link} to={item.link}>
               <Button variant="light" color={item.color}>
@@ -288,7 +281,42 @@ const LinksHomePage = () => {
           ))}
         </div>
       </div>
+
+      <div className="bg-gray-800 p-4 rounded-xl">
+        <p className="text-blue-200">Kinda clone of retype, STILL A WIP! </p>
+
+        <p className="font-semibold text-red-200">Todos/ Knows bugs</p>
+        {[
+          "Update categories section on scroll",
+          "same h2 name diff h1 => for h2 make it /links/catgegory/h1name/h2name ?? : link - http://localhost:5173/links/edupiracyguide/#courses",
+          "Add next/previous at the end",
+          "fix linkings, toc in storage, beginners guide",
+        ].map((item) => (
+          <li className="list-disc" key={item}>
+            {item}
+          </li>
+        ))}
+      </div>
     </div>
+  );
+};
+
+const RedditScrapedWikiMenu = () => {
+  return (
+    <Menu menuButtonLabel="Resources">
+      <Menu.Target>
+        <p className="px-0.5 py-1 lg:px-2 rounded-md  cursor-pointer text-center">
+          Reddit Scraped
+        </p>
+      </Menu.Target>
+      <Menu.Dropdown className="h-72 overflow-scroll">
+        {menuItems.map((item, index) => (
+          <Link key={index} to={item.link}>
+            <Menu.Item icon={item.emoji}>{item.title}</Menu.Item>
+          </Link>
+        ))}
+      </Menu.Dropdown>
+    </Menu>
   );
 };
 

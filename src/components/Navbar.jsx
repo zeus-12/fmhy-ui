@@ -2,34 +2,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { Burger, Drawer, Menu } from "@mantine/core";
 import { Link } from "react-router-dom";
-import { resources as menuItems } from "../lib/CONSTANTS";
 import { useLocation } from "react-router-dom";
-
-export const MenuComponents = ({ setOpened }) => {
-  const location = useLocation();
-  const curLink = location.pathname;
-
-  return (
-    <Menu menuButtonLabel="Resources">
-      <Menu.Target>
-        <p
-          className={`px-0.5 py-1 lg:px-2 text-2xl md:text-lg rounded-md hover:text-white cursor-pointer text-center hover:bg-gray-900 ${
-            curLink.startsWith("/resource") ? "text-white" : "text-gray-500"
-          }`}
-        >
-          Wiki
-        </p>
-      </Menu.Target>
-      <Menu.Dropdown className="h-72 overflow-scroll">
-        {menuItems.map((item, index) => (
-          <Link key={index} to={item.link} onClick={() => setOpened(false)}>
-            <Menu.Item icon={item.emoji}>{item.title}</Menu.Item>
-          </Link>
-        ))}
-      </Menu.Dropdown>
-    </Menu>
-  );
-};
 
 export const LinkElements = ({ username }) => {
   const navItems = [
@@ -86,12 +59,12 @@ export const NavbarDrawer = ({ opened, setOpened, username }) => (
       zIndex={20}
     >
       <div className="text-2xl pt-16 space-y-4">
-        <div
+        {/* <div
           className="flex justify-center"
           onClick={(e) => e.stopPropagation()}
         >
           <MenuComponents setOpened={setOpened} />
-        </div>
+        </div> */}
 
         <LinkElements />
       </div>
@@ -141,7 +114,7 @@ const Navbar = () => {
           )}
           {!opened && (
             <div className="text-gray-300 text-lg font-medium hidden xl:gap-8 md:flex gap-8">
-              <MenuComponents />
+              {/* <MenuComponents /> */}
               <LinkElements username={username} />
             </div>
           )}
