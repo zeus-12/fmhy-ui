@@ -27,18 +27,83 @@ export const H1Renderer = (props, CATEGORY, markdownHeadings) => {
   );
 };
 
+const redditToGithubTitleMapping = {
+  "adblock-vpn-privacy": "adblockvpnguide",
+  android: "android-iosguide",
+  reading: "readingpiracyguide",
+  download: "downloadpiracyguide",
+  edu: "edupiracyguide",
+  games: "gamingpiracyguide",
+  linux: "linuxguide",
+  misc: "miscguide",
+  video: "videopiracyguide",
+  audio: "audiopiracyguide",
+  "non-eng": "non-english",
+  storage: "storage",
+  torrent: "torrentpiracyguide",
+  ai: "ai",
+  beginners_guide: "beginners_guide",
+  "img-tools": "img-tools",
+  "tools-misc": "toolsguide",
+  // :"devtools",
+  // :"nsfwpiracy"
+};
+
 export const H2Renderer = (props, CATEGORY, markdownHeadings) => {
-  const { slug, text } = HeadingRendererHelper(props);
+  let { slug, text } = HeadingRendererHelper(props);
+  let href = `/links/${CATEGORY}/#${convertTextToLowerCamelCase(text)}`;
+
   logHeading(props.level, text, markdownHeadings);
 
-  // check if it has anchor tag inside, if yes, then check if it starts with reddit link, then replace with redirectRedditLinksToWebsite
+  if (props.node.children[1]?.tagName === "a") {
+    const eleHref = props.node.children[1]?.properties.href;
+    if (
+      eleHref.startsWith("https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/")
+    ) {
+      //TODO:  use better approach for this
+      // linking doesnt work for tags with "/" in name : cause of weird url shit
+      // file tools in downloading --> h1 tag
+      // to check for educational onwards
+
+      // /linux/#wiki_.25BA_mac_software  ==> /linux/#mac_software
+      const slugEnding = eleHref?.split("/wiki/")[1];
+
+      // linux#wiki_.25BA_mac_software  ==> /linux/#mac_software
+      console.log(slugEnding);
+      const category = slugEnding.split("#")[0].replaceAll("/", "");
+
+      console.log(category);
+      const temp = slugEnding.split("#")[1];
+
+      if (temp.includes("wiki_")) {
+        const newTemp = temp.split("wiki_")[1];
+        // console.log(newTemp);
+        // check if newTemp has the weird number thing
+        if (newTemp.startsWith(".")) {
+          const splitArray = newTemp.split("_");
+          splitArray.shift();
+          const idTag = splitArray.join("_");
+          href = redditToGithubTitleMapping[category] + "/#" + idTag;
+        } else {
+          href = redditToGithubTitleMapping[category] + "/#" + newTemp;
+        }
+      }
+
+      // // wiki_.25BA_mac_software  ==> mac_software
+      // const splitArray = slugEnding.split("#wiki_.")[1]?.split("_");
+      // if (!splitArray) return;
+      // // [25BA, mac, software]  ==> mac_software
+      // splitArray.shift();
+      // const idTag = splitArray.join("_");
+      // href = redditToGithubTitleMapping[category] + "/#" + idTag;
+    } else {
+      console.log("not reddit link", eleHref);
+    }
+  }
 
   return (
     <h2 className={classMapping["h" + props.level] + " group mt-4"} id={slug}>
-      <a
-        href={`/links/${CATEGORY}/#${convertTextToLowerCamelCase(text)}`}
-        className="group-hover:inline-flex hidden"
-      >
+      <a href={href} className="group-hover:inline-flex hidden">
         #{" "}
       </a>
       {removeSymbolsInHeading(text)}

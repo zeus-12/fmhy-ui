@@ -20,9 +20,10 @@ import { removeSymbolsInHeading } from "../lib/scraper/helpers";
 const LinksPage = () => {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
-
   const [includeNsfw, setIncludeNsfw] = useState(false);
+
   const toggleNsfw = () => setIncludeNsfw((prev) => !prev);
+
   // map from h1 to array of h2 inside it
   // replace this with maps
   const markdownHeadings = {};
@@ -181,29 +182,28 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
           : "hidden md:inline-flex"
       } bg-gray-900 border-l-[1px] border-gray-700 md:flex-col overflow-scroll hideScrollbar min-w-[12rem]`}
     >
-      <p className="text-xl tracking-tighter font-medium px-1 pt-2">
-        Categories
-      </p>
-      {Object.entries(markdownHeadings)?.map((item) => (
-        <div key={item[0]} className="px-2 py-1">
-          <a
-            href={`#${convertTextToLowerCamelCase(item[0])}`}
-            className="text-gray-500 text-base"
-          >
-            {removeSymbolsInHeading(item[0])}
-          </a>
-          {item[1]?.map((subHeading) => (
-            <div key={subHeading} className="px-3 py-[3px]">
-              <a
-                href={`#${convertTextToLowerCamelCase(subHeading)}`}
-                className="text-gray-500 text-sm"
-              >
-                {removeSymbolsInHeading(subHeading)}
-              </a>
-            </div>
-          ))}
-        </div>
-      ))}
+      <p className="text-xl tracking-tighter font-medium px-1 pt-2">Contents</p>
+      {Object.entries(markdownHeadings).length > 0 &&
+        Object.entries(markdownHeadings)?.map((item) => (
+          <div key={item[0]} className="px-2 py-1">
+            <a
+              href={`#${convertTextToLowerCamelCase(item[0])}`}
+              className="text-gray-500 text-base"
+            >
+              {removeSymbolsInHeading(item[0])}
+            </a>
+            {item[1]?.map((subHeading) => (
+              <div key={subHeading} className="px-3 py-[3px]">
+                <a
+                  href={`#${convertTextToLowerCamelCase(subHeading)}`}
+                  className="text-gray-500 text-sm"
+                >
+                  {removeSymbolsInHeading(subHeading)}
+                </a>
+              </div>
+            ))}
+          </div>
+        ))}
     </div>
   );
 };
@@ -246,13 +246,15 @@ const LinksHomePage = () => {
       </p>
 
       <p> Welcome to The Largest Collection of Free Stuff On The Internet!</p>
-      <p>Kinda clone of retype. </p>
+      <p>Kinda clone of retype, STILL A WIP! </p>
       <div>
         <p>Todos</p>
         {[
           "Update categories section on scroll",
+          "same h2 name diff h1 => for h2 make it /links/catgegory/h1name/h2name ?? : link - http://localhost:5173/links/edupiracyguide/#courses",
           "better ui for mobile",
           "Add next/previous at the end",
+          "fix linkings, toc in storage, beginners guide",
         ].map((item) => (
           <li className="list-disc" key={item}>
             {item}

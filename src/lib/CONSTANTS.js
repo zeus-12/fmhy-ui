@@ -278,3 +278,22 @@ export const MARKDOWN_RESOURCES = [
     emoji: "🔞",
   },
 ];
+
+const generateTitleMapFromRedditToGithub = () => {
+  // ps: update resoruces array, its outdated
+  const mapping = {};
+  MARKDOWN_RESOURCES.forEach((item) => {
+    const matchingResource = resources.find(
+      (resource) => resource.emoji === item.emoji
+    );
+    if (!matchingResource) {
+      console.log("missing", item);
+      return;
+    }
+    mapping[matchingResource.link.split("/").at(-1)] =
+      item.urlEnding.toLowerCase();
+    return;
+  });
+
+  console.log(mapping);
+};
