@@ -47,6 +47,22 @@ function App() {
 
   const spotlightActions = [
     {
+      title: query ? query : "Search on Streamlit",
+      description: "Search for it on the Streamlit",
+
+      onTrigger: () => {
+        const q = query.replace(" ", "+");
+        window.open(`https://fmhy-search.streamlit.app/?q=${q}`);
+      },
+    },
+    {
+      title: query ? query : "Search on Db",
+      description: "Search for it on the Db",
+      onTrigger: () => {
+        navigate(`/search?q=${query}`);
+      },
+    },
+    {
       title: "Links Page",
       description: "Collection of all links scraped from FMHY Github ",
       new: true,
@@ -66,22 +82,6 @@ function App() {
       description: "All base64 links in r/fmhy",
       onTrigger: () => {
         navigate("/base64");
-      },
-    },
-    {
-      title: query ? query : "Search on Streamlit",
-      description: "Search for it on the Streamlit",
-
-      onTrigger: () => {
-        const q = query.replace(" ", "+");
-        window.open(`https://fmhy-search.streamlit.app/?q=${q}`);
-      },
-    },
-    {
-      title: query ? query : "Search on Db",
-      description: "Search for it on the Db",
-      onTrigger: () => {
-        navigate(`/search?q=${query}`);
       },
     },
   ];
