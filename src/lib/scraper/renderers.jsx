@@ -69,15 +69,13 @@ export const H2Renderer = (props, CATEGORY, markdownHeadings) => {
       const slugEnding = eleHref?.split("/wiki/")[1];
 
       // linux#wiki_.25BA_mac_software  ==> /linux/#mac_software
-      console.log(slugEnding);
       const category = slugEnding.split("#")[0].replaceAll("/", "");
 
-      console.log(category);
       const temp = slugEnding.split("#")[1];
 
-      if (temp.includes("wiki_")) {
+      if (temp?.includes("wiki_")) {
         const newTemp = temp.split("wiki_")[1];
-        // console.log(newTemp);
+
         // check if newTemp has the weird number thing
         if (newTemp.startsWith(".")) {
           const splitArray = newTemp.split("_");
