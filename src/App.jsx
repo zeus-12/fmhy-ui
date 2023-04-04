@@ -1,13 +1,6 @@
 import { useState } from "react";
 import { UserContext } from "./context/UserContext";
-import "./index.css";
-import {
-  Routes,
-  Route,
-  BrowserRouter,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -21,15 +14,10 @@ import EditGuide from "./pages/EditGuide";
 // import User from "./pages/User";
 // import SubmitLink from "./pages/SubmitLink";
 // import LinkQueue from "./pages/LinkQueue";
+
 import Links from "./pages/Links";
 import Search from "./pages/Search";
-import {
-  Badge,
-  Group,
-  MantineProvider,
-  Text,
-  UnstyledButton,
-} from "@mantine/core";
+import { Badge, Group, MantineProvider, UnstyledButton } from "@mantine/core";
 import Base64 from "./pages/Base64";
 import OldLinks from "./pages/OldLinks";
 import OldLinksItem from "./pages/OldLinksItem";
@@ -47,8 +35,11 @@ function App() {
 
   const spotlightActions = [
     {
-      title: query ? query : "Search on Streamlit",
-      description: "Search for it on the Streamlit",
+      title: query,
+      description: "Search on Streamlit",
+      isSearch: true,
+      source: "Streamlit",
+      group: "search",
 
       onTrigger: () => {
         const q = query.replace(" ", "+");
@@ -56,8 +47,11 @@ function App() {
       },
     },
     {
-      title: query ? query : "Search on Db",
-      description: "Search for it on the Db",
+      title: query,
+      isSearch: true,
+      source: "DB",
+      group: "search",
+      description: "Search on Db",
       onTrigger: () => {
         navigate(`/search?q=${query}`);
       },
@@ -65,6 +59,7 @@ function App() {
     {
       title: "Links Page",
       description: "Collection of all links scraped from FMHY Github ",
+      group: "page",
       new: true,
       onTrigger: () => {
         navigate("/links");
@@ -73,6 +68,8 @@ function App() {
     {
       title: "Guides Page",
       description: "Collection of useful Guides!",
+      group: "page",
+
       onTrigger: () => {
         navigate("/guides");
       },
@@ -80,6 +77,7 @@ function App() {
     {
       title: "Base64 links",
       description: "All base64 links in r/fmhy",
+      group: "page",
       onTrigger: () => {
         navigate("/base64");
       },
@@ -181,13 +179,27 @@ function CustomAction({
     >
       <Group noWrap>
         <div style={{ flex: 1 }}>
-          <Text>{action.title}</Text>
-
-          {action.description && (
-            <Text color="dimmed" size="xs">
-              {action.description}
-            </Text>
-          )}
+          <div className="flex items-center gap-4">
+            {action.isSearch ? (
+              <p>
+                Search {action.title && "for "}
+                {action.title && (
+                  <span className="font-bold"> {action.title}</span>
+                )}
+              </p>
+            ) : (
+              <p className="text-lg">{action.title}</p>
+            )}
+            {action.isSearch && (
+              <div
+                size="md"
+                className="text-blue-300 bg-[#1D2C40] uppercase font-semibold text-xs rounded-lg px-3 py-1"
+              >
+                {action.source}
+              </div>
+            )}
+          </div>
+          <p className="text-gray-500 text-sm">{action.description}</p>
         </div>
 
         {action.new && <Badge>new</Badge>}
