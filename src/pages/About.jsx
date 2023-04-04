@@ -18,7 +18,7 @@ const About = () => {
             />
           </div>
           <p
-            className="p-4 rounded-lg bg-[#121212] text-[#DEEEEA] text-[1.1rem]"
+            className="p-4 rounded-xl bg-[#121212] text-[#DEEEEA] text-[1.1rem]"
             style={{
               fontFamily: "courier",
             }}
@@ -41,7 +41,7 @@ const About = () => {
         <p className="text-3xl text-gray-300 tracking-tighter font-semibold">
           Promise
         </p>
-        <div className="lg:flex gap-6 justify-evenly items-center rounded-lg text-[#DEEEEA] text-[1.1rem]">
+        <div className="lg:flex gap-6 justify-evenly items-center rounded-xl text-[#DEEEEA] text-[1.1rem]">
           <p
             className="p-4 bg-[#121212]"
             style={{

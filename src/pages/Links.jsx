@@ -287,7 +287,7 @@ const LinksHomePage = () => {
 
         <p className="font-semibold text-red-200">Todos/ Knows bugs</p>
         {[
-          "Update categories section on scroll",
+          "Update toc on scroll",
           "same h2 name diff h1 => for h2 make it /links/catgegory/h1name/h2name ?? : link - http://localhost:5173/links/edupiracyguide/#courses",
           "Add next/previous at the end",
           "fix linkings, toc in storage, beginners guide",

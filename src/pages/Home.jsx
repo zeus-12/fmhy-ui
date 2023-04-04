@@ -16,7 +16,10 @@ const Home = () => {
               style={{ fontFamily: "courier" }}
             >
               Most of the people new to{" "}
-              <a href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/">
+              <a
+                className="text-cyan-500"
+                href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/"
+              >
                 r/FreeMediaHeckYeah{" "}
               </a>
               can find our massive wiki overwhelming when taking their first
@@ -26,19 +29,31 @@ const Home = () => {
               years, making it much easier to navigate{" "}
               <span className="animate-pulse">💖</span> It'll be some underrated
               sites, ones that we use everyday, and guides that may come in
-              handy for a lot of people!
+              handy for a lot of people! ⚡️
             </p>
-            <p className="text-center pt-2 xl:pt-4 lg:px-10 my-2">
-              Check out our{" "}
-              <Link className="text-cyan-400" to="/about">
-                Vision
-              </Link>{" "}
-              & get started with our
-              <a className="text-cyan-400" href="https://rentry.org/Piracy-BG">
-                {" "}
-                Beginners Guide to Piracy
-              </a>
-            </p>
+            <div className="pt-2 xl:pt-4 lg:px-10 my-2">
+              <p className="text-center">
+                Check out our{" "}
+                <Link className="text-cyan-500" to="/about">
+                  Vision
+                </Link>{" "}
+                & get started with our
+                <a
+                  className="text-cyan-500"
+                  href="https://rentry.org/Piracy-BG"
+                >
+                  {" "}
+                  Beginners Guide to Piracy
+                </a>
+              </p>
+              <p className="text-center">
+                Also browse through the updated{" "}
+                <Link className="text-cyan-500" to="/links">
+                  links page
+                </Link>
+              </p>
+            </div>
+
             <div className="flex justify-center mb-3 hover:scale-[102%] mt-2 transition transform duration-100 ease-out">
               <a
                 className="px-2 py-2 rounded-md text-white bg-cyan-700"
