@@ -11,6 +11,7 @@
     "@mantine/core": "^6.0.5",
     "@mantine/hooks": "^6.0.5",
     "@mantine/notifications": "^6.0.5",
+    "@mantine/spotlight": "^6.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",

@@ -1,8 +1,11 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { Burger, Drawer, Menu } from "@mantine/core";
+import { Burger, Drawer, Input, Menu } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Kbd } from "@mantine/core";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useSpotlight } from "@mantine/spotlight";
 
 export const LinkElements = ({ username }) => {
   const navItems = [
@@ -59,13 +62,7 @@ export const NavbarDrawer = ({ opened, setOpened, username }) => (
       zIndex={20}
     >
       <div className="text-2xl pt-16 space-y-4">
-        {/* <div
-          className="flex justify-center"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <MenuComponents setOpened={setOpened} />
-        </div> */}
-
+        <SearchBar />
         <LinkElements />
       </div>
     </Drawer>
@@ -114,7 +111,7 @@ const Navbar = () => {
           )}
           {!opened && (
             <div className="text-gray-300 text-lg font-medium hidden xl:gap-8 md:flex gap-8">
-              {/* <MenuComponents /> */}
+              <SearchBar />
               <LinkElements username={username} />
             </div>
           )}
@@ -129,6 +126,25 @@ const Navbar = () => {
         </div>
       </div>
     </>
+  );
+};
+
+export const SearchBar = () => {
+  const spotlight = useSpotlight();
+  return (
+    <div className="w-58 max-w-[60%] mx-auto" onClick={spotlight.openSpotlight}>
+      <Input
+        icon={<AiOutlineSearch className="w-5 h-5 text-gray-400" />}
+        className="hover:cursor-pointer"
+        variant="filled"
+        placeholder="Search"
+        rightSection={
+          <>
+            <Kbd>/</Kbd>
+          </>
+        }
+      />
+    </div>
   );
 };
 

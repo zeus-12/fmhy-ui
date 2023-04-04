@@ -2,7 +2,7 @@ import { Button, Input, Loader, Pagination, Switch } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SERVER_URL } from "../lib/config";
-
+import { AiOutlineSearch } from "react-icons/ai";
 const Search = () => {
   const ITEMS_PER_PAGE = 30;
 
@@ -129,23 +129,7 @@ const Search = () => {
           }
         }}
         ref={searchRef}
-        rightSection={
-          <svg
-            className="w-5 h-5 text-gray-400 hover:cursor-pointer"
-            onClick={searchHandler}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        }
+        rightSection={<AiOutlineSearch className="w-5 h-5 text-gray-400" />}
         className="w-[90vw] sm:w-96"
       />
 

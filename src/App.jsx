@@ -1,42 +1,90 @@
 import { useState } from "react";
 import { UserContext } from "./context/UserContext";
 import "./index.css";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Wiki from "./pages/Wiki";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Error404 from "./pages/404";
 import Guides from "./pages/Guides";
 import AddGuide from "./pages/AddGuide";
-import Login from "./pages/Login";
-import User from "./pages/User";
 import EditGuide from "./pages/EditGuide";
-import React from "react";
-import SubmitLink from "./pages/SubmitLink";
+
+// import Wiki from "./pages/Wiki";
+// import Login from "./pages/Login";
+// import User from "./pages/User";
+// import SubmitLink from "./pages/SubmitLink";
+// import LinkQueue from "./pages/LinkQueue";
 import Links from "./pages/Links";
-import LinkQueue from "./pages/LinkQueue";
 import Search from "./pages/Search";
-import { MantineProvider } from "@mantine/core";
+import {
+  Badge,
+  Group,
+  MantineProvider,
+  Text,
+  UnstyledButton,
+} from "@mantine/core";
 import Base64 from "./pages/Base64";
 import OldLinks from "./pages/OldLinks";
 import OldLinksItem from "./pages/OldLinksItem";
 import { Notifications } from "@mantine/notifications";
+import { SpotlightProvider } from "@mantine/spotlight";
+import { AiOutlineSearch } from "react-icons/ai";
 
 function App() {
-  // const token = localStorage.getItem("token");
-  // if (token) {
-  // 	let user = jwt.decode(token);
-  // 	if (user) {
-  // 		var initialUsername = user.username;
-  // 		var initialIsAdmin = user.admin;
-  // 	}
-  // }
-  // var initialUsername = "";
-  var initialIsAdmin = false;
-
   const [username, setUsername] = useState("");
-  const [isAdmin, setIsAdmin] = useState(initialIsAdmin);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
+
+  const spotlightActions = [
+    {
+      title: "Links Page",
+      description: "Collection of all links scraped from FMHY Github ",
+      new: true,
+      onTrigger: () => {
+        navigate("/links");
+      },
+    },
+    {
+      title: "Guides Page",
+      description: "Collection of useful Guides!",
+      onTrigger: () => {
+        navigate("/guides");
+      },
+    },
+    {
+      title: "Base64 links",
+      description: "All base64 links in r/fmhy",
+      onTrigger: () => {
+        navigate("/base64");
+      },
+    },
+    {
+      title: query ? query : "Search on Streamlit",
+      description: "Search for it on the Streamlit",
+
+      onTrigger: () => {
+        const q = query.replace(" ", "+");
+        window.open(`https://fmhy-search.streamlit.app/?q=${q}`);
+      },
+    },
+    {
+      title: query ? query : "Search on Db",
+      description: "Search for it on the Db",
+      onTrigger: () => {
+        navigate(`/search?q=${query}`);
+      },
+    },
+  ];
 
   return (
     <MantineProvider
@@ -56,7 +104,15 @@ function App() {
         ],
       }}
     >
-      <BrowserRouter>
+      <SpotlightProvider
+        shortcut={["mod + P", "mod + K", "/"]}
+        actions={spotlightActions}
+        actionComponent={CustomAction}
+        searchPlaceholder="Search..."
+        query={query}
+        onQueryChange={setQuery}
+        searchIcon={<AiOutlineSearch className="w-5 h-5 text-gray-400" />}
+      >
         <UserContext.Provider
           value={{ username, setUsername, isAdmin, setIsAdmin }}
         >
@@ -99,9 +155,43 @@ function App() {
             </Routes>
           </div>
         </UserContext.Provider>
-      </BrowserRouter>
+      </SpotlightProvider>
     </MantineProvider>
   );
 }
 
 export default App;
+
+function CustomAction({
+  action,
+  styles,
+  classNames,
+  hovered,
+  onTrigger,
+  ...others
+}) {
+  return (
+    <UnstyledButton
+      className="w-full p-3 hover:bg-[#16181E] active:bg-red-500"
+      data-hovered={hovered || undefined}
+      tabIndex={-1}
+      onMouseDown={(event) => event.preventDefault()}
+      onClick={onTrigger}
+      {...others}
+    >
+      <Group noWrap>
+        <div style={{ flex: 1 }}>
+          <Text>{action.title}</Text>
+
+          {action.description && (
+            <Text color="dimmed" size="xs">
+              {action.description}
+            </Text>
+          )}
+        </div>
+
+        {action.new && <Badge>new</Badge>}
+      </Group>
+    </UnstyledButton>
+  );
+}

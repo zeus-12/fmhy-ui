@@ -1498,6 +1498,13 @@
     "@mantine/utils" "6.0.5"
     react-transition-group "4.4.2"
 
+"@mantine/spotlight@^6.0.6":
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/@mantine/spotlight/-/spotlight-6.0.6.tgz#b85cfe7d324eb27dc8258c16f1f4fcf4d779b896"
+  integrity sha512-aRYjsGC28SwEmAYR2oaYRxDSOXIA/Ui5mfGstYbBXp+S+t8FZAkD4P1BKX2XCFX3H/2zK3LCB9dWQMTY33evBQ==
+  dependencies:
+    "@mantine/utils" "6.0.6"
+
 "@mantine/styles@6.0.5":
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-6.0.5.tgz#fd04d64b32eeb1bd67c40f2bbb529c59ee2008c0"
@@ -1510,6 +1517,11 @@
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-6.0.5.tgz#ac1c0f187e20cf3ad0fe3b47419166f71c037f28"
   integrity sha512-P2FVcBd2oZ9ANOsZUtTwJ4+FV6NgCRE5B7trsT8gEFUbMeQLietcsZEgAe5xhzEu9Afp5V8X8a+E9yx1blMpNg==
+
+"@mantine/utils@6.0.6":
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-6.0.6.tgz#19bff743cf69c0c0b39664a633cb7827bc996833"
+  integrity sha512-Pd+ZTJ3maXb1zihZzHpo00XLwcKEg+ZGLPFG5vg/YafLDDWIhgV6snTFVKsPb2cunVjOwzbKcvlmCHXBe97mTQ==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
