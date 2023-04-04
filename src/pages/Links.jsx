@@ -154,7 +154,7 @@ const LinkCategoriesSidebar = ({
             item.urlEnding === markdownCategory.urlEnding
               ? "bg-gray-800 border-r-[2px] border-white"
               : ""
-          } rounded-sm px-4 my-2 py-1`}
+          } rounded-sm px-4 my-2 py-1 group`}
         >
           <a
             href={`/links/${item.urlEnding.toLowerCase()}`}
@@ -162,9 +162,9 @@ const LinkCategoriesSidebar = ({
               item.urlEnding === markdownCategory.urlEnding
                 ? "text-gray-300"
                 : "text-gray-500"
-            } text-md`}
+            } text-md group-hover:text-blue-300`}
           >
-            {item.emoji}
+            <span className="group-hover:animate-pulse">{item.emoji}</span>
             {"  "}
             <span className="hidden md:inline-flex">{item.title}</span>
           </a>
