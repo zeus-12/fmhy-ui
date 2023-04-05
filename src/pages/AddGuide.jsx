@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import Tags from "../components/Tags";
 import {
-  ErrorNotification,
-  SuccessNotification,
-} from "../components/Notification";
+  notSignedInNotification,
+  successNotification,
+  errorNotification,
+} from "../components/Notifications";
 
 const AddGuide = () => {
   const SERVER_URL = "";
@@ -20,16 +21,11 @@ const AddGuide = () => {
   const [credits, setCredits] = useState("");
 
   const [tags, setTags] = useState([]);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   useEffect(() => {
     if (!username) {
-      setError("Login inorder to add Guides!");
-      setTimeout(() => {
-        setError("");
-        navigate("/guides");
-      }, 1500);
+      notSignedInNotification("Login inorder to add Guides!");
+      navigate("/guides");
     }
   }, [username]);
 
@@ -47,23 +43,15 @@ const AddGuide = () => {
     // const data = await response.json();
 
     if (data.status === 200) {
-      setSuccess("Guide Added!");
-      setTimeout(() => {
-        setSuccess("");
-        navigate("/guides");
-      }, 1500);
+      successNotification("Guide Added Successfuly!");
+      navigate("/guides");
     } else {
-      setError("Guide already exist!");
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      errorNotification("Guide already exist!");
     }
   }
 
   return (
     <div className="flex flex-col items-center">
-      {error && <ErrorNotification error={error} />}
-      {success && <SuccessNotification success={success} />}
       <h1 className="login-header mt-2">
         Add <span style={{ color: "#E78EA9" }}>Guide</span>
       </h1>
@@ -101,7 +89,7 @@ const AddGuide = () => {
             />
             <label>Credits</label>
           </div>
-          <Tags tags={tags} setTags={setTags} setError={setError} />
+          <Tags tags={tags} setTags={setTags} />
           <div className="flex justify-start items-center">
             <input
               className="mr-1"

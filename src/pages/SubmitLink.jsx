@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
-import {
-  ErrorNotification,
-  SuccessNotification,
-} from "../components/Notification";
 import { Button, Select } from "@mantine/core";
 import { SERVER_URL } from "../lib/config";
+import {
+  notSignedInNotification,
+  successNotification,
+  errorNotification,
+} from "../components/Notifications";
 
 const SubmitLink = () => {
   const { username } = useContext(UserContext);
@@ -20,18 +21,15 @@ const SubmitLink = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState(null);
   const [channel, setChannel] = useState(null);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   useEffect(() => {
     if (!username) {
-      setError("Login inorder to submit Links!");
+      notSignedInNotification("Login inorder to submit Links!");
       setTimeout(() => {
-        setError("");
         navigate("/");
       }, 3000);
     }
-  }, []);
+  }, [username]);
 
   async function linkHandler(event) {
     event.preventDefault();
@@ -54,23 +52,14 @@ const SubmitLink = () => {
     const { message } = await data.json();
 
     if (data.status === 200) {
-      setSuccess(message);
-      setTimeout(() => {
-        setSuccess("");
-        navigate("/link-queue");
-      }, 1500);
+      successNotification(message);
+      navigate("/link-queue");
     } else {
-      setError(message);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      errorNotification(message);
     }
   }
   return (
     <div className="p- flex flex-col items-center">
-      {error && <ErrorNotification error={error} />}
-      {success && <SuccessNotification success={success} />}
-
       <h1 className="login-header mt-2">
         <span className="text-[#E78EA9]">Submit </span>Links
       </h1>

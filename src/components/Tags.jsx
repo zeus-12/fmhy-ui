@@ -1,12 +1,10 @@
 import "../styles/guides.css";
+import { errorNotification } from "../components/Notifications";
 
-const Tags = ({ tags, setTags, setError }) => {
+const Tags = ({ tags, setTags }) => {
   const addTags = async (event) => {
     if (tags.length >= 3) {
-      setError("Max 3 tags per guide");
-      setTimeout(() => {
-        setError("");
-      }, 2000);
+      errorNotification("Max 3 tags per guide");
 
       event.target.value = "";
 
@@ -20,11 +18,7 @@ const Tags = ({ tags, setTags, setError }) => {
       await setTags((prevTags) => [...prevTags, event.target.value.trim()]);
       event.target.value = "";
     } else if (event.target.value.trim().length > 8) {
-      setError("Max 8 characters for tag name");
-
-      setTimeout(() => {
-        setError("");
-      }, 750);
+      errorNotification("Max 8 characters for tag name");
 
       event.target.value = "";
     }

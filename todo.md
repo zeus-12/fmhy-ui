@@ -1,7 +1,5 @@
 Tasks todo with Priority order!
 
-- add mantine spotlight for search
-
 - use react query for data fetching!
 - fix the notification, dont do manual timeouts.
 

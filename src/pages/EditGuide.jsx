@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import Tags from "../components/Tags";
 import {
-  ErrorNotification,
-  SuccessNotification,
-} from "../components/Notification";
+  successNotification,
+  errorNotification,
+} from "../components/Notifications";
 import { SERVER_URL } from "../lib/config";
 
 const EditGuide = (props) => {
@@ -18,9 +18,6 @@ const EditGuide = (props) => {
   const [credits, setCredits] = useState("");
   const [tags, setTags] = useState([]);
   const { username } = useContext(UserContext);
-
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   useEffect(() => {
     const fetchGuide = async () => {
@@ -37,11 +34,8 @@ const EditGuide = (props) => {
         setTags(data.tags);
         setCredits(data.credits);
       } else {
-        setError("Invalid ID");
-        setTimeout(() => {
-          setError("");
-          navigate("/guides");
-        }, 1500);
+        errorNotification("Invalid ID");
+        navigate("/guides");
       }
     };
     fetchGuide();
@@ -52,8 +46,6 @@ const EditGuide = (props) => {
   async function guideHandler(event) {
     event.preventDefault();
 
-    //CREATE PUT REQ IN BACKEND
-    // const ID = '625f0617124c3ac0a61771e3';
     await fetch(SERVER_URL + "/api/guides/" + ID, {
       method: "PUT",
       headers: {
@@ -63,27 +55,18 @@ const EditGuide = (props) => {
       body: JSON.stringify({ title, link, nsfw, credits, tags, username }),
     }).then((data) => {
       if (data.status === 200) {
-        setSuccess("Guide Edited!");
-        setTimeout(() => {
-          setSuccess("");
-          navigate("/guides");
-        }, 1500);
+        successNotification("Guide successfully updated!");
+        navigate("/guides");
       }
       // todo add error properly for guide already exist
       else {
-        setError("Guide already exist!");
-        setTimeout(() => {
-          setError("");
-        }, 3000);
+        errorNotification("Guide already exist!");
       }
     });
   }
 
   return (
     <div className="flex flex-col items-center">
-      {error && <ErrorNotification error={error} />}
-      {success && <SuccessNotification success={success} />}
-
       <h1 className="login-header mt-2">
         Edit <span className="text-[#E78EA9]">Guide</span>
       </h1>
@@ -125,7 +108,7 @@ const EditGuide = (props) => {
             />
             <label>Credits</label>
           </div>
-          <Tags tags={tags} setTags={setTags} setError={setError} />
+          <Tags tags={tags} setTags={setTags} />
           <div className="flex justify-start items-center">
             <input
               className="mr-1"

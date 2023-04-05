@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { formatName } from "../lib/helper";
 import { category_channels } from "../lib/CONSTANTS";
-import { ErrorNotification, SuccessNotification } from "./Notification";
 import { Modal } from "@mantine/core";
 import { SERVER_URL } from "../lib/config";
-import { successNotification } from "./Notifications";
+import { successNotification, errorNotification } from "./Notifications";
 
 const LinkQueueModal = ({
   idToEdit,
@@ -31,16 +30,10 @@ const LinkQueueModal = ({
     opened(false);
   };
 
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
-
   useEffect(() => {
     if (!username) {
-      setError("Require admin access");
-      setTimeout(() => {
-        setError("");
-        navigate("/link-queue");
-      }, 1500);
+      errorNotification("Require admin access");
+      navigate("/link-queue");
     }
     const fetchSubmitLink = async () => {
       const res = await fetch(SERVER_URL + "/api/link-queue/" + idToEdit, {
@@ -55,7 +48,7 @@ const LinkQueueModal = ({
       setChannel(modalData?.channel);
     };
     fetchSubmitLink();
-  }, [idToEdit]);
+  }, [username, idToEdit]);
 
   async function linkHandler(event) {
     event.preventDefault();
@@ -93,17 +86,12 @@ const LinkQueueModal = ({
       ];
       setSubmittedLinks(newSubmittedLinks);
     } else {
-      setError("An error has occured!");
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      errorNotification("Something went wrong!!");
     }
   }
 
   return (
     <div>
-      {error && <ErrorNotification error={error} />}
-      {success && <SuccessNotification success={success} />}
       <Modal
         radius="md"
         size="lg"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ErrorNotification } from "../components/Notification";
+import { errorNotification } from "../components/Notifications";
 import { UserContext } from "../context/UserContext";
 import { SERVER_URL } from "../lib/config";
 
@@ -10,8 +10,6 @@ const Login = () => {
 
   const [user_name, setUser_name] = useState("");
   const [password, setPassword] = useState("");
-
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (username) {
@@ -36,16 +34,12 @@ const Login = () => {
       setIsAdmin(data.admin);
       navigate("/user");
     } else {
-      setError("Incorrect combination");
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      errorNotification("Incorrect combination");
     }
   }
 
   return (
     <div className="p-2 flex flex-col items-center">
-      {error && <ErrorNotification error={error} />}
       <div>
         <p className="pb-2 text-3xl text-blue-100">Login</p>
         <form className="flex flex-col" onSubmit={userHandler}>

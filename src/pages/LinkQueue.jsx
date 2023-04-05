@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import {
-  ErrorNotification,
-  SuccessNotification,
-} from "../components/Notification";
+  successNotification,
+  errorNotification,
+} from "../components/Notifications";
 import "../styles/guides.css";
 import LinkQueueModel from "../components/LinkQueueModal";
 import { Link } from "react-router-dom";
@@ -12,12 +12,9 @@ import { SERVER_URL } from "../lib/config";
 
 const LinkQueue = () => {
   const { isAdmin } = useContext(UserContext);
-  // const isAdmin = true;
   const [opened, setOpened] = useState(false);
   const [idToEdit, setIdToEdit] = useState();
   const [submittedLinks, setSubmittedLinks] = useState([]);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   const modalHandler = async (e, id) => {
     setIdToEdit(e.target.id);
@@ -39,15 +36,9 @@ const LinkQueue = () => {
       setSubmittedLinks((prevData) =>
         prevData.filter((link) => link._id !== data.deletedSubmittedLink._id)
       );
-      setSuccess("Successfully deleted!");
-      setTimeout(() => {
-        setSuccess("");
-      }, 1500);
+      successNotification("Successfully deleted!");
     } else {
-      setError("Couldn't delete the link!");
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      errorNotification("Couldn't delete the link!");
     }
   };
   useEffect(() => {
@@ -61,8 +52,6 @@ const LinkQueue = () => {
   }, []);
   return (
     <div className="p-2 pt-0">
-      {error && <ErrorNotification error={error} />}
-      {success && <SuccessNotification success={success} />}
       <div className="flex justify-between items-center">
         <p className="p-2 ps-4 mb-0 tex-gray-300 text-3xl font-semibold tracking-tight">
           Link Queue
