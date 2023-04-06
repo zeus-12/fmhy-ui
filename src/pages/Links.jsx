@@ -133,7 +133,7 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
           </div>
         )}
 
-        <AdjacentLinks CATEGORY={CATEGORY} />
+        <BottomLinksNavigator CATEGORY={CATEGORY} />
       </div>
       <LinkSectionsSidebar
         markdownHeadings={markdownHeadings}
@@ -143,7 +143,7 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
   );
 };
 
-const AdjacentLinks = ({ CATEGORY }) => {
+const BottomLinksNavigator = ({ CATEGORY }) => {
   const currentCategoryIndex = MARKDOWN_RESOURCES.findIndex(
     (item) => item?.urlEnding.toLowerCase() === CATEGORY.toLowerCase()
   );
@@ -181,8 +181,8 @@ const AdjacentLinks = ({ CATEGORY }) => {
               className="w-full group"
             >
               <div
-                className={`border-[1px] w-full max-w-[20rem]  border-gray-400 px-4 py-6 rounded-lg flex gap-2 justify-start ${
-                  i === 0 ? "" : "ml-auto flex-row-reverse"
+                className={`border-[1px] w-full border-gray-400 px-4 py-6 rounded-lg flex gap-2 justify-start ${
+                  i === 0 ? "" : "flex-row-reverse"
                 }`}
               >
                 {item.icon}
@@ -371,7 +371,7 @@ const LinksHomePage = () => {
           </li>
         ))}
       </div>
-      <AdjacentLinks CATEGORY={"home"} />
+      <BottomLinksNavigator CATEGORY={"home"} />
     </div>
   );
 };
