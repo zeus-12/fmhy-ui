@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { Burger, Drawer, Input, Menu } from "@mantine/core";
+import { Burger, Drawer, Input } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Kbd } from "@mantine/core";

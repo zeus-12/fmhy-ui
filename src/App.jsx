@@ -25,8 +25,6 @@ import {
   createStyles,
 } from "@mantine/core";
 import Base64 from "./pages/Base64";
-import OldLinks from "./pages/OldLinks";
-import OldLinksItem from "./pages/OldLinksItem";
 import { Notifications } from "@mantine/notifications";
 import { SpotlightProvider } from "@mantine/spotlight";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -128,9 +126,6 @@ function App() {
               <Route path="/" element={<Home />} />
 
               {/* <Route path="/resource/:resource" element={<Wiki />} /> */}
-
-              <Route path="/old-links" element={<OldLinks />} />
-              <Route path="/old-links/:CATEGORY" element={<OldLinksItem />} />
 
               <Route path="/search" element={<Search />} />
 
