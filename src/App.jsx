@@ -17,7 +17,14 @@ import EditGuide from "./pages/EditGuide";
 
 import Links from "./pages/Links";
 import Search from "./pages/Search";
-import { Badge, Group, MantineProvider, UnstyledButton } from "@mantine/core";
+import {
+  Badge,
+  Group,
+  MantineProvider,
+  UnstyledButton,
+  createStyles,
+  rem,
+} from "@mantine/core";
 import Base64 from "./pages/Base64";
 import OldLinks from "./pages/OldLinks";
 import OldLinksItem from "./pages/OldLinksItem";
@@ -34,28 +41,6 @@ function App() {
   const navigate = useNavigate();
 
   const spotlightActions = [
-    {
-      title: query,
-      description: "Search on Streamlit",
-      isSearch: true,
-      source: "Streamlit",
-      group: "search",
-
-      onTrigger: () => {
-        const q = query.replace(" ", "+");
-        window.open(`https://fmhy-search.streamlit.app/?q=${q}`);
-      },
-    },
-    {
-      title: query,
-      isSearch: true,
-      source: "DB",
-      group: "search",
-      description: "Search on Db",
-      onTrigger: () => {
-        navigate(`/search?q=${query}`);
-      },
-    },
     {
       title: "Links Page",
       description: "Collection of all links scraped from FMHY Github ",
@@ -80,6 +65,28 @@ function App() {
       group: "page",
       onTrigger: () => {
         navigate("/base64");
+      },
+    },
+    {
+      title: query,
+      description: "Search on Streamlit",
+      isSearch: true,
+      source: "Streamlit",
+      group: "search",
+
+      onTrigger: () => {
+        const q = query.replace(" ", "+");
+        window.open(`https://fmhy-search.streamlit.app/?q=${q}`);
+      },
+    },
+    {
+      title: query,
+      isSearch: true,
+      source: "DB",
+      group: "search",
+      description: "Search on Db",
+      onTrigger: () => {
+        navigate(`/search?q=${query}`);
       },
     },
   ];
@@ -160,6 +167,25 @@ function App() {
 
 export default App;
 
+const useStyles = createStyles((theme) => ({
+  action: {
+    borderRadius: theme.radius.sm,
+    ...theme.fn.hover({
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[4]
+          : theme.colors.gray[1],
+    }),
+
+    "&[data-hovered]": {
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[4]
+          : theme.colors.gray[1],
+    },
+  },
+}));
+
 function CustomAction({
   action,
   styles,
@@ -168,9 +194,15 @@ function CustomAction({
   onTrigger,
   ...others
 }) {
+  const { classes } = useStyles(null, {
+    styles,
+    classNames,
+    name: "Spotlight",
+  });
+
   return (
     <UnstyledButton
-      className="w-full p-3 hover:bg-[#16181E] active:bg-red-500"
+      className={`w-full p-3 mb-1 ${classes.action}`}
       data-hovered={hovered || undefined}
       tabIndex={-1}
       onMouseDown={(event) => event.preventDefault()}
