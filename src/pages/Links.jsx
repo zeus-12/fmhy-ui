@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { MARKDOWN_RESOURCES } from "../lib/CONSTANTS";
 import { Alert, Button, Loader, Menu, Switch } from "@mantine/core";
-import { AiFillAlert } from "react-icons/ai";
+import {
+  AiFillAlert,
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
+} from "react-icons/ai";
 import { RiAlarmWarningFill } from "react-icons/ri";
 import {
   H1Renderer,
@@ -55,7 +59,6 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
 
-  // map from h1 to array of h2 inside it
   // replace this with maps
   const markdownHeadings = {};
 
@@ -129,12 +132,69 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
             <Loader variant="dots" />
           </div>
         )}
+
+        <AdjacentLinks CATEGORY={CATEGORY} />
       </div>
       <LinkSectionsSidebar
         markdownHeadings={markdownHeadings}
         CATEGORY={CATEGORY}
       />
     </>
+  );
+};
+
+const AdjacentLinks = ({ CATEGORY }) => {
+  const currentCategoryIndex = MARKDOWN_RESOURCES.findIndex(
+    (item) => item?.urlEnding.toLowerCase() === CATEGORY.toLowerCase()
+  );
+  return (
+    <div
+      className={`flex gap-2 my-4 w-full ${
+        currentCategoryIndex === 0
+          ? "justify-end"
+          : currentCategoryIndex === MARKDOWN_RESOURCES.length - 1
+          ? "justify-start"
+          : "justify-center"
+      }`}
+    >
+      {[
+        {
+          ele: MARKDOWN_RESOURCES[currentCategoryIndex - 1],
+          icon: (
+            <AiOutlineArrowLeft className="group-hover:animate-bounce w-7 h-7 text-gray-400" />
+          ),
+          text: "Previous",
+        },
+        {
+          ele: MARKDOWN_RESOURCES[currentCategoryIndex + 1],
+          icon: (
+            <AiOutlineArrowRight className="group-hover:animate-bounce w-7 h-7 text-gray-400" />
+          ),
+          text: "Next",
+        },
+      ].map(
+        (item, i) =>
+          item.ele && (
+            <Link
+              key={i}
+              to={`/links/${item.ele.urlEnding.toLowerCase()}`}
+              className="w-full group"
+            >
+              <div
+                className={`border-[1px] w-full max-w-[20rem]  border-gray-400 px-4 py-6 rounded-lg flex gap-2 justify-start ${
+                  i === 0 ? "" : "ml-auto flex-row-reverse"
+                }`}
+              >
+                {item.icon}
+                <div className="">
+                  <p className="text-gray-400">{item.text}</p>
+                  <p>{item.ele.title}</p>
+                </div>
+              </div>
+            </Link>
+          )
+      )}
+    </div>
   );
 };
 
@@ -303,8 +363,7 @@ const LinksHomePage = () => {
         <p className="font-semibold text-red-200">Todos/ Knows bugs</p>
         {[
           "Update toc on scroll",
-          "same h2 name diff h1 => for h2 make it /links/catgegory/h1name/h2name ?? : link - http://localhost:5173/links/edupiracyguide/#courses",
-          "Add next/previous at the end",
+          "same h2 names - edupiracy guides",
           "fix linkings, toc in storage, beginners guide",
         ].map((item) => (
           <li className="list-disc" key={item}>
@@ -312,6 +371,7 @@ const LinksHomePage = () => {
           </li>
         ))}
       </div>
+      <AdjacentLinks CATEGORY={"home"} />
     </div>
   );
 };
