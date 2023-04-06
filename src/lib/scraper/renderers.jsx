@@ -22,7 +22,7 @@ export const H1Renderer = (props, CATEGORY, markdownHeadings) => {
       >
         #{" "}
       </a>
-      {removeSymbolsInHeading(text)}
+      &#x203A; {removeSymbolsInHeading(text)}
     </h1>
   );
 };
@@ -104,7 +104,7 @@ export const H2Renderer = (props, CATEGORY, markdownHeadings) => {
       <a href={href} className="group-hover:inline-flex hidden">
         #{" "}
       </a>
-      {removeSymbolsInHeading(text)}
+      &#xbb; {removeSymbolsInHeading(text)}
     </h2>
   );
 };
@@ -162,12 +162,20 @@ export const PRenderer = (props) => {
   var children = React.Children.toArray(props.children);
   var text = children.reduce(flatten, "");
 
-  if (text.startsWith("!!!note")) {
-    const message = text.split("!!!note")[1];
+  // if (text.startsWith("!!!note") || text.startsWith("Note - ")) {
+
+  const NOTE_STARTERS = ["!!!note", "Note - "];
+  const WARNING_STARTERS = ["!!!warning", "Warning - "];
+
+  if (NOTE_STARTERS.some((item) => text.startsWith(item))) {
+    const splitText = NOTE_STARTERS.find((item) => text.startsWith(item));
+    const message = text.split(splitText)[1];
 
     return <NoteAlert message={message} />;
-  } else if (text.startsWith("!!!warning")) {
-    const message = text.split("!!!warning")[1];
+  } else if (WARNING_STARTERS.some((item) => text.startsWith(item))) {
+    const splitText = WARNING_STARTERS.find((item) => text.startsWith(item));
+    const message = text.split(splitText)[1];
+
     return <WarningAlert message={message} />;
   } else {
     return <p {...props} />;
