@@ -23,7 +23,6 @@ import {
   MantineProvider,
   UnstyledButton,
   createStyles,
-  rem,
 } from "@mantine/core";
 import Base64 from "./pages/Base64";
 import OldLinks from "./pages/OldLinks";
@@ -202,7 +201,7 @@ function CustomAction({
 
   return (
     <UnstyledButton
-      className={`w-full p-3 mb-1 ${classes.action}`}
+      className={`w-full px-3 py-2 mt-1 ${classes.action}`}
       data-hovered={hovered || undefined}
       tabIndex={-1}
       onMouseDown={(event) => event.preventDefault()}
