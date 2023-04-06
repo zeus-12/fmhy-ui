@@ -181,9 +181,9 @@ const BottomLinksNavigator = ({ CATEGORY }) => {
               className="w-full group"
             >
               <div
-                className={`border-[1px] w-full border-gray-400 px-4 py-6 rounded-lg flex gap-2 justify-start ${
+                className={`border-[1px] w-full max-w-[20rem] border-gray-400 px-4 py-6 rounded-lg flex gap-2 justify-start ${
                   i === 0 ? "" : "flex-row-reverse"
-                }`}
+                } ${currentCategoryIndex === 0 ? "ml-auto" : "mr-auto"}`}
               >
                 {item.icon}
                 <div className="">
