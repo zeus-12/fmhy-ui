@@ -18,21 +18,59 @@ import { convertTextToLowerCamelCase } from "../lib/scraper/helpers";
 import { removeSymbolsInHeading } from "../lib/scraper/helpers";
 import { resources as menuItems } from "../lib/CONSTANTS";
 
-const LinksPage = () => {
-  const [data, setData] = useState();
-  const [error, setError] = useState(false);
+const Links = () => {
+  const toggleNsfw = () => setIncludeNsfw((prev) => !prev);
+  let { CATEGORY } = useParams();
   const [includeNsfw, setIncludeNsfw] = useState(false);
 
-  const toggleNsfw = () => setIncludeNsfw((prev) => !prev);
+  const markdownCategory = MARKDOWN_RESOURCES.find(
+    (item) => item?.urlEnding.toLowerCase() === CATEGORY.toLowerCase()
+  );
+
+  if (!markdownCategory && CATEGORY !== "home") {
+    return <Navigate to="/404" replace={true} />;
+  }
+
+  return (
+    <div className="flex justify-between overflow-hidden h-[calc(100vh_-_6rem)] gap-2">
+      <LinkCategoriesSidebar
+        markdownCategory={markdownCategory}
+        toggleNsfw={toggleNsfw}
+        includeNsfw={includeNsfw}
+      />
+
+      {CATEGORY?.toLowerCase() === "home" ? (
+        <LinksHomePage />
+      ) : (
+        <LinkDataRenderer
+          CATEGORY={CATEGORY}
+          markdownCategory={markdownCategory}
+        />
+      )}
+    </div>
+  );
+};
+
+const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
+  const [data, setData] = useState();
+  const [error, setError] = useState(false);
 
   // map from h1 to array of h2 inside it
   // replace this with maps
   const markdownHeadings = {};
 
-  let { CATEGORY } = useParams();
-  const markdownCategory = MARKDOWN_RESOURCES.find(
-    (item) => item?.urlEnding.toLowerCase() === CATEGORY.toLowerCase()
-  );
+  useEffect(() => {
+    const currentUrl = window.location.href;
+
+    if (!data || !currentUrl.includes("#")) return;
+
+    const id = currentUrl.split("#").at(-1);
+
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [data]);
 
   useEffect(() => {
     const markdownUrlEnding = markdownCategory?.urlEnding;
@@ -62,69 +100,41 @@ const LinksPage = () => {
     fetchMarkdown();
   }, [markdownCategory, markdownCategory?.urlEnding]);
 
-  useEffect(() => {
-    const currentUrl = window.location.href;
-
-    if (!data || !currentUrl.includes("#")) return;
-
-    const id = currentUrl.split("#").at(-1);
-
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [data, window.location.href]);
-
-  if (!markdownCategory && CATEGORY !== "home") {
-    return <Navigate to="/404" replace={true} />;
-  }
-
   return (
-    <div className="flex justify-between overflow-hidden h-[calc(100vh_-_6rem)] gap-2">
-      <LinkCategoriesSidebar
-        markdownCategory={markdownCategory}
-        toggleNsfw={toggleNsfw}
-        includeNsfw={includeNsfw}
-      />
+    <>
+      <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll ">
+        <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
+          {markdownCategory.title}
+        </p>
 
-      {CATEGORY?.toLowerCase() === "home" ? (
-        <LinksHomePage />
-      ) : (
-        <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll ">
-          <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
-            {markdownCategory.title}
-          </p>
+        {error && <p>Something went wrong!</p>}
 
-          {error && <p>Something went wrong!</p>}
+        {!error && data?.length > 0 ? (
+          <ReactMarkdown
+            components={{
+              h1: (props) => H1Renderer(props, CATEGORY, markdownHeadings),
+              h2: (props) => H2Renderer(props, CATEGORY, markdownHeadings),
 
-          {!error && data?.length > 0 ? (
-            <ReactMarkdown
-              components={{
-                h1: (props) => H1Renderer(props, CATEGORY, markdownHeadings),
-                h2: (props) => H2Renderer(props, CATEGORY, markdownHeadings),
-
-                h3: H3Renderer, //for beginners guide only
-                a: LinkRenderer,
-                li: LiRenderer,
-                p: PRenderer, // for beginners guide only
-                hr: () => <></>,
-              }}
-            >
-              {data}
-            </ReactMarkdown>
-          ) : (
-            <div className="justify-center items-center flex h-[calc(100vh_-_6rem)]">
-              <Loader variant="dots" />
-            </div>
-          )}
-        </div>
-      )}
-
+              h3: H3Renderer, //for beginners guide only
+              a: LinkRenderer,
+              li: LiRenderer,
+              p: PRenderer, // for beginners guide only
+              hr: () => <></>,
+            }}
+          >
+            {data}
+          </ReactMarkdown>
+        ) : (
+          <div className="justify-center items-center flex h-[calc(100vh_-_6rem)]">
+            <Loader variant="dots" />
+          </div>
+        )}
+      </div>
       <LinkSectionsSidebar
         markdownHeadings={markdownHeadings}
         CATEGORY={CATEGORY}
       />
-    </div>
+    </>
   );
 };
 
@@ -134,7 +144,7 @@ const LinkCategoriesSidebar = ({
   includeNsfw,
 }) => {
   return (
-    <div className="bg-gray-900 border-gray-700 border-r-[1px] h-full overflow-scroll sticky hideScrollbar">
+    <div className="bg-[#0E131F] border-gray-700 border-r-[1px] h-full overflow-scroll sticky hideScrollbar">
       <div className="items-center px-4 pt-2 justify-between hidden md:flex">
         <p className="text-xl tracking-tighter font-medium ">Categories</p>
         <Switch
@@ -181,10 +191,10 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
         ["beginners-guide", "home", "storage"].includes(CATEGORY)
           ? "hidden"
           : "hidden md:inline-flex"
-      } bg-gray-900 border-l-[1px] border-gray-700 md:flex-col overflow-scroll hideScrollbar min-w-[12rem]`}
+      } bg-[#0E131F] border-l-[1px] border-gray-700 md:flex-col overflow-scroll hideScrollbar min-w-[12rem]`}
     >
       <p className="text-xl tracking-tighter font-medium px-1 pt-2">Contents</p>
-      {Object.entries(markdownHeadings).length > 0 &&
+      {Object.entries(markdownHeadings).length > 0 ? (
         Object.entries(markdownHeadings)?.map((item) => (
           <div key={item[0]} className="px-2 py-1">
             <a
@@ -204,7 +214,12 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
               </div>
             ))}
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="justify-center items-center flex h-[calc(100vh_-_6rem)]">
+          <Loader variant="dots" />
+        </div>
+      )}
     </div>
   );
 };
@@ -320,4 +335,4 @@ const RedditScrapedWikiMenu = () => {
   );
 };
 
-export default LinksPage;
+export default Links;
