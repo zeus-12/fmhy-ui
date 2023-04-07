@@ -146,16 +146,11 @@ export function LinkRenderer(props) {
   return <a {...newProps} target="_blank" rel="noopener noreferrer" />;
 }
 
-export function LiRenderer(props) {
+export function LiRenderer(props, starredLinks) {
   var children = React.Children.toArray(props.children);
   var text = children.reduce(flatten, "");
 
-  // for other note formats use modified version of this, using Array.some method
-
-  // if (text.startsWith("Note - ") || text.startsWith("!!!note")) {
-  // const splitText = text.split(
-  //   text.startsWith("Note - ") ? "Note - " : "!!!note"
-  // );
+  const isStarred = text.startsWith("⭐");
 
   if (text.startsWith("Note - ")) {
     const message = text.split("Note - ")[1];
@@ -169,7 +164,14 @@ export function LiRenderer(props) {
       </li>
     );
   } else {
-    return <li className="list-disc ml-6" {...props} />;
+    return (
+      <li
+        className={`list-disc ml-6 ${
+          starredLinks ? (isStarred ? "" : "hidden") : ""
+        }`}
+        {...props}
+      />
+    );
   }
 }
 

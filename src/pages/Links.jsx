@@ -55,6 +55,7 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
 
+  const [starredLinks, setStarredLinks] = useState(false);
   // replace this with maps
   const markdownHeadings = {};
 
@@ -118,10 +119,20 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
   return (
     <>
       <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll">
-        <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
-          {markdownCategory.title}
-        </p>
-
+        <div className="flex justify-between items-center">
+          <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
+            {markdownCategory.title}
+          </p>
+          <Switch
+            className={
+              ["beginners-guide", "storage"].includes(CATEGORY) ? "hidden" : ""
+            }
+            label="Recommended?"
+            size="xs"
+            checked={starredLinks}
+            onChange={(event) => setStarredLinks(event.currentTarget.checked)}
+          />
+        </div>
         {error && <p>Something went wrong!</p>}
 
         {!error && data?.length > 0 ? (
@@ -134,7 +145,7 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
                 h4: (props) => H4Renderer(props, markdownHeadings), //for storage only
                 p: PRenderer, // for beginners guide only
                 a: LinkRenderer,
-                li: LiRenderer,
+                li: (props) => LiRenderer(props, starredLinks), //for storage only
                 hr: () => <></>,
               }}
             >
