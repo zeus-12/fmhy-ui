@@ -10,16 +10,13 @@ import {
   removeSymbolsInHeading,
 } from "./helpers";
 
-export const H1Renderer = (props, CATEGORY, markdownHeadings) => {
+export const H1Renderer = (props, markdownHeadings) => {
   const { slug, text } = HeadingRendererHelper(props);
   logHeading(props.level, text, markdownHeadings);
 
   return (
     <h1 className={classMapping["h" + props.level] + " group mt-4"} id={slug}>
-      <a
-        href={`#${convertTextToLowerCamelCase(text)}`}
-        className="group-hover:inline-flex hidden"
-      >
+      <a href={`#${slug}`} className="group-hover:inline-flex hidden">
         #{" "}
       </a>
       &#x203A; {removeSymbolsInHeading(text)}
@@ -49,7 +46,7 @@ const redditToGithubTitleMapping = {
   // :"nsfwpiracy"
 };
 
-export const H2Renderer = (props, CATEGORY, markdownHeadings) => {
+export const H2Renderer = (props, markdownHeadings) => {
   let { slug, text } = HeadingRendererHelper(props);
   let href = `#${convertTextToLowerCamelCase(text)}`;
 
@@ -109,13 +106,31 @@ export const H2Renderer = (props, CATEGORY, markdownHeadings) => {
   );
 };
 
-export const H3Renderer = (props) => {
+export const H3Renderer = (props, markdownHeadings) => {
   const { slug, text } = HeadingRendererHelper(props);
+  logHeading(props.level, text, markdownHeadings);
 
   return (
     <h3 className={classMapping["h" + props.level] + " group mt-4"} id={slug}>
+      <a href={`#${slug}`} className="group-hover:inline-flex hidden">
+        #{" "}
+      </a>
       {text}
     </h3>
+  );
+};
+
+export const H4Renderer = (props, markdownHeadings) => {
+  const { slug, text } = HeadingRendererHelper(props);
+  logHeading(props.level, text, markdownHeadings);
+
+  return (
+    <h4 className={classMapping["h" + props.level] + " group mt-4"} id={slug}>
+      <a href={`#${slug}`} className="group-hover:inline-flex hidden">
+        #{" "}
+      </a>
+      {text}
+    </h4>
   );
 };
 

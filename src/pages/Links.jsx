@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
@@ -9,11 +9,13 @@ import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
 } from "react-icons/ai";
+import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { RiAlarmWarningFill } from "react-icons/ri";
 import {
   H1Renderer,
   H2Renderer,
   H3Renderer,
+  H4Renderer,
   LiRenderer,
   LinkRenderer,
   PRenderer,
@@ -23,9 +25,7 @@ import { removeSymbolsInHeading } from "../lib/scraper/helpers";
 import { resources as menuItems } from "../lib/CONSTANTS";
 
 const Links = () => {
-  const toggleNsfw = () => setIncludeNsfw((prev) => !prev);
   let { CATEGORY } = useParams();
-  const [includeNsfw, setIncludeNsfw] = useState(false);
 
   const markdownCategory = MARKDOWN_RESOURCES.find(
     (item) => item?.urlEnding.toLowerCase() === CATEGORY.toLowerCase()
@@ -37,11 +37,7 @@ const Links = () => {
 
   return (
     <div className="flex justify-between overflow-hidden h-[calc(100vh_-_6rem)] gap-2">
-      <LinkCategoriesSidebar
-        markdownCategory={markdownCategory}
-        toggleNsfw={toggleNsfw}
-        includeNsfw={includeNsfw}
-      />
+      <LinkCategoriesSidebar markdownCategory={markdownCategory} />
 
       {CATEGORY?.toLowerCase() === "home" ? (
         <LinksHomePage />
@@ -105,7 +101,7 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
 
   return (
     <>
-      <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll ">
+      <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll">
         <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
           {markdownCategory.title}
         </p>
@@ -113,20 +109,31 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
         {error && <p>Something went wrong!</p>}
 
         {!error && data?.length > 0 ? (
-          <ReactMarkdown
-            components={{
-              h1: (props) => H1Renderer(props, CATEGORY, markdownHeadings),
-              h2: (props) => H2Renderer(props, CATEGORY, markdownHeadings),
-
-              h3: H3Renderer, //for beginners guide only
-              a: LinkRenderer,
-              li: LiRenderer,
-              p: PRenderer, // for beginners guide only
-              hr: () => <></>,
-            }}
-          >
-            {data}
-          </ReactMarkdown>
+          <>
+            <ReactMarkdown
+              components={{
+                h1: (props) => H1Renderer(props, markdownHeadings),
+                h2: (props) => H2Renderer(props, markdownHeadings),
+                h3: (props) => H3Renderer(props, markdownHeadings), //for beginners guide only
+                h4: (props) => H4Renderer(props, markdownHeadings), //for storage only
+                p: PRenderer, // for beginners guide only
+                a: LinkRenderer,
+                li: LiRenderer,
+                hr: () => <></>,
+              }}
+            >
+              {data}
+            </ReactMarkdown>
+            {/* 
+            {scrollUp && (
+              <div
+                onClick={handleScrollUp}
+                className="fixed bottom-5 right-5 mr-4 mb-4"
+              >
+                <BsFillArrowUpCircleFill className="w-8 h-8" />
+              </div>
+            )} */}
+          </>
         ) : (
           <div className="justify-center items-center flex h-[calc(100vh_-_6rem)]">
             <Loader variant="dots" />
@@ -135,7 +142,7 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
 
         <BottomLinksNavigator CATEGORY={CATEGORY} />
       </div>
-      <LinkSectionsSidebar
+      <LinksContentsSidebar
         markdownHeadings={markdownHeadings}
         CATEGORY={CATEGORY}
       />
@@ -178,10 +185,10 @@ const BottomLinksNavigator = ({ CATEGORY }) => {
             <Link
               key={i}
               to={`/links/${item.ele.urlEnding.toLowerCase()}`}
-              className="w-full group"
+              className="max-w-[20rem] w-full group"
             >
               <div
-                className={`border-[1px] w-full max-w-[20rem] border-gray-400 px-4 py-6 rounded-lg flex gap-2 justify-start ${
+                className={`border-[1px] w-full border-gray-400 px-4 py-6 rounded-lg flex gap-2 justify-start ${
                   i === 0 ? "" : "flex-row-reverse"
                 } ${currentCategoryIndex === 0 ? "ml-auto" : "mr-auto"}`}
               >
@@ -198,11 +205,10 @@ const BottomLinksNavigator = ({ CATEGORY }) => {
   );
 };
 
-const LinkCategoriesSidebar = ({
-  markdownCategory,
-  toggleNsfw,
-  includeNsfw,
-}) => {
+const LinkCategoriesSidebar = ({ markdownCategory }) => {
+  const toggleNsfw = () => setIncludeNsfw((prev) => !prev);
+  const [includeNsfw, setIncludeNsfw] = useState(false);
+
   return (
     <div className="bg-[#0E131F] border-gray-700 border-r-[1px] h-full overflow-scroll sticky hideScrollbar">
       <div className="items-center px-4 pt-2 justify-between hidden md:flex">
@@ -244,13 +250,11 @@ const LinkCategoriesSidebar = ({
   );
 };
 
-const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
+const LinksContentsSidebar = ({ CATEGORY, markdownHeadings }) => {
   return (
     <div
       className={`${
-        ["beginners-guide", "home", "storage"].includes(CATEGORY)
-          ? "hidden"
-          : "hidden md:inline-flex"
+        ["home"].includes(CATEGORY) ? "hidden" : "hidden md:inline-flex"
       } bg-[#0E131F] border-l-[1px] border-gray-700 md:flex-col overflow-scroll hideScrollbar min-w-[12rem]`}
     >
       <p className="text-xl tracking-tighter font-medium px-1 pt-2">Contents</p>
@@ -261,7 +265,7 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
               href={`#${convertTextToLowerCamelCase(item[0])}`}
               className="text-gray-500 text-base"
             >
-              {removeSymbolsInHeading(item[0])}
+              &#x203A; {removeSymbolsInHeading(item[0])}
             </a>
             {item[1]?.map((subHeading) => (
               <div key={subHeading} className="px-3 py-[3px]">
@@ -269,7 +273,7 @@ const LinkSectionsSidebar = ({ CATEGORY, markdownHeadings }) => {
                   href={`#${convertTextToLowerCamelCase(subHeading)}`}
                   className="text-gray-500 text-sm"
                 >
-                  {removeSymbolsInHeading(subHeading)}
+                  &#xbb; {removeSymbolsInHeading(subHeading)}
                 </a>
               </div>
             ))}

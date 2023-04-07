@@ -5,11 +5,6 @@ export const logHeading = (headingLevel, headingTitle, markdownHeadings) => {
     if (markdownHeadings[headingTitle]) return;
 
     markdownHeadings[headingTitle] = [];
-
-    // setMarkdownHeadings((prev) => ({
-    //   ...prev,
-    //   [headingTitle]: [],
-    // }));
   } else if (headingLevel === 2) {
     const lastHeading = Object.keys(markdownHeadings).slice(-1)[0];
 
@@ -21,13 +16,11 @@ export const logHeading = (headingLevel, headingTitle, markdownHeadings) => {
         : []),
       headingTitle,
     ];
-    // setMarkdownHeadings((prev) => ({
-    //   ...prev,
-    //   [lastHeading]: [
-    //     ...(prev[lastHeading]?.length > 0 ? prev[lastHeading] : []),
-    //     headingTitle,
-    //   ],
-    // }));
+  }
+
+  if (headingLevel === 4 || headingLevel === 3) {
+    //storage & piracyguide
+    markdownHeadings[headingTitle] = [];
   }
 };
 
@@ -41,6 +34,7 @@ export const classMapping = {
   h1: "text-2xl font-semibold tracking-tighter",
   h2: "text-xl font-medium tracking-medium",
   h3: "text-xl font-medium tracking-medium",
+  h4: "text-xl font-medium tracking-medium",
 };
 
 export function HeadingRendererHelper(props) {
@@ -48,6 +42,7 @@ export function HeadingRendererHelper(props) {
   const text = children.reduce(flatten, "");
   const slug = convertTextToLowerCamelCase(text);
 
+  // prevent duplicate slug for each page -- how to?
   return { slug, text };
 }
 
@@ -68,7 +63,7 @@ export const convertTextToLowerCamelCase = (text) => {
 
 export const removeSymbolsInHeading = (text) => {
   if (!text) return;
-  return text.replace("▷ ", "").replace("► ", "");
+  return text.replace("▷ ", "").replace("► ", "").replace("►", "");
 };
 
 export function redirectRedditLinksToWebsite(link) {
