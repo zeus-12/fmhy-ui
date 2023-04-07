@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { MARKDOWN_RESOURCES } from "../lib/CONSTANTS";
+import { MARKDOWN_RESOURCES } from "../../lib/CONSTANTS";
 import { Alert, Button, Loader, Menu, Switch } from "@mantine/core";
 import {
   AiFillAlert,
@@ -19,10 +19,10 @@ import {
   LiRenderer,
   LinkRenderer,
   PRenderer,
-} from "../lib/scraper/renderers";
-import { convertTextToLowerCamelCase } from "../lib/scraper/helpers";
-import { removeSymbolsInHeading } from "../lib/scraper/helpers";
-import { resources as menuItems } from "../lib/CONSTANTS";
+} from "../../lib/scraper/renderers";
+import { convertTextToLowerCamelCase } from "../../lib/scraper/helpers";
+import { removeSymbolsInHeading } from "../../lib/scraper/helpers";
+import { resources as menuItems } from "../../lib/CONSTANTS";
 
 const Links = () => {
   let { CATEGORY } = useParams();

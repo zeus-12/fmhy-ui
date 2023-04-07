@@ -5,9 +5,9 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Error404 from "./pages/404";
-import Guides from "./pages/Guides";
-import AddGuide from "./pages/AddGuide";
-import EditGuide from "./pages/EditGuide";
+import Guides from "./pages/guide/Guides";
+import AddGuide from "./pages/guide/AddGuide";
+import EditGuide from "./pages/guide/EditGuide";
 
 // import Wiki from "./pages/Wiki";
 // import Login from "./pages/Login";
@@ -15,7 +15,10 @@ import EditGuide from "./pages/EditGuide";
 // import SubmitLink from "./pages/SubmitLink";
 // import LinkQueue from "./pages/LinkQueue";
 
-import Links from "./pages/Links";
+import Links from "./pages/links/Links";
+import Wiki from "./pages/links/Wiki";
+import Base64 from "./pages/links/Base64";
+
 import Search from "./pages/Search";
 import {
   Badge,
@@ -24,11 +27,9 @@ import {
   UnstyledButton,
   createStyles,
 } from "@mantine/core";
-import Base64 from "./pages/Base64";
 import { Notifications } from "@mantine/notifications";
 import { SpotlightProvider } from "@mantine/spotlight";
 import { AiOutlineSearch } from "react-icons/ai";
-import Wiki from "./pages/Wiki";
 
 function App() {
   const [username, setUsername] = useState("");

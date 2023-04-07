@@ -1,5 +1,5 @@
 import React from "react";
-import { NoteAlert, WarningAlert } from "../../pages/Links";
+import { NoteAlert, WarningAlert } from "../../pages/links/Links";
 import {
   HeadingRendererHelper,
   classMapping,

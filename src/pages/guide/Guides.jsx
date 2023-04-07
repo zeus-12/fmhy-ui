@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import GuideElement from "../components/GuideElement";
+import GuideElement from "../../components/GuideElement";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { Input, Loader } from "@mantine/core";
-import { SERVER_URL } from "../lib/config";
+import { SERVER_URL } from "../../lib/config";
 import { AiOutlineSearch, AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
-import { errorNotification } from "../components/Notifications";
+import { errorNotification } from "../../components/Notifications";
 
 const Guides = () => {
   const { username } = useContext(UserContext);

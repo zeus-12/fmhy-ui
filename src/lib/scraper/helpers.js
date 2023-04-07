@@ -2,13 +2,14 @@ import React from "react";
 
 export const logHeading = (headingLevel, headingTitle, markdownHeadings) => {
   if (headingLevel === 1) {
-    if (markdownHeadings[headingTitle]) return;
+    if (markdownHeadings[headingTitle] || !headingTitle) return;
 
     markdownHeadings[headingTitle] = [];
   } else if (headingLevel === 2) {
     const lastHeading = Object.keys(markdownHeadings).slice(-1)[0];
 
-    if (markdownHeadings[lastHeading]?.includes(headingTitle)) return;
+    if (markdownHeadings[lastHeading]?.includes(headingTitle) || !headingTitle)
+      return;
 
     markdownHeadings[lastHeading] = [
       ...(markdownHeadings[lastHeading]?.length > 0
@@ -19,6 +20,7 @@ export const logHeading = (headingLevel, headingTitle, markdownHeadings) => {
   }
 
   if (headingLevel === 4 || headingLevel === 3) {
+    if (!headingTitle) return;
     //storage & piracyguide
     markdownHeadings[headingTitle] = [];
   }
@@ -33,7 +35,7 @@ export function flatten(text, child) {
 export const classMapping = {
   h1: "text-2xl font-semibold tracking-tighter",
   h2: "text-xl font-medium tracking-medium",
-  h3: "text-xl font-medium tracking-medium",
+  h3: "text-2xl font-semibold tracking-tight mt-8 mb-3",
   h4: "text-xl font-medium tracking-medium",
 };
 

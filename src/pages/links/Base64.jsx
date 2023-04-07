@@ -1,7 +1,7 @@
 import { Switch } from "@mantine/core";
 import { useEffect, useState } from "react";
-import Base64Element from "../components/Base64Element";
-import { SERVER_URL } from "../lib/config";
+import Base64Element from "../../components/Base64Element";
+import { SERVER_URL } from "../../lib/config";
 
 // const ITEMS_PER_PAGE = 30;
 

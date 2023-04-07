@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { formatName } from "../lib/helper";
-import Error404 from "./404";
-import { SERVER_URL } from "../lib/config";
+import { formatName } from "../../lib/helper";
+import Error404 from "../404";
+import { SERVER_URL } from "../../lib/config";
 
 const Wiki = () => {
   const [resources, setResources] = useState("");
