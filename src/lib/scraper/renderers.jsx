@@ -17,7 +17,7 @@ export const H1Renderer = (props, CATEGORY, markdownHeadings) => {
   return (
     <h1 className={classMapping["h" + props.level] + " group mt-4"} id={slug}>
       <a
-        href={`/links/${CATEGORY}/#${convertTextToLowerCamelCase(text)}`}
+        href={`#${convertTextToLowerCamelCase(text)}`}
         className="group-hover:inline-flex hidden"
       >
         #{" "}
@@ -51,7 +51,7 @@ const redditToGithubTitleMapping = {
 
 export const H2Renderer = (props, CATEGORY, markdownHeadings) => {
   let { slug, text } = HeadingRendererHelper(props);
-  let href = `/links/${CATEGORY}/#${convertTextToLowerCamelCase(text)}`;
+  let href = `#${convertTextToLowerCamelCase(text)}`;
 
   logHeading(props.level, text, markdownHeadings);
 
