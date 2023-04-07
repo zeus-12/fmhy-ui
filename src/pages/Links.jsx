@@ -58,6 +58,22 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
   // replace this with maps
   const markdownHeadings = {};
 
+  // const [scrollY, setScrollY] = useState(0);
+
+  // const linksDataRef = useRef(null);
+
+  // const handleScroll = useCallback(() => {
+  //   setScrollY(linksDataRef.current.getBoundingClientRect());
+  // }, []);
+  // useEffect(() => {
+  //   document.addEventListener("scroll", handleScroll, { passive: true });
+  //   return () => document.removeEventListener("scroll", handleScroll);
+  // }, [handleScroll]);
+
+  // const handleScrollUp = () => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // };
+
   useEffect(() => {
     const currentUrl = window.location.href;
 

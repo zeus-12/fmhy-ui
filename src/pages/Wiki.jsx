@@ -2,34 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { formatName } from "../lib/helper";
-import "../styles/wiki.css";
 import Error404 from "./404";
 import { SERVER_URL } from "../lib/config";
 
-const Wiki = (props) => {
+const Wiki = () => {
   const [resources, setResources] = useState("");
   const [error, setError] = useState(false);
 
   let { resource } = useParams();
 
-  if (props.resourceName) {
-    resource = props.resourceName;
-  }
   useEffect(() => {
     setResources("Loading...");
     const url = SERVER_URL + "/api/wiki/" + resource;
     fetch(url)
       .then((res) => res.json())
-      // .then((data) =>
-      // 	data
-      // 		.replaceAll("&gt;", ">")
-      // 		.replaceAll("&lt;", "<")
-      // 		.replaceAll("<hr />", "")
-      // 		.replaceAll("►", " ")
-      // 		.replaceAll("▷", "")
-      // 		.replaceAll("&#39;", "%")
-      // 		.replaceAll("&amp;", "&"),
-      // )
+      .then((data) => data.data)
+
       .then((prev) => prev.substring(prev.indexOf("# ►")))
 
       .then((finalData) => setResources(finalData))

@@ -28,6 +28,7 @@ import Base64 from "./pages/Base64";
 import { Notifications } from "@mantine/notifications";
 import { SpotlightProvider } from "@mantine/spotlight";
 import { AiOutlineSearch } from "react-icons/ai";
+import Wiki from "./pages/Wiki";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -125,7 +126,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
 
-              {/* <Route path="/resource/:resource" element={<Wiki />} /> */}
+              <Route path="/resource/:resource" element={<Wiki />} />
 
               <Route path="/search" element={<Search />} />
 
