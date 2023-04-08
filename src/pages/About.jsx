@@ -58,7 +58,7 @@ const About = () => {
             entertainment does make the world a smarter and happier place.
             <br />
             Sharing is, always has been, and always will be the right thing to
-            do, and until we live in a world that doesn't need to be shown that,
+            do, and until we live in a world that doesn't need to be shown that,{" "}
             <span className="text-cyan-400 tracking-tighter font-semibold">
               we'll be here.
             </span>
