@@ -15,7 +15,10 @@ export const H1Renderer = (props, markdownHeadings) => {
   logHeading(props.level, text, markdownHeadings);
 
   return (
-    <h1 className={classMapping["h" + props.level] + " group mt-4"} id={slug}>
+    <h1
+      className={classMapping["h" + props.level] + " group mt-4 mb-2"}
+      id={slug}
+    >
       <a href={`#${slug}`} className="group-hover:inline-flex hidden">
         #{" "}
       </a>

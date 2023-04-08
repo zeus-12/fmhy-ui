@@ -54,21 +54,27 @@ const Links = () => {
 const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
-
   const [starredLinks, setStarredLinks] = useState(false);
+
   // replace this with maps
   const markdownHeadings = {};
 
   // const [scrollY, setScrollY] = useState(0);
+  // console.log(scrollY);
 
   // const linksDataRef = useRef(null);
 
   // const handleScroll = useCallback(() => {
-  //   setScrollY(linksDataRef.current.getBoundingClientRect());
+  //   setScrollY(linksDataRef.current.scrollY);
+  //   console.log(linksDataRef.current.scrollY);
   // }, []);
+
   // useEffect(() => {
-  //   document.addEventListener("scroll", handleScroll, { passive: true });
-  //   return () => document.removeEventListener("scroll", handleScroll);
+  //   const currRef = linksDataRef.current;
+  //   currRef.addEventListener("scroll", handleScroll, {
+  //     passive: true,
+  //   });
+  //   return () => currRef.removeEventListener("scroll", handleScroll);
   // }, [handleScroll]);
 
   // const handleScrollUp = () => {
@@ -118,7 +124,10 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
 
   return (
     <>
-      <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-20 overflow-scroll">
+      <div
+        className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-20 overflow-scroll"
+        // ref={linksDataRef}
+      >
         <div className="flex justify-between items-center">
           <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
             {markdownCategory.title}
