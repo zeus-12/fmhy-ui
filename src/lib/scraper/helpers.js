@@ -69,9 +69,12 @@ export const removeSymbolsInHeading = (text) => {
 };
 
 export function redirectRedditLinksToWebsite(link) {
-  const redirectLink = link.split(
+  let redirectLink = link.split(
     "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki"
   )[1];
 
-  return "https://fmhy.ml" + redirectLink;
+  if (redirectLink.includes("wiki_"))
+    redirectLink = redirectLink.replaceAll("wiki_", "");
+
+  return "/links" + redirectLink;
 }

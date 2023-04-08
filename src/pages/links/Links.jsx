@@ -237,7 +237,7 @@ const LinkCategoriesSidebar = ({ markdownCategory }) => {
   const [includeNsfw, setIncludeNsfw] = useState(false);
 
   return (
-    <div className="bg-[#0E131F] border-gray-700 border-r-[1px] h-full overflow-scroll sticky hideScrollbar">
+    <div className="bg-[#050a15] border-gray-700 border-r-[1px] h-full overflow-scroll sticky hideScrollbar">
       <div className="items-center px-4 pt-2 justify-between hidden md:flex">
         <p className="text-xl tracking-tighter font-medium ">Categories</p>
         <Switch
@@ -265,7 +265,7 @@ const LinkCategoriesSidebar = ({ markdownCategory }) => {
               item.urlEnding === markdownCategory.urlEnding
                 ? "text-gray-300"
                 : "text-gray-500"
-            } text-md group-hover:text-blue-300`}
+            } text-md group-hover:text-slate-300`}
           >
             <span className="group-hover:animate-pulse">{item.emoji}</span>
             {"  "}
@@ -290,7 +290,7 @@ const LinksContentsSidebar = ({ CATEGORY, markdownHeadings }) => {
           <div key={item[0]} className="px-2 py-1">
             <a
               href={`#${convertTextToLowerCamelCase(item[0])}`}
-              className="text-gray-500 text-base"
+              className="text-gray-500 text-base hover:text-slate-300"
             >
               &#x203A; {removeSymbolsInHeading(item[0])}
             </a>
@@ -298,7 +298,7 @@ const LinksContentsSidebar = ({ CATEGORY, markdownHeadings }) => {
               <div key={subHeading} className="px-3 py-[3px]">
                 <a
                   href={`#${convertTextToLowerCamelCase(subHeading)}`}
-                  className="text-gray-500 text-sm"
+                  className="text-gray-500 text-sm hover:text-slate-300"
                 >
                   &#xbb; {removeSymbolsInHeading(subHeading)}
                 </a>
@@ -346,15 +346,55 @@ export const WarningAlert = ({ message }) => {
 };
 
 const LinksHomePage = () => {
+  const messages = [
+    <p className="inline">
+      Anyone can suggest{" "}
+      <a href="https://github.com/nbats/FMHYedit">
+        changes or corrections to the wiki.
+      </a>
+    </p>,
+    <p className="inline">
+      If you're adding a new site, please{" "}
+      <a href="https://raw.githubusercontent.com/nbats/FMHYedit/main/single-page">
+        search
+      </a>{" "}
+      first to make sure we don't already have it.
+    </p>,
+    <p className="inline">
+      Approved edits will be applied to this site and all{" "}
+      <a href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/backups">
+        backups
+      </a>
+      .
+    </p>,
+    <p className="inline">
+      You can send us stuff directly via{" "}
+      <a href="https://redd.it/uto5vw">💬 Divolt</a>.
+    </p>,
+    <p className="inline">
+      You can also checkout our{" "}
+      <a href="https://www.reddit.com/r/FREEMEDIAHECKYEAH/">subreddit</a> to
+      know about any major updates to the wiki.
+    </p>,
+  ];
+
   return (
     <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll space-y-4">
-      <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
+      {/* <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
         Welcome 🙏
-      </p>
+      </p> */}
 
-      <p className="text-xl font-semibold tracking-tighter text-cyan-400">
-        Welcome to The Largest Collection of Free Stuff On The Internet!
+      <p className="text-2xl font-semibold tracking-tighter ">
+        Welcome to The{" "}
+        <span className="text-cyan-400"> Largest Collection of Free Stuff</span>{" "}
+        On The Internet!
       </p>
+      <img src={"/assets/logo-gif.gif"} alt="logo" className="w-1/2" />
+      <div>
+        {messages.map((item) => (
+          <li className="text-gray-400">{item}</li>
+        ))}
+      </div>
 
       <div>
         <p className="text-xl font-semibold tracking-tighter">
