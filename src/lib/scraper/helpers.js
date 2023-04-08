@@ -68,13 +68,49 @@ export const removeSymbolsInHeading = (text) => {
   return text.replace("▷ ", "").replace("► ", "").replace("►", "");
 };
 
+export const redditToGithubTitleMapping = {
+  "adblock-vpn-privacy": "adblockvpnguide",
+  android: "android-iosguide",
+  reading: "readingpiracyguide",
+  download: "downloadpiracyguide",
+  edu: "edupiracyguide",
+  games: "gamingpiracyguide",
+  linux: "linuxguide",
+  misc: "miscguide",
+  video: "videopiracyguide",
+  audio: "audiopiracyguide",
+  "non-eng": "non-english",
+  storage: "storage",
+  torrent: "torrentpiracyguide",
+  ai: "ai",
+  beginners_guide: "beginners_guide",
+  "img-tools": "img-tools",
+  "tools-misc": "toolsguide",
+  "dev-tools": "devtools",
+  // :"nsfwpiracy"
+};
+
 export function redirectRedditLinksToWebsite(link) {
-  let redirectLink = link.split(
-    "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki"
+  let trimRedditUrl = link.split(
+    "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/"
   )[1];
 
-  if (redirectLink.includes("wiki_"))
-    redirectLink = redirectLink.replaceAll("wiki_", "");
+  const splitLink = trimRedditUrl.split("#");
+  const category = splitLink[0].replaceAll("/", "");
 
-  return "/links" + redirectLink;
+  const id = splitLink[1]
+    ?.replaceAll("wiki_", "")
+    .replaceAll(".25BA_", "")
+    .replaceAll(".25B7_", "")
+    // for ones with / in name
+    .replaceAll("_.2F_", "_");
+
+  if (!redditToGithubTitleMapping[category]) {
+    console.log("no mapping for", category);
+    return link;
+  }
+
+  return (
+    "/links/" + redditToGithubTitleMapping[category] + (id ? "#" + id : "")
+  );
 }

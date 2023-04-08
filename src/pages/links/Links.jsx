@@ -435,7 +435,6 @@ const LinksHomePage = () => {
         {[
           "Update toc on scroll",
           "same h2 names - edupiracy guides",
-          "fix linkings, toc in storage, beginners guide",
           "cache the scraped data using reactquery/swr",
           "add base64, instead of scrape-store_to_db-fetch",
           "auth? guide-queue, link-queue",

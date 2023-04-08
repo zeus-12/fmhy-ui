@@ -231,7 +231,7 @@ export const MARKDOWN_RESOURCES = [
     emoji: "🖼️",
   },
   {
-    title: "Linux/ MacOS",
+    title: "Linux, MacOS",
     urlEnding: "LinuxGuide",
     emoji: "🐧",
   },

@@ -24,28 +24,6 @@ export const H1Renderer = (props, markdownHeadings) => {
   );
 };
 
-const redditToGithubTitleMapping = {
-  "adblock-vpn-privacy": "adblockvpnguide",
-  android: "android-iosguide",
-  reading: "readingpiracyguide",
-  download: "downloadpiracyguide",
-  edu: "edupiracyguide",
-  games: "gamingpiracyguide",
-  linux: "linuxguide",
-  misc: "miscguide",
-  video: "videopiracyguide",
-  audio: "audiopiracyguide",
-  "non-eng": "non-english",
-  storage: "storage",
-  torrent: "torrentpiracyguide",
-  ai: "ai",
-  beginners_guide: "beginners_guide",
-  "img-tools": "img-tools",
-  "tools-misc": "toolsguide",
-  // :"devtools",
-  // :"nsfwpiracy"
-};
-
 export const H2Renderer = (props, markdownHeadings) => {
   let { slug, text } = HeadingRendererHelper(props);
   let href = `#${convertTextToLowerCamelCase(text)}`;
@@ -57,40 +35,7 @@ export const H2Renderer = (props, markdownHeadings) => {
     if (
       eleHref.startsWith("https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/")
     ) {
-      //TODO:  use better approach for this
-      // linking doesnt work for tags with "/" in name : cause of weird url shit
-      // file tools in downloading --> h1 tag
-      // to check for educational onwards
-
-      // /linux/#wiki_.25BA_mac_software  ==> /linux/#mac_software
-      const slugEnding = eleHref?.split("/wiki/")[1];
-
-      // linux#wiki_.25BA_mac_software  ==> /linux/#mac_software
-      const category = slugEnding.split("#")[0].replaceAll("/", "");
-
-      const temp = slugEnding.split("#")[1];
-
-      if (temp?.includes("wiki_")) {
-        const newTemp = temp.split("wiki_")[1];
-
-        // check if newTemp has the weird number thing
-        if (newTemp.startsWith(".")) {
-          const splitArray = newTemp.split("_");
-          splitArray.shift();
-          const idTag = splitArray.join("_");
-          href = redditToGithubTitleMapping[category] + "/#" + idTag;
-        } else {
-          href = redditToGithubTitleMapping[category] + "/#" + newTemp;
-        }
-      }
-
-      // // wiki_.25BA_mac_software  ==> mac_software
-      // const splitArray = slugEnding.split("#wiki_.")[1]?.split("_");
-      // if (!splitArray) return;
-      // // [25BA, mac, software]  ==> mac_software
-      // splitArray.shift();
-      // const idTag = splitArray.join("_");
-      // href = redditToGithubTitleMapping[category] + "/#" + idTag;
+      href = redirectRedditLinksToWebsite(eleHref);
     } else {
       console.log("not reddit link", eleHref);
     }
@@ -146,7 +91,7 @@ export function LinkRenderer(props) {
   return <a {...newProps} target="_blank" rel="noopener noreferrer" />;
 }
 
-export function LiRenderer(props, starredLinks) {
+export function LiRenderer(props, showOnlyStarredLinks) {
   var children = React.Children.toArray(props.children);
   var text = children.reduce(flatten, "");
 
@@ -167,7 +112,7 @@ export function LiRenderer(props, starredLinks) {
     return (
       <li
         className={`list-disc ml-6 ${
-          starredLinks ? (isStarred ? "" : "hidden") : ""
+          showOnlyStarredLinks ? (isStarred ? "" : "hidden") : ""
         }`}
         {...props}
       />
@@ -179,20 +124,18 @@ export const PRenderer = (props) => {
   var children = React.Children.toArray(props.children);
   var text = children.reduce(flatten, "");
 
-  // if (text.startsWith("!!!note") || text.startsWith("Note - ")) {
-
   const NOTE_STARTERS = ["!!!note", "Note - "];
   const WARNING_STARTERS = ["!!!warning", "Warning - "];
 
-  if (NOTE_STARTERS.some((item) => text.startsWith(item))) {
-    const splitText = NOTE_STARTERS.find((item) => text.startsWith(item));
-    const message = text.split(splitText)[1];
-
+  const noteStarter = NOTE_STARTERS.find((item) => text.startsWith(item));
+  if (noteStarter) {
+    const message = text.split(noteStarter)[1];
     return <NoteAlert message={message} />;
-  } else if (WARNING_STARTERS.some((item) => text.startsWith(item))) {
-    const splitText = WARNING_STARTERS.find((item) => text.startsWith(item));
-    const message = text.split(splitText)[1];
+  }
 
+  const warningStarter = WARNING_STARTERS.find((item) => text.startsWith(item));
+  if (warningStarter) {
+    const message = text.split(warningStarter)[1];
     return <WarningAlert message={message} />;
   } else {
     return <p {...props} />;
