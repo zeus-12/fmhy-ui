@@ -47,7 +47,7 @@ const Home = () => {
                 </a>
               </p>
               <p className="text-center">
-                Also browse through the updated{" "}
+                Also be sure to checkout the updated{" "}
                 <Link className="text-cyan-500" to="/links">
                   links page
                 </Link>
