@@ -398,7 +398,7 @@ const LinksHomePage = () => {
         <span className="text-cyan-400"> Largest Collection of Free Stuff</span>{" "}
         On The Internet!
       </p>
-      <img src={"/assets/logo-gif.gif"} alt="logo" className="w-1/2" />
+      <img src={"/assets/logo-no-bg.gif"} alt="logo" className="w-1/2" />
       <div>
         {messages.map((item) => (
           <li className="text-gray-400">{item}</li>

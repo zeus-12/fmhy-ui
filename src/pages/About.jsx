@@ -74,7 +74,7 @@ const About = () => {
             <img
               className="w-[300px] lg:max-w-xl"
               alt="logo gif"
-              src="../../assets/logo-gif.gif"
+              src="/assets/logo-no-bg.gif"
             />
           </div>
         </div>
