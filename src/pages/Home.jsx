@@ -48,8 +48,8 @@ const Home = () => {
               </p>
               <p className="text-center">
                 Also be sure to checkout the updated{" "}
-                <Link className="text-cyan-500" to="/links">
-                  links page
+                <Link className="text-cyan-500" to="/wiki">
+                  Wiki page
                 </Link>
               </p>
             </div>

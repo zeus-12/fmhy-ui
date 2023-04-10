@@ -140,36 +140,36 @@ export const category_channels = [
 ];
 export const resources = [
   {
-    link: "/resource/adblock-vpn-privacy",
+    link: "/links/adblock-vpn-privacy",
     emoji: "📛",
     title: "Adblock, Privacy, Antivirus",
   },
   {
-    link: "/resource/video",
+    link: "/links/video",
     emoji: "📺",
     title: "Movies, TV, Anime, Sports",
   },
   {
-    link: "/resource/audio",
+    link: "/links/audio",
     emoji: "🎵",
     title: " Music, Podcasts, Radio ",
   },
-  { link: "/resource/games", emoji: "🎮", title: "Gaming, Emulation" },
+  { link: "/links/games", emoji: "🎮", title: "Gaming, Emulation" },
   {
-    link: "/resource/reading",
+    link: "/links/reading",
     emoji: "📗",
     title: "Books, Comics, Manga",
   },
-  { link: "/resource/download", emoji: "💾", title: "Downloading" },
-  { link: "/resource/torrent", emoji: "🌀", title: "Torrenting" },
-  { link: "/resource/edu", emoji: "🧠", title: "Educational" },
-  { link: "/resource/tools-misc", emoji: "🔧", title: "Tools" },
-  { link: "/resource/misc", emoji: "📂", title: "Miscellaneous" },
-  { link: "/resource/android", emoji: "📱", title: "Android, iOS" },
-  { link: "/resource/linux", emoji: "🐧", title: "Linux, MacOS" },
-  { link: "/resource/storage", emoji: "📦", title: "Storage" },
-  { link: "/resource/non-eng", emoji: "🌍", title: "Non English" },
-  { link: "/resource/base64", emoji: "🔗", title: "Base 64" },
+  { link: "/links/download", emoji: "💾", title: "Downloading" },
+  { link: "/links/torrent", emoji: "🌀", title: "Torrenting" },
+  { link: "/links/edu", emoji: "🧠", title: "Educational" },
+  { link: "/links/tools-misc", emoji: "🔧", title: "Tools" },
+  { link: "/links/misc", emoji: "📂", title: "Miscellaneous" },
+  { link: "/links/android", emoji: "📱", title: "Android, iOS" },
+  { link: "/links/linux", emoji: "🐧", title: "Linux, MacOS" },
+  { link: "/links/storage", emoji: "📦", title: "Storage" },
+  { link: "/links/non-eng", emoji: "🌍", title: "Non English" },
+  { link: "/links/base64", emoji: "🔗", title: "Base 64" },
 ];
 
 export const MARKDOWN_RESOURCES = [

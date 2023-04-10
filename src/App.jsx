@@ -46,7 +46,7 @@ function App() {
       group: "page",
       new: true,
       onTrigger: () => {
-        navigate("/links");
+        navigate("/wiki");
       },
     },
     {
@@ -127,7 +127,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
 
-              <Route path="/resource/:resource" element={<Wiki />} />
+              <Route path="/links/:resource" element={<Links />} />
 
               <Route path="/search" element={<Search />} />
 
@@ -143,8 +143,8 @@ function App() {
               {/* <Route path="/login" element={<Login />} /> */}
               {/* <Route path="/user" element={<User />} /> */}
 
-              <Route path="/links" element={<Navigate to="/links/home" />} />
-              <Route path="/links/:CATEGORY" element={<Links />} />
+              <Route path="/wiki" element={<Navigate to="/wiki/home" />} />
+              <Route path="/wiki/:CATEGORY" element={<Wiki />} />
 
               <Route path="/base64" element={<Base64 />} />
 

@@ -9,7 +9,7 @@ import { useSpotlight } from "@mantine/spotlight";
 
 export const LinkElements = ({ username }) => {
   const navItems = [
-    { link: "/links", name: "Links" },
+    { link: "/wiki", name: "Wiki" },
     { link: "/search", name: "Search" },
     { link: "/about", name: "About" },
     { link: "/guides", name: "Guides" },

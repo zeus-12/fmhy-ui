@@ -80,8 +80,8 @@ const About = () => {
         </div>
       </div>
       <p className="text-xl text-center font-semibold tracking-tight">
-        Get started with <Link to="/links">Links</Link> (scraped from FMHY
-        Github Page)
+        Get started with the updated <Link to="/wiki">Wiki page</Link> (scraped
+        from FMHY Github Page)
       </p>
       <FAQ />
     </div>
