@@ -41,7 +41,7 @@ function App() {
 
   const spotlightActions = [
     {
-      title: "Links Page",
+      title: "Wiki",
       description: "Collection of all links scraped from FMHY Github ",
       group: "page",
       new: true,
@@ -50,7 +50,7 @@ function App() {
       },
     },
     {
-      title: "Guides Page",
+      title: "Guides",
       description: "Collection of useful Guides!",
       group: "page",
 
@@ -59,7 +59,7 @@ function App() {
       },
     },
     {
-      title: "Base64 links",
+      title: "Base64 Links",
       description: "All base64 links in r/fmhy",
       group: "page",
       onTrigger: () => {
