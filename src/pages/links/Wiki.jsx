@@ -337,7 +337,18 @@ export const NoteAlert = ({ message }) => {
 
 export const AlertComponent = ({ title, color, message, icon }) => {
   return (
-    <Alert className="my-2" icon={icon} radius="md" title={title} color={color}>
+    <Alert
+      classNames={{
+        label: "text-xl",
+        title: "m-0",
+        wrapper: "flex items-center",
+      }}
+      className="my-2"
+      icon={icon}
+      radius="md"
+      title={title}
+      color={color}
+    >
       {message}
     </Alert>
   );
