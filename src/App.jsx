@@ -30,8 +30,11 @@ import {
 import { Notifications } from "@mantine/notifications";
 import { SpotlightProvider } from "@mantine/spotlight";
 import { AiOutlineSearch } from "react-icons/ai";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   const [username, setUsername] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -108,55 +111,57 @@ function App() {
         ],
       }}
     >
-      <SpotlightProvider
-        shortcut={["mod + P", "mod + K", "/"]}
-        actions={spotlightActions}
-        actionComponent={CustomAction}
-        searchPlaceholder="Search..."
-        query={query}
-        onQueryChange={setQuery}
-        searchIcon={<AiOutlineSearch className="w-5 h-5 text-gray-400" />}
-      >
-        <UserContext.Provider
-          value={{ username, setUsername, isAdmin, setIsAdmin }}
+      <QueryClientProvider client={queryClient}>
+        <SpotlightProvider
+          shortcut={["mod + P", "mod + K", "/"]}
+          actions={spotlightActions}
+          actionComponent={CustomAction}
+          searchPlaceholder="Search..."
+          query={query}
+          onQueryChange={setQuery}
+          searchIcon={<AiOutlineSearch className="w-5 h-5 text-gray-400" />}
         >
-          <Notifications />
+          <UserContext.Provider
+            value={{ username, setUsername, isAdmin, setIsAdmin }}
+          >
+            <Notifications />
 
-          <Navbar />
-          <div className="mt-20 px-2">
-            <Routes>
-              <Route path="/" element={<Home />} />
+            <Navbar />
+            <div className="mt-20 px-2">
+              <Routes>
+                <Route path="/" element={<Home />} />
 
-              <Route path="/links/:resource" element={<Links />} />
+                <Route path="/links/:resource" element={<Links />} />
 
-              <Route path="/search" element={<Search />} />
+                <Route path="/search" element={<Search />} />
 
-              <Route path="/about" element={<About />} />
+                <Route path="/about" element={<About />} />
 
-              <Route
-                path="/guides/add"
-                element={username ? <AddGuide /> : <Navigate to="/guides" />}
-              />
-              <Route path="/guides/edit/:ID" element={<EditGuide />} />
-              <Route path="/guides" element={<Guides />} />
+                <Route
+                  path="/guides/add"
+                  element={username ? <AddGuide /> : <Navigate to="/guides" />}
+                />
+                <Route path="/guides/edit/:ID" element={<EditGuide />} />
+                <Route path="/guides" element={<Guides />} />
 
-              {/* <Route path="/login" element={<Login />} /> */}
-              {/* <Route path="/user" element={<User />} /> */}
+                {/* <Route path="/login" element={<Login />} /> */}
+                {/* <Route path="/user" element={<User />} /> */}
 
-              <Route path="/wiki" element={<Navigate to="/wiki/home" />} />
-              <Route path="/wiki/:CATEGORY" element={<Wiki />} />
+                <Route path="/wiki" element={<Navigate to="/wiki/home" />} />
+                <Route path="/wiki/:CATEGORY" element={<Wiki />} />
 
-              <Route path="/base64" element={<Base64 />} />
+                <Route path="/base64" element={<Base64 />} />
 
-              {/* <Route path="/submit-link" element={<SubmitLink />} /> */}
-              {/* <Route path="/links/add" element={<SubmitLink />} /> */}
-              {/* <Route path="/link-queue" element={<LinkQueue />} /> */}
+                {/* <Route path="/submit-link" element={<SubmitLink />} /> */}
+                {/* <Route path="/links/add" element={<SubmitLink />} /> */}
+                {/* <Route path="/link-queue" element={<LinkQueue />} /> */}
 
-              <Route path="*" element={<Error404 />} />
-            </Routes>
-          </div>
-        </UserContext.Provider>
-      </SpotlightProvider>
+                <Route path="*" element={<Error404 />} />
+              </Routes>
+            </div>
+          </UserContext.Provider>
+        </SpotlightProvider>
+      </QueryClientProvider>
     </MantineProvider>
   );
 }
