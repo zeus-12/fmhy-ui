@@ -23,6 +23,7 @@ import {
 import { convertTextToLowerCamelCase } from "../../lib/scraper/helpers";
 import { removeSymbolsInHeading } from "../../lib/scraper/helpers";
 import { resources as menuItems } from "../../lib/CONSTANTS";
+import { useQuery } from "@tanstack/react-query";
 
 const Wiki = () => {
   let { CATEGORY } = useParams();
@@ -52,8 +53,6 @@ const Wiki = () => {
 };
 
 const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
-  const [data, setData] = useState();
-  const [error, setError] = useState(false);
   const [starredLinks, setStarredLinks] = useState(false);
 
   // replace this with maps
@@ -81,6 +80,26 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
   //   window.scrollTo({ top: 0, behavior: "smooth" });
   // };
 
+  const fetchWikiData = async () => {
+    const markdownUrlEnding = markdownCategory?.urlEnding;
+
+    if (!markdownUrlEnding) {
+      return;
+    }
+    const markdownUrl =
+      "https://raw.githubusercontent.com/nbats/FMHYedit/main/" +
+      markdownUrlEnding +
+      ".md";
+
+    const res = await fetch(markdownUrl);
+    const text = await res.text();
+
+    const cleanedText = text.split("For mobile users")[1];
+    return cleanedText || text;
+  };
+
+  const { data, error } = useQuery(["wiki", CATEGORY], fetchWikiData);
+
   useEffect(() => {
     const currentUrl = window.location.href;
 
@@ -93,34 +112,6 @@ const LinkDataRenderer = ({ CATEGORY, markdownCategory }) => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   }, [data]);
-
-  useEffect(() => {
-    const markdownUrlEnding = markdownCategory?.urlEnding;
-
-    if (!markdownUrlEnding) {
-      return;
-    }
-    const fetchMarkdown = async () => {
-      if (!markdownCategory) return setError(true);
-
-      const markdownUrl =
-        "https://raw.githubusercontent.com/nbats/FMHYedit/main/" +
-        markdownUrlEnding +
-        ".md";
-      try {
-        const res = await fetch(markdownUrl);
-        const text = await res.text();
-
-        const cleanedText = text.split("For mobile users")[1];
-
-        setData(cleanedText || text);
-      } catch (err) {
-        setError(true);
-      }
-    };
-
-    fetchMarkdown();
-  }, [markdownCategory, markdownCategory?.urlEnding]);
 
   return (
     <>
@@ -454,10 +445,8 @@ const LinksHomePage = () => {
         <p className="font-semibold text-red-200">Todos/ Knows bugs</p>
         {[
           "Update toc on scroll",
-          "same h2 names - edupiracy guides",
-          "cache the scraped data using reactquery/swr",
+          "same h2 names =>SAME ID - eg: in edupiracy guides",
           "add base64, instead of scrape-store_to_db-fetch",
-          "auth? guide-queue, link-queue",
         ].map((item) => (
           <li className="list-disc" key={item}>
             {item}

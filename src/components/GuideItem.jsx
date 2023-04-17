@@ -1,7 +1,3 @@
-import React, { useContext } from "react";
-import { UserContext } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
-import "../styles/guides.css";
 import { Badge } from "@mantine/core";
 
 const GuideItem = ({ data }) => {
@@ -36,8 +32,7 @@ const GuideItem = ({ data }) => {
             href={data.link}
             rel="noreferrer"
           >
-            {data.title}{" "}
-            <span style={{ color: "#ff6600" }}>{data.nsfw ? "NSFW" : ""}</span>
+            {data.title} {data.nsfw && <Badge color="red">NSFW</Badge>}
           </a>
           {/* {username && (data.owner === username || isAdmin) && (
                 <div className="flex mr-2">

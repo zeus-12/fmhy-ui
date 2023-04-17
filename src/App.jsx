@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { UserContext } from "./context/UserContext";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -161,6 +163,7 @@ function App() {
             </div>
           </UserContext.Provider>
         </SpotlightProvider>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </MantineProvider>
   );
