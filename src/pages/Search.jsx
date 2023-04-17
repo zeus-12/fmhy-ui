@@ -110,7 +110,7 @@ const Search = () => {
       </div>
 
       <p className="text-gray-400 mb-2">
-        Doesn't include links in{" "}
+        Missing links from{" "}
         <a
           className="text-gray-400 underline"
           href="https://github.com/nbats/FMHYedit/blob/main/STORAGE.md"

@@ -274,7 +274,7 @@ const LinkCategoriesSidebar = ({ markdownCategory }) => {
               item.urlEnding === markdownCategory.urlEnding
                 ? "text-gray-300"
                 : "text-gray-500"
-            } text-md group-hover:text-slate-300`}
+            } group-hover:text-slate-300`}
           >
             <span className="group-hover:animate-pulse">{item.emoji}</span>
             {"  "}
