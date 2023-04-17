@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import GuideElement from "../../components/GuideElement";
+import GuideItem from "../../components/GuideItem";
 import { Input, Loader } from "@mantine/core";
 import { SERVER_URL } from "../../lib/config";
 import { AiOutlineSearch, AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
@@ -110,7 +110,7 @@ const Guides = () => {
             <Loader variant="dots" />
           </div>
         ) : (
-          filterData(guides)?.map((item) => <GuideElement data={item} />)
+          filterData(guides)?.map((item) => <GuideItem data={item} />)
         )}
       </div>
     </div>

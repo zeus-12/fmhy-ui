@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/guides.css";
 import { Badge } from "@mantine/core";
 
-const GuideElement = ({ data }) => {
-  // const { username, isAdmin } = useContext(UserContext);
-  const navigate = useNavigate();
-
+const GuideItem = ({ data }) => {
   // const editLink = async (e) => {
   //   let idToEdit = e.target.id;
   //   navigate("/guides/edit/" + idToEdit);
@@ -103,4 +100,4 @@ const GuideElement = ({ data }) => {
   );
 };
 
-export default GuideElement;
+export default GuideItem;
