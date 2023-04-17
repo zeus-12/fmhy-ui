@@ -11,7 +11,7 @@ const WikiContentsSidebar = ({ CATEGORY, markdownHeadings }) => {
         ["home"].includes(CATEGORY) ? "hidden" : "hidden md:inline-flex"
       } bg-[#0E131F] border-l-[1px] border-gray-700 md:flex-col overflow-scroll hideScrollbar min-w-[12rem]`}
     >
-      <p className="text-xl tracking-tighter font-medium px-1 pt-2">Contents</p>
+      <p className="text-xl tracking-tighter font-medium px-4 pt-2">Contents</p>
       {Object.entries(markdownHeadings).length > 0 ? (
         Object.entries(markdownHeadings)?.map((item) => (
           <div key={item[0]} className="px-2 py-1">

@@ -1,6 +1,7 @@
 import { Switch } from "@mantine/core";
 import { MARKDOWN_RESOURCES } from "../../lib/CONSTANTS";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CategoriesSidebar = ({ markdownCategory }) => {
   const toggleNsfw = () => setIncludeNsfw((prev) => !prev);
@@ -21,27 +22,19 @@ const CategoriesSidebar = ({ markdownCategory }) => {
       {MARKDOWN_RESOURCES.filter((item) =>
         includeNsfw ? item : item.urlEnding !== "NSFWPiracy"
       ).map((item) => (
-        <div
+        <Link
           key={item.urlEnding}
+          to={`/wiki/${item.urlEnding.toLowerCase()}`}
           className={`${
             item.urlEnding === markdownCategory.urlEnding
-              ? "bg-gray-800 border-r-[2px] border-white"
-              : ""
-          } rounded-sm px-4 my-2 py-1 group`}
+              ? "text-gray-300 bg-gray-800 border-r-[2px] border-white"
+              : "text-gray-500"
+          } group-hover:text-slate-300 rounded-sm px-4 my-2 py-2 group block`}
         >
-          <a
-            href={`/wiki/${item.urlEnding.toLowerCase()}`}
-            className={`${
-              item.urlEnding === markdownCategory.urlEnding
-                ? "text-gray-300"
-                : "text-gray-500"
-            } group-hover:text-slate-300`}
-          >
-            <span className="group-hover:animate-pulse">{item.emoji}</span>
-            {"  "}
-            <span className="hidden md:inline-flex">{item.title}</span>
-          </a>
-        </div>
+          <span className="group-hover:animate-pulse">{item.emoji}</span>
+          {"  "}
+          <span className="hidden md:inline-flex">{item.title}</span>
+        </Link>
       ))}
     </div>
   );
