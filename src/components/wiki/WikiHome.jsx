@@ -34,13 +34,10 @@ const messages = [
     about any major updates to the wiki.
   </p>,
 ];
+
 const WikiHome = () => {
   return (
     <div className="flex-1 sm:px-4 md:px-8 lg:px-14 xl:px-28 overflow-scroll space-y-4">
-      {/* <p className="text-3xl underline underline-offset-2 font-semibold tracking-tighter">
-          Welcome 🙏
-        </p> */}
-
       <p className="text-2xl font-semibold tracking-tighter ">
         Welcome to The{" "}
         <span className="text-cyan-400"> Largest Collection of Free Stuff</span>{" "}
